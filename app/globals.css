@@ -1,0 +1,42 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand tokens — see DESIGN.md */
+  --color-background: #fff8ee;
+  --color-blue: #63cbf8;
+  --color-blue-hover: #45b9ea;
+  --color-green: #7ed957;
+  --color-green-hover: #67c440;
+
+  /* Provisional neutrals (DESIGN.md open item — confirm before final launch) */
+  --color-text: #2b2622;
+  --color-text-muted: #6b6259;
+  --color-surface: #fdf3e2;
+  --color-border: #e8dcc6;
+}
+
+@theme inline {
+  --color-background: var(--color-background);
+  --color-blue: var(--color-blue);
+  --color-blue-hover: var(--color-blue-hover);
+  --color-green: var(--color-green);
+  --color-green-hover: var(--color-green-hover);
+  --color-text: var(--color-text);
+  --color-text-muted: var(--color-text-muted);
+  --color-surface: var(--color-surface);
+  --color-border: var(--color-border);
+  --font-heading: var(--font-sora);
+  --font-body: var(--font-manrope);
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-heading), Arial, Helvetica, sans-serif;
+}
