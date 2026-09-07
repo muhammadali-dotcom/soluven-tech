@@ -4,7 +4,7 @@
 
 - **Framework:** Next.js (App Router), TypeScript
 - **Styling:** Tailwind CSS
-- **Fonts:** Sora + Manrope via `next/font/google`
+- **Fonts:** Plus Jakarta Sans via `next/font/google`
 - **Hosting/Deploy:** Vercel (auto-deploy from `main`)
 - **Forms:** Contact form posts to a backend/email service (provider TBD — e.g. Resend, Formspree, or a custom API route)
 

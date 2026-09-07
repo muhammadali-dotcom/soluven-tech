@@ -1,32 +1,30 @@
 @import "tailwindcss";
 
 :root {
-  /* Brand tokens — see DESIGN.md */
+  /* Brand tokens — see DESIGN.md. Single-accent palette (Fleekbiz-inspired
+     simplification, per user request) — blue is the only accent color,
+     used sparingly (primary CTA + key links only). */
   --color-background: #fff8ee;
-  --color-blue: #63cbf8;
-  --color-blue-hover: #45b9ea;
-  --color-green: #7ed957;
-  --color-green-hover: #67c440;
+  --color-blue: #2f6fb3;
+  --color-blue-hover: #24578f;
 
   /* Provisional neutrals (DESIGN.md open item — confirm before final launch) */
-  --color-text: #2b2622;
-  --color-text-muted: #6b6259;
-  --color-surface: #fdf3e2;
-  --color-border: #e8dcc6;
+  --color-text: #241f1a;
+  --color-text-muted: #5c5248;
+  --color-surface: #f0dfba;
+  --color-border: #c9ac78;
 }
 
 @theme inline {
   --color-background: var(--color-background);
   --color-blue: var(--color-blue);
   --color-blue-hover: var(--color-blue-hover);
-  --color-green: var(--color-green);
-  --color-green-hover: var(--color-green-hover);
   --color-text: var(--color-text);
   --color-text-muted: var(--color-text-muted);
   --color-surface: var(--color-surface);
   --color-border: var(--color-border);
-  --font-heading: var(--font-sora);
-  --font-body: var(--font-manrope);
+  --font-heading: var(--font-jakarta);
+  --font-body: var(--font-jakarta);
 }
 
 body {

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { services } from "@/data/services";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function ServicesGrid() {
   return (
@@ -10,16 +11,18 @@ export function ServicesGrid() {
       </h2>
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((service) => (
-          <Link key={service.slug} href="/services">
-            <Card className="h-full transition-shadow hover:shadow-md">
-              <h3 className="font-[family-name:var(--font-heading)] text-xl font-semibold">
-                {service.name}
-              </h3>
-              <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                {service.summary}
-              </p>
-            </Card>
-          </Link>
+          <Reveal key={service.slug}>
+            <Link href={`/services#${service.slug}`}>
+              <Card className="h-full transition-shadow hover:shadow-md">
+                <h3 className="font-[family-name:var(--font-heading)] text-xl font-semibold">
+                  {service.name}
+                </h3>
+                <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                  {service.summary}
+                </p>
+              </Card>
+            </Link>
+          </Reveal>
         ))}
       </div>
     </section>

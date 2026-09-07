@@ -1,13 +1,15 @@
 import Link from "next/link";
 import type { ComponentPropsWithoutRef } from "react";
 
-type ButtonVariant = "primary" | "secondary";
+type ButtonVariant = "primary" | "secondary" | "inverted";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-[var(--color-green)] text-[var(--color-text)] hover:bg-[var(--color-green-hover)]",
+    "bg-[var(--color-blue)] text-white hover:bg-[var(--color-blue-hover)]",
   secondary:
-    "border border-[var(--color-blue)] text-[var(--color-text)] hover:bg-[var(--color-blue)]/10",
+    "border border-[var(--color-border)] text-[var(--color-text)] hover:bg-[var(--color-surface)]",
+  inverted:
+    "border border-[var(--color-text)] bg-[var(--color-background)] text-[var(--color-text)] hover:bg-[var(--color-surface)]",
 };
 
 const baseClasses =

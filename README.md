@@ -7,7 +7,7 @@ Soluven is a software house offering web development, mobile app development, ec
 - **Framework:** Next.js (App Router) + TypeScript
 - **Styling:** Tailwind CSS
 - **Hosting:** Vercel
-- **Fonts:** Sora (headings), Manrope (body/UI)
+- **Fonts:** Plus Jakarta Sans (headings & body/UI)
 
 See `ARCHITECTURE.md` for full details.
 

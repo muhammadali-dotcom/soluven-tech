@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Card } from "@/components/ui/Card";
 import { services } from "@/data/services";
 import { buildMetadata, breadcrumbJsonLd, serviceJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
+import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = buildMetadata({
   title: "Services",
@@ -27,22 +27,41 @@ export default function ServicesPage() {
         The full range of what we do, from first line of code to launch.
       </p>
 
-      <div className="mt-12 grid gap-8 md:grid-cols-2">
-        {services.map((service) => (
-          <Card key={service.slug}>
-            <JsonLd data={serviceJsonLd(service)} />
-            <h2 className="font-[family-name:var(--font-heading)] text-2xl font-semibold">
-              {service.name}
-            </h2>
-            <p className="mt-3 text-[var(--color-text-muted)]">
-              {service.description}
-            </p>
-            <ul className="mt-4 space-y-1 text-sm">
-              {service.included.map((item) => (
-                <li key={item}>• {item}</li>
-              ))}
-            </ul>
-          </Card>
+      <div className="mt-16 flex flex-col gap-16">
+        {services.map((service, index) => (
+          <Reveal key={service.slug}>
+            <section
+              id={service.slug}
+              className={`scroll-mt-24 grid gap-8 border-t border-[var(--color-border)] pt-12 md:grid-cols-2 ${
+                index % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
+              }`}
+            >
+              <JsonLd data={serviceJsonLd(service)} />
+              <div>
+                <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold">
+                  {service.name}
+                </h2>
+                <p className="mt-4 text-lg text-[var(--color-text-muted)]">
+                  {service.description}
+                </p>
+                {service.whoItsFor && (
+                  <p className="mt-4 border-l-2 border-[var(--color-border)] pl-4 text-sm font-semibold text-[var(--color-text-muted)]">
+                    {service.whoItsFor}
+                  </p>
+                )}
+              </div>
+              <ul className="space-y-3 self-start">
+                {service.included.map((item) => (
+                  <li
+                    key={item}
+                    className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-sm font-semibold"
+                  >
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </Reveal>
         ))}
       </div>
     </div>

@@ -1,28 +1,33 @@
 # Design & Style Guide — Soluven
 
-Bold, premium agency aesthetic. Warm, confident, not corporate-sterile.
+Clean, clear, simple — content and typography carry the page, not color. Inspired by fleekbiz.com: a near-monochrome neutral palette with a single accent used sparingly.
 
 ## 1. Color Palette
 
 | Token | Hex | Usage |
 |---|---|---|
 | `--color-background` | `#FFF8EE` (Warm Cream) | Primary background |
-| `--color-blue` | `#63CBF8` | Accent — links, highlights, secondary CTAs |
-| `--color-green` | `#7ED957` | Accent — success states, primary CTAs, badges |
+| `--color-text` | `#241F1A` | Body/heading text |
+| `--color-text-muted` | `#5C5248` | Secondary text |
+| `--color-surface` | `#F0DFBA` | Card/section surface, distinct from background |
+| `--color-border` | `#C9AC78` | Dividers, card borders |
+| `--color-blue` | `#2F6FB3` | The single accent — primary CTA fill, key action links (mailto/WhatsApp), quantified outcome highlights. Not used for nav hovers, decorative gradients, or general body emphasis. |
+| `--color-blue-hover` | `#245789` | Hover state for the accent |
 
-**Notes / to confirm:**
-- Only a background + two accents are defined so far. Before build, define: a near-black/dark **text** color (don't default to pure `#000000` against the cream background — something like a warm charcoal reads more premium), a **surface** color for cards (slightly off from the cream background), and **border/muted** tones.
-- Define hover/active state variants of blue and green (e.g. 10% darker) for interactive elements.
-- Confirm AA contrast for text-on-cream and white-text-on-accent combinations before finalizing button styles.
+**Notes:**
+- Only one accent color exists now (blue) — green was removed. Keep it rare: one clear primary action per view should use it, not every interactive element.
+- AA contrast confirmed: white-on-blue ≥ 5:1, blue-on-cream ≥ 4.9:1, text/muted-on-background and -on-surface all ≥ 6:1.
 
 ## 2. Typography
 
+Single typeface site-wide (per user reference, fleekbiz.com) — a clean, modern geometric sans rather than mixing a display + body font.
+
 | Role | Font | Weight |
 |---|---|---|
-| Main headings (H1–H3) | Sora | 600–700 |
-| Body text | Manrope | 400–500 |
-| Buttons / navigation | Manrope | 600 |
-| Small labels | Manrope | 600, with slightly increased letter-spacing |
+| Main headings (H1–H3) | Plus Jakarta Sans | 700–800 |
+| Body text | Plus Jakarta Sans | 400–500 |
+| Buttons / navigation | Plus Jakarta Sans | 600 |
+| Small labels | Plus Jakarta Sans | 600, with slightly increased letter-spacing |
 
 **Notes:**
 - Load both via `next/font` (Google Fonts) for performance and no layout shift.
@@ -36,7 +41,7 @@ Bold, premium agency aesthetic. Warm, confident, not corporate-sterile.
 
 ## 4. Components & Conventions
 
-- **Buttons:** Primary (green fill), Secondary (blue outline or blue fill — decide during build), both in Manrope 600. Generous padding, rounded corners (define radius — suggest 8–12px for a modern-but-not-childish feel).
+- **Buttons:** Primary (blue fill, white text), Secondary (neutral border outline), Inverted (for use on dark backgrounds), all in Manrope 600. Generous padding, rounded corners (`rounded-lg`).
 - **Cards** (Services, Portfolio): surface color distinct from page background, subtle shadow or border, consistent radius matching buttons.
 - **Icons:** pick one icon set (e.g. Lucide) and use consistently.
 - **Imagery:** portfolio/project screenshots should be real, high-quality; avoid stock photography that undercuts the "premium, real work" positioning.
@@ -49,6 +54,4 @@ Bold, premium agency aesthetic. Warm, confident, not corporate-sterile.
 ## 6. Open Items
 
 - [ ] Finalize logo files (SVG preferred, plus favicon set: 16/32/180px, etc.)
-- [ ] Define full neutral/text/surface color set beyond the 3 tokens above
-- [ ] Confirm border radius and shadow scale
-- [ ] Confirm icon library
+- [ ] Confirm icon library (using Lucide by default)

@@ -4,6 +4,7 @@ export type Service = {
   summary: string;
   description: string;
   included: string[];
+  whoItsFor?: string;
 };
 
 export const services: Service[] = [
@@ -19,6 +20,8 @@ export const services: Service[] = [
       "Responsive, accessible builds",
       "Ongoing support & maintenance",
     ],
+    whoItsFor:
+      "Businesses that need a fast, credible web presence or a custom web app, not a templated site.",
   },
   {
     slug: "mobile-app-development",
@@ -32,6 +35,8 @@ export const services: Service[] = [
       "API & backend integration",
       "App Store / Play Store launch support",
     ],
+    whoItsFor:
+      "Startups and businesses that need a dedicated mobile app rather than a mobile-web workaround.",
   },
   {
     slug: "ecommerce-setup",
@@ -45,6 +50,8 @@ export const services: Service[] = [
       "Product catalog & inventory setup",
       "Checkout optimization",
     ],
+    whoItsFor:
+      "Brands launching or migrating an online store that need it done right the first time.",
   },
   {
     slug: "consulting",
@@ -58,5 +65,7 @@ export const services: Service[] = [
       "Engineering process advice",
       "Ongoing technical advisory",
     ],
+    whoItsFor:
+      "Founders and engineering teams who need an experienced outside perspective before committing to a direction.",
   },
 ];

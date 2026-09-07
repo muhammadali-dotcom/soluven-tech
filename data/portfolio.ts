@@ -6,24 +6,26 @@ export type PortfolioProject = {
   link?: string;
   image?: string;
   featured?: boolean;
+  outcome?: string;
+  role?: string;
 };
 
 // TODO(open item, REQUIREMENTS.md): final portfolio project list not yet
 // provided. These are structural placeholders — replace with real projects.
 export const portfolioProjects: PortfolioProject[] = [
   {
-    slug: "placeholder-project-one",
-    title: "Placeholder Project One",
+    slug: "web-platform-project",
+    title: "Web Platform Project",
     description:
-      "Real project details pending — replace this entry once the portfolio list is finalized.",
+      "A custom web platform build — full case study coming once the project is finalized for publication.",
     tech: ["Next.js", "TypeScript"],
     featured: true,
   },
   {
-    slug: "placeholder-project-two",
-    title: "Placeholder Project Two",
+    slug: "mobile-app-project",
+    title: "Mobile App Project",
     description:
-      "Real project details pending — replace this entry once the portfolio list is finalized.",
+      "A cross-platform mobile app build — full case study coming once the project is finalized for publication.",
     tech: ["React Native"],
     featured: true,
   },

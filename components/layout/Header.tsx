@@ -11,13 +11,11 @@ export function Header() {
           <Image
             src="/Soluvenlogo.png"
             alt="Soluven"
-            width={36}
-            height={36}
+            width={2172}
+            height={724}
             priority
+            className="h-9 w-auto"
           />
-          <span className="font-[family-name:var(--font-heading)] text-lg font-bold">
-            Soluven
-          </span>
         </Link>
 
         <nav aria-label="Primary" className="hidden gap-8 md:flex">
@@ -25,7 +23,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="font-semibold hover:text-[var(--color-blue)]"
+              className="font-semibold text-[var(--color-text)] underline decoration-transparent underline-offset-4 transition-colors hover:decoration-[var(--color-text)]"
             >
               {link.label}
             </Link>
