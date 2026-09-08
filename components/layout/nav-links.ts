@@ -3,4 +3,5 @@ export const navLinks = [
   { href: "/#work", label: "Work" },
   { href: "/#process", label: "Process" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];

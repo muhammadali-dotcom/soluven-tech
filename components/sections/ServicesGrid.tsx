@@ -4,7 +4,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 const variantClasses: Record<ServiceVariant, string> = {
   blue: "bg-[var(--soluven-blue)]/15 border-[var(--soluven-blue)]/30",
   green: "bg-[var(--soluven-green)]/15 border-[var(--soluven-green)]/30",
-  ink: "bg-[var(--soluven-ink)] border-[var(--soluven-ink)] text-[var(--soluven-cream)]",
+  ink: "bg-[var(--color-background)] border-[var(--soluven-blue)] border-b-4 border-b-[var(--soluven-green)]",
 };
 
 export function ServicesGrid() {
@@ -22,41 +22,36 @@ export function ServicesGrid() {
       </FadeIn>
 
       <div className="mt-14 grid gap-6 lg:grid-cols-3">
-        {services.map((service, index) => {
-          const isDark = service.variant === "ink";
-          return (
-            <FadeIn key={service.slug} delay={index * 0.08} className="h-full">
-              <article
-                className={`group flex h-full flex-col justify-between rounded-lg border p-8 transition-transform duration-300 hover:-translate-y-1 ${variantClasses[service.variant]}`}
+        {services.map((service, index) => (
+          <FadeIn key={service.slug} delay={index * 0.08} className="h-full">
+            <article
+              className={`group flex h-full flex-col justify-between rounded-lg border p-8 text-[var(--color-ink)] transition-transform duration-300 hover:-translate-y-1 ${variantClasses[service.variant]}`}
+            >
+              <div>
+                <span className="font-[family-name:var(--font-heading)] text-sm font-semibold text-[var(--color-muted)]">
+                  0{index + 1}
+                </span>
+                <h3 className="mt-4 font-[family-name:var(--font-heading)] text-2xl font-semibold">
+                  {service.heading}
+                </h3>
+                <p className="mt-3 text-sm text-[var(--color-muted)]">
+                  {service.description}
+                </p>
+                <ul className="mt-6 space-y-2 text-sm font-semibold">
+                  {service.included.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <a
+                href="/contact"
+                className="mt-8 inline-block w-fit font-semibold underline decoration-current underline-offset-4"
               >
-                <div>
-                  <span
-                    className={`font-[family-name:var(--font-heading)] text-sm font-semibold ${isDark ? "text-white/50" : "text-[var(--color-muted)]"}`}
-                  >
-                    0{index + 1}
-                  </span>
-                  <h3 className="mt-4 font-[family-name:var(--font-heading)] text-2xl font-semibold">
-                    {service.heading}
-                  </h3>
-                  <p className={`mt-3 text-sm ${isDark ? "text-white/70" : "text-[var(--color-muted)]"}`}>
-                    {service.description}
-                  </p>
-                  <ul className="mt-6 space-y-2 text-sm font-semibold">
-                    {service.included.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                <a
-                  href="/contact"
-                  className="mt-8 inline-block w-fit font-semibold underline decoration-current underline-offset-4"
-                >
-                  {service.ctaLabel}
-                </a>
-              </article>
-            </FadeIn>
-          );
-        })}
+                {service.ctaLabel}
+              </a>
+            </article>
+          </FadeIn>
+        ))}
       </div>
     </section>
   );

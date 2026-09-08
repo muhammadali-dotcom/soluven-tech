@@ -26,15 +26,11 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
                   <div
                     className={`flex h-full w-full items-center justify-center ${
                       project.category === "ecommerce"
-                        ? "bg-gradient-to-br from-[var(--soluven-cream)] via-[var(--soluven-green)]/30 to-orange-100"
-                        : "bg-[var(--soluven-ink)]"
+                        ? "bg-gradient-to-br from-[var(--soluven-cream)] to-[var(--soluven-green)]/30"
+                        : "bg-gradient-to-br from-[var(--soluven-cream)] to-[var(--soluven-blue)]/30"
                     } transition-transform duration-500 group-hover:scale-105`}
                   >
-                    <span
-                      className={`font-[family-name:var(--font-heading)] text-lg font-semibold ${
-                        project.category === "ecommerce" ? "text-[var(--soluven-ink)]" : "text-white"
-                      }`}
-                    >
+                    <span className="font-[family-name:var(--font-heading)] text-lg font-semibold text-[var(--color-ink)]">
                       {project.title}
                     </span>
                   </div>

@@ -31,7 +31,10 @@ export function Logo({ className = "", size = 32, withWordmark = true }: LogoPro
         />
       </svg>
       {withWordmark && (
-        <span className="font-[family-name:var(--font-heading)] text-lg font-bold uppercase tracking-tight">
+        <span
+          className="font-[family-name:var(--font-heading)] font-bold uppercase tracking-tight"
+          style={{ fontSize: `${size * 0.56}px` }}
+        >
           <span style={{ color: "var(--soluven-blue)" }}>SOLU</span>
           <span style={{ color: "var(--soluven-green)" }}>VEN</span>
         </span>

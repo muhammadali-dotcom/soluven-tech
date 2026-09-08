@@ -46,7 +46,7 @@ export function CursorLabel({
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           style={{ x: springX, y: springY }}
-          className="pointer-events-none fixed left-0 top-0 z-50 rounded-full bg-[var(--soluven-ink)] px-4 py-2 text-xs font-semibold text-[var(--soluven-cream)] shadow-lg"
+          className="pointer-events-none fixed left-0 top-0 z-50 rounded-full bg-[var(--soluven-blue)] px-4 py-2 text-xs font-semibold text-[var(--soluven-ink)] shadow-lg"
         >
           {label}
         </motion.span>

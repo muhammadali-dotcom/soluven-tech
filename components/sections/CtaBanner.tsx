@@ -5,7 +5,7 @@ import { contactEmail } from "@/lib/constants";
 
 export function CtaBanner() {
   return (
-    <section className="relative overflow-hidden bg-[var(--soluven-ink)] py-24 text-center text-[var(--soluven-cream)] md:py-32">
+    <section className="relative overflow-hidden border-y border-[var(--color-border)] bg-[var(--color-background)] py-24 text-center text-[var(--color-ink)] md:py-32">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-40 -right-40 h-[28rem] w-[28rem] rounded-full opacity-25 blur-3xl"
@@ -16,7 +16,7 @@ export function CtaBanner() {
       />
       <div className="relative mx-auto max-w-2xl px-6 md:px-16">
         <FadeIn>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
             Your next move
           </p>
         </FadeIn>
@@ -29,7 +29,7 @@ export function CtaBanner() {
           </h2>
         </FadeIn>
         <FadeIn delay={0.1}>
-          <p className="mx-auto mt-4 max-w-lg text-white/70">
+          <p className="mx-auto mt-4 max-w-lg text-[var(--color-muted)]">
             Tell us what you are working on. We&apos;ll help you find the
             clearest way forward.
           </p>

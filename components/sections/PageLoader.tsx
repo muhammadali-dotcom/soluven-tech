@@ -30,13 +30,13 @@ export function PageLoader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.02 }}
           transition={{ duration: 0.4, ease: "easeInOut" }}
-          className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-6 bg-[var(--soluven-ink)]"
+          className="fixed inset-0 z-[100] flex flex-col items-center justify-center gap-6 bg-[var(--color-background)]"
         >
           <Logo size={56} withWordmark={false} />
-          <p className="font-[family-name:var(--font-heading)] text-sm font-semibold uppercase tracking-[0.3em] text-[var(--soluven-cream)]">
+          <p className="font-[family-name:var(--font-heading)] text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-ink)]">
             Building What&apos;s Next
           </p>
-          <div className="h-[2px] w-40 overflow-hidden rounded-full bg-white/10">
+          <div className="h-[2px] w-40 overflow-hidden rounded-full bg-[var(--color-border)]">
             <motion.div
               className="h-full w-full"
               style={{

@@ -38,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ScrollProgress />
         <CursorLight />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="content" className="flex-1">{children}</main>
         <Footer />
       </body>
     </html>

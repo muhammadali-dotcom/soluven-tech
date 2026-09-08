@@ -13,7 +13,7 @@ export function Manifesto() {
         <FadeIn delay={0.05}>
           <p className="mt-8 font-[family-name:var(--font-heading)] text-3xl font-semibold leading-tight tracking-tight text-[var(--soluven-ink)] md:text-5xl">
             The best digital products do not begin with technology. They{" "}
-            <span className="bg-[var(--soluven-ink)] px-2 text-[var(--soluven-cream)]">
+            <span className="bg-[var(--soluven-cream)] px-2 text-[var(--soluven-ink)]">
               begin with a clear view of what should exist next.
             </span>
           </p>
