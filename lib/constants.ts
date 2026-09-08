@@ -1,7 +1,8 @@
 export const siteConfig = {
   name: "Soluven",
+  tagline: "Building solutions for the future you see.",
   description:
-    "Soluven is a software house offering web development, mobile app development, ecommerce setup, and consulting services to local and international clients.",
+    "Soluven builds high-performing websites, ecommerce experiences and custom software for ambitious businesses.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://soluven.com",
 };
 

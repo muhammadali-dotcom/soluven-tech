@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PortfolioGrid } from "@/components/sections/PortfolioGrid";
+import { Projects } from "@/components/sections/Projects";
 import { portfolioProjects } from "@/data/portfolio";
 import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
@@ -27,7 +27,7 @@ export default function PortfolioPage() {
       </p>
 
       <div className="mt-12">
-        <PortfolioGrid projects={portfolioProjects} />
+        <Projects projects={portfolioProjects} />
       </div>
     </div>
   );

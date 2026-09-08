@@ -5,7 +5,7 @@ type ButtonVariant = "primary" | "secondary" | "inverted";
 
 const variantClasses: Record<ButtonVariant, string> = {
   primary:
-    "bg-[var(--color-blue)] text-white hover:bg-[var(--color-blue-hover)]",
+    "bg-[var(--color-blue)] text-[var(--color-ink)] hover:bg-[var(--color-blue-hover)]",
   secondary:
     "border border-[var(--color-border)] text-[var(--color-text)] hover:bg-[var(--color-surface)]",
   inverted:
@@ -13,7 +13,7 @@ const variantClasses: Record<ButtonVariant, string> = {
 };
 
 const baseClasses =
-  "inline-flex items-center justify-center rounded-lg px-6 py-3 font-semibold transition-colors";
+  "inline-flex items-center justify-center rounded-md px-6 py-3 font-semibold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-ink)]";
 
 type ButtonProps = ComponentPropsWithoutRef<"button"> & {
   variant?: ButtonVariant;

@@ -1,71 +1,55 @@
+export type ServiceVariant = "blue" | "green" | "ink";
+
 export type Service = {
   slug: string;
   name: string;
+  heading: string;
   summary: string;
   description: string;
   included: string[];
+  ctaLabel: string;
+  variant: ServiceVariant;
   whoItsFor?: string;
 };
 
 export const services: Service[] = [
   {
-    slug: "web-development",
-    name: "Web Development",
-    summary: "Fast, modern, SEO-ready websites and web apps.",
+    slug: "websites",
+    name: "Websites",
+    heading: "Websites that earn attention.",
+    summary: "Strategic, responsive websites built to convert.",
     description:
-      "We design and build custom websites and web applications that load fast, rank well, and are built to grow with your business.",
-    included: [
-      "Custom design & development",
-      "SEO-ready architecture",
-      "Responsive, accessible builds",
-      "Ongoing support & maintenance",
-    ],
+      "Strategic, responsive websites that explain your value quickly and turn interest into action.",
+    included: ["Brand websites", "Web applications", "CMS development"],
+    ctaLabel: "Build your website",
+    variant: "blue",
     whoItsFor:
-      "Businesses that need a fast, credible web presence or a custom web app, not a templated site.",
+      "Businesses that need a fast, credible web presence built to perform, not a templated site.",
   },
   {
-    slug: "mobile-app-development",
-    name: "Mobile App Development",
-    summary: "Native and cross-platform apps for iOS and Android.",
+    slug: "ecommerce",
+    name: "E-commerce",
+    heading: "Commerce built for momentum.",
+    summary: "Storefronts designed around conversion and growth.",
     description:
-      "From concept to launch, we build mobile apps that feel native, perform well, and are ready to ship to the App Store and Play Store.",
-    included: [
-      "iOS & Android delivery",
-      "UI/UX design",
-      "API & backend integration",
-      "App Store / Play Store launch support",
-    ],
-    whoItsFor:
-      "Startups and businesses that need a dedicated mobile app rather than a mobile-web workaround.",
-  },
-  {
-    slug: "ecommerce-setup",
-    name: "Ecommerce Setup",
-    summary: "Online stores built to convert.",
-    description:
-      "We set up and customize ecommerce storefronts with secure payments, product catalogs, and checkout flows tuned for conversion.",
-    included: [
-      "Storefront setup & customization",
-      "Payment gateway integration",
-      "Product catalog & inventory setup",
-      "Checkout optimization",
-    ],
+      "Fast, intuitive storefronts designed around customer confidence, conversion and repeat growth.",
+    included: ["Shopify stores", "Custom ecommerce", "Conversion optimisation"],
+    ctaLabel: "Grow your store",
+    variant: "green",
     whoItsFor:
       "Brands launching or migrating an online store that need it done right the first time.",
   },
   {
-    slug: "consulting",
-    name: "Consulting",
-    summary: "Technical strategy for teams building software.",
+    slug: "custom-software",
+    name: "Custom software",
+    heading: "Software shaped around your work.",
+    summary: "Purpose-built products and internal systems.",
     description:
-      "We advise on architecture, tech stack choices, and engineering process for teams that need experienced technical guidance.",
-    included: [
-      "Technical architecture review",
-      "Tech stack recommendations",
-      "Engineering process advice",
-      "Ongoing technical advisory",
-    ],
+      "Purpose-built products and internal systems that solve the problems generic tools cannot.",
+    included: ["Custom platforms", "Process automation", "Product engineering"],
+    ctaLabel: "Discuss your product",
+    variant: "ink",
     whoItsFor:
-      "Founders and engineering teams who need an experienced outside perspective before committing to a direction.",
+      "Founders and teams who need a product or internal tool built around how they actually work.",
   },
 ];

@@ -7,26 +7,26 @@ export type ProcessStep = {
 export const processSteps: ProcessStep[] = [
   {
     number: "01",
-    title: "Discover",
+    title: "Understand",
     description:
-      "We start by understanding your goals, users, and constraints — no code until we know what we're building and why.",
+      "We learn what you are building, who it is for and what success needs to look like.",
   },
   {
     number: "02",
-    title: "Design",
+    title: "Shape",
     description:
-      "Wireframes and UI design get validated with you early, so build time is spent on something you've already approved.",
+      "We turn the opportunity into a clear direction, structure and visual system.",
   },
   {
     number: "03",
     title: "Build",
     description:
-      "Iterative development with regular check-ins, so you always know exactly where the project stands.",
+      "We develop, test and refine every detail until the experience is ready to perform.",
   },
   {
     number: "04",
-    title: "Launch & Support",
+    title: "Move forward",
     description:
-      "We ship, monitor, and stay on for support — the relationship doesn't end at deployment.",
+      "We launch with confidence and stay close as your product and business evolve.",
   },
 ];
