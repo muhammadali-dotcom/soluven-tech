@@ -1,5 +1,13 @@
+import { Lightbulb, LayoutGrid, Hammer, Rocket, type LucideIcon } from "lucide-react";
 import { processSteps } from "@/data/process";
 import { FadeIn } from "@/components/motion/FadeIn";
+
+const stepIcons: Record<string, LucideIcon> = {
+  "01": Lightbulb,
+  "02": LayoutGrid,
+  "03": Hammer,
+  "04": Rocket,
+};
 
 export function Process() {
   return (
@@ -20,16 +28,23 @@ export function Process() {
           aria-hidden="true"
           className="absolute left-0 right-0 top-4 hidden h-px bg-[var(--color-border)] lg:block"
         />
-        {processSteps.map((step, index) => (
+        {processSteps.map((step, index) => {
+          const Icon = stepIcons[step.number];
+          return (
           <FadeIn key={step.number} delay={index * 0.1}>
             <div className="relative pt-4">
               <span
                 aria-hidden="true"
                 className="absolute left-0 top-0 h-2 w-2 -translate-y-1/2 rounded-full bg-[var(--soluven-blue)] lg:top-4"
               />
-              <p className="font-[family-name:var(--font-heading)] text-sm font-semibold text-[var(--soluven-blue)]">
-                {step.number}
-              </p>
+              <div className="flex items-center gap-2">
+                <p className="font-[family-name:var(--font-heading)] text-sm font-semibold text-[var(--soluven-blue)]">
+                  {step.number}
+                </p>
+                {Icon && (
+                  <Icon aria-hidden="true" size={16} className="text-[var(--soluven-blue)]" />
+                )}
+              </div>
               <h3 className="mt-2 font-[family-name:var(--font-heading)] text-xl font-semibold">
                 {step.title}
               </h3>
@@ -38,7 +53,8 @@ export function Process() {
               </p>
             </div>
           </FadeIn>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

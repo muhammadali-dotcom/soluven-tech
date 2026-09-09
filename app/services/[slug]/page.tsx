@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { services } from "@/data/services";
+import { serviceIcons } from "@/lib/service-icons";
 import { buildMetadata, breadcrumbJsonLd, serviceJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
 
@@ -33,6 +34,7 @@ export default async function ServiceDetailPage({
   const { slug } = await params;
   const service = services.find((item) => item.slug === slug);
   if (!service) notFound();
+  const Icon = serviceIcons[service.slug];
 
   return (
     <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-16 md:py-24">
@@ -54,7 +56,12 @@ export default async function ServiceDetailPage({
 
       <div className="mt-8 grid gap-8 md:grid-cols-2">
         <div>
-          <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold md:text-5xl">
+          {Icon && (
+            <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
+              <Icon aria-hidden="true" size={24} className="text-[var(--soluven-blue)]" />
+            </div>
+          )}
+          <h1 className="mt-6 font-[family-name:var(--font-heading)] text-4xl font-bold md:text-5xl">
             {service.heading}
           </h1>
           <p className="mt-6 text-lg text-[var(--color-text-muted)]">

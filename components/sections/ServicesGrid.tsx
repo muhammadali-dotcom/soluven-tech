@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { services, type ServiceVariant } from "@/data/services";
+import { serviceIcons } from "@/lib/service-icons";
 import { FadeIn } from "@/components/motion/FadeIn";
 
 const variantClasses: Record<ServiceVariant, string> = {
@@ -23,15 +24,26 @@ export function ServicesGrid() {
       </FadeIn>
 
       <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {services.map((service, index) => (
+        {services.map((service, index) => {
+          const Icon = serviceIcons[service.slug];
+          return (
           <FadeIn key={service.slug} delay={index * 0.08} className="h-full">
             <article
               className={`group flex h-full flex-col justify-between rounded-lg border p-8 text-[var(--color-ink)] transition-transform duration-300 hover:-translate-y-1 ${variantClasses[service.variant]}`}
             >
               <div>
-                <span className="font-[family-name:var(--font-heading)] text-sm font-semibold text-[var(--color-muted)]">
-                  0{index + 1}
-                </span>
+                <div className="flex items-center justify-between">
+                  <span className="font-[family-name:var(--font-heading)] text-sm font-semibold text-[var(--color-muted)]">
+                    0{index + 1}
+                  </span>
+                  {Icon && (
+                    <Icon
+                      aria-hidden="true"
+                      size={22}
+                      className="text-[var(--color-muted)]"
+                    />
+                  )}
+                </div>
                 <h3 className="mt-4 font-[family-name:var(--font-heading)] text-2xl font-semibold">
                   {service.heading}
                 </h3>
@@ -52,7 +64,8 @@ export function ServicesGrid() {
               </Link>
             </article>
           </FadeIn>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

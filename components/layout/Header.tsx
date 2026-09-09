@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "./nav-links";
 import { MobileNav } from "./MobileNav";
 import { Logo } from "@/components/ui/Logo";
@@ -105,29 +106,35 @@ export function Header() {
                 >
                   {link.label}
                 </button>
-                {openDropdown === link.href && (
-                  <div
-                    role="menu"
-                    aria-label={link.label}
-                    className="absolute left-0 top-full z-50 mt-3 w-64 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] p-2 shadow-lg"
-                  >
-                    {link.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        role="menuitem"
-                        onClick={() => setOpenDropdown(null)}
-                        className={`block rounded-md px-3 py-2 text-sm font-semibold transition-colors hover:bg-[var(--color-surface)] ${
-                          pathname === child.href
-                            ? "text-[var(--soluven-blue)]"
-                            : "text-[var(--color-ink)]"
-                        }`}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                )}
+                <AnimatePresence>
+                  {openDropdown === link.href && (
+                    <motion.div
+                      role="menu"
+                      aria-label={link.label}
+                      initial={{ opacity: 0, y: -6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.15 }}
+                      className="absolute left-0 top-full z-50 mt-3 w-64 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] p-2 shadow-lg"
+                    >
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          role="menuitem"
+                          onClick={() => setOpenDropdown(null)}
+                          className={`block rounded-md px-3 py-2 text-sm font-semibold transition-colors hover:bg-[var(--color-surface)] ${
+                            pathname === child.href
+                              ? "text-[var(--soluven-blue)]"
+                              : "text-[var(--color-ink)]"
+                          }`}
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ) : (
               <Link

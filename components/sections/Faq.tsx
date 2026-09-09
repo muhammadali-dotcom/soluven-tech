@@ -1,3 +1,4 @@
+import { ChevronDown } from "lucide-react";
 import { faqItems } from "@/data/faq";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { JsonLd, faqJsonLd } from "@/lib/seo";
@@ -23,12 +24,11 @@ export function Faq() {
             <details className="group py-5">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-[family-name:var(--font-heading)] text-lg font-semibold">
                 {item.question}
-                <span
+                <ChevronDown
                   aria-hidden="true"
-                  className="shrink-0 text-xl text-[var(--color-muted)] transition-transform duration-200 group-open:rotate-45"
-                >
-                  +
-                </span>
+                  size={20}
+                  className="shrink-0 text-[var(--color-muted)] transition-transform duration-200 group-open:rotate-180"
+                />
               </summary>
               <p className="mt-3 max-w-2xl text-[var(--color-muted)]">
                 {item.answer}

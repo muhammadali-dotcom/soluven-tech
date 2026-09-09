@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { services, type ServiceVariant } from "@/data/services";
+import { serviceIcons } from "@/lib/service-icons";
 import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
 import { Reveal } from "@/components/ui/Reveal";
@@ -35,16 +36,27 @@ export default function ServicesPage() {
       </p>
 
       <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service, index) => (
+        {services.map((service, index) => {
+          const Icon = serviceIcons[service.slug];
+          return (
           <Reveal key={service.slug} className="h-full">
             <Link
               href={`/services/${service.slug}`}
               className={`group flex h-full flex-col justify-between rounded-lg border p-8 text-[var(--color-ink)] transition-transform duration-300 hover:-translate-y-1 ${variantClasses[service.variant]}`}
             >
               <div>
-                <span className="font-[family-name:var(--font-heading)] text-sm font-semibold text-[var(--color-muted)]">
-                  0{index + 1}
-                </span>
+                <div className="flex items-center justify-between">
+                  <span className="font-[family-name:var(--font-heading)] text-sm font-semibold text-[var(--color-muted)]">
+                    0{index + 1}
+                  </span>
+                  {Icon && (
+                    <Icon
+                      aria-hidden="true"
+                      size={22}
+                      className="text-[var(--color-muted)]"
+                    />
+                  )}
+                </div>
                 <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl font-semibold">
                   {service.name}
                 </h2>
@@ -57,7 +69,8 @@ export default function ServicesPage() {
               </span>
             </Link>
           </Reveal>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
