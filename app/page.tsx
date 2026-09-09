@@ -5,7 +5,6 @@ import { Manifesto } from "@/components/sections/Manifesto";
 import { WhatWeBelieve } from "@/components/sections/WhatWeBelieve";
 import { ServicesGrid } from "@/components/sections/ServicesGrid";
 import { Work } from "@/components/sections/Work";
-import { Process } from "@/components/sections/Process";
 import { Faq } from "@/components/sections/Faq";
 import { CtaBanner } from "@/components/sections/CtaBanner";
 import { buildMetadata } from "@/lib/seo";
@@ -25,7 +24,6 @@ export default function HomePage() {
       <WhatWeBelieve />
       <ServicesGrid />
       <Work />
-      <Process />
       <Faq />
       <CtaBanner />
     </>

@@ -1,4 +1,11 @@
+import { Compass, PenTool, Code2 } from "lucide-react";
 import { FadeIn } from "@/components/motion/FadeIn";
+
+const pillars = [
+  { label: "Strategy", icon: Compass },
+  { label: "Design", icon: PenTool },
+  { label: "Engineering", icon: Code2 },
+];
 
 export function WhatWeBelieve() {
   return (
@@ -24,6 +31,17 @@ export function WhatWeBelieve() {
             That is why strategy, design and engineering work as one team
             at Soluven.
           </p>
+          <div className="mt-10 flex flex-wrap gap-6">
+            {pillars.map(({ label, icon: Icon }) => (
+              <div
+                key={label}
+                className="flex items-center gap-2 rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2"
+              >
+                <Icon aria-hidden="true" size={18} className="text-[var(--soluven-blue)]" />
+                <span className="text-sm font-semibold">{label}</span>
+              </div>
+            ))}
+          </div>
         </FadeIn>
       </div>
     </section>

@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     ...services.map((service) => `/services/${service.slug}`),
     "/portfolio",
+    "/why-soluven",
     "/about",
     "/contact",
   ];

@@ -9,7 +9,7 @@ export function Faq() {
       <JsonLd data={faqJsonLd(faqItems)} />
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-          Chapter 06 · Questions
+          Chapter 05 · Questions
         </p>
       </FadeIn>
       <FadeIn delay={0.05}>

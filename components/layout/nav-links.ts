@@ -1,6 +1,7 @@
 import { services } from "@/data/services";
 
 export const navLinks = [
+  { href: "/", label: "Home" },
   {
     href: "/services",
     label: "Services",
@@ -10,7 +11,7 @@ export const navLinks = [
     })),
   },
   { href: "/#work", label: "Work" },
-  { href: "/#process", label: "Process" },
+  { href: "/why-soluven", label: "Why Soluven" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];
