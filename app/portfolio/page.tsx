@@ -6,7 +6,8 @@ import { siteConfig } from "@/lib/constants";
 
 export const metadata: Metadata = buildMetadata({
   title: "Portfolio",
-  description: "Real client and personal projects built by Soluven.",
+  description:
+    "Concept projects showing what Soluven can build across web, ecommerce, and custom software.",
   path: "/portfolio",
 });
 
@@ -23,7 +24,7 @@ export default function PortfolioPage() {
         Portfolio
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
-        A selection of what we&apos;ve built.
+        Concept projects showing how we&apos;d approach real problems.
       </p>
 
       <div className="mt-12">

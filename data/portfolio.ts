@@ -12,6 +12,7 @@ export type PortfolioProject = {
   image?: string;
   featured?: boolean;
   role?: string;
+  relatedService?: string;
 };
 
 // Concept projects illustrating what Soluven can build — not real client
@@ -33,6 +34,7 @@ export const portfolioProjects: PortfolioProject[] = [
     tech: ["Next.js", "Shopify"],
     isConcept: true,
     featured: true,
+    relatedService: "ecommerce",
   },
   {
     slug: "clearflow",
@@ -49,6 +51,7 @@ export const portfolioProjects: PortfolioProject[] = [
     tech: ["Next.js", "TypeScript"],
     isConcept: true,
     featured: true,
+    relatedService: "software-development",
   },
   {
     slug: "northline",
@@ -65,5 +68,6 @@ export const portfolioProjects: PortfolioProject[] = [
     tech: ["Next.js", "Stripe"],
     isConcept: true,
     featured: true,
+    relatedService: "software-development",
   },
 ];

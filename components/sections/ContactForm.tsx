@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
+import { services } from "@/data/services";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -55,6 +56,38 @@ export function ContactForm() {
           required
           className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
         />
+      </div>
+
+      <div className="flex flex-col gap-1">
+        <label htmlFor="company" className="text-sm font-semibold">
+          Company <span className="font-normal text-[var(--color-muted)]">(optional)</span>
+        </label>
+        <input
+          id="company"
+          name="company"
+          type="text"
+          className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
+        />
+      </div>
+
+      <div className="flex flex-col gap-1">
+        <label htmlFor="projectType" className="text-sm font-semibold">
+          Project type <span className="font-normal text-[var(--color-muted)]">(optional)</span>
+        </label>
+        <select
+          id="projectType"
+          name="projectType"
+          defaultValue=""
+          className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
+        >
+          <option value="">Select one</option>
+          {services.map((service) => (
+            <option key={service.slug} value={service.name}>
+              {service.name}
+            </option>
+          ))}
+          <option value="Other">Other</option>
+        </select>
       </div>
 
       <div className="flex flex-col gap-1">
