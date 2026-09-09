@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { services, type ServiceVariant } from "@/data/services";
 import { FadeIn } from "@/components/motion/FadeIn";
 
@@ -17,11 +18,11 @@ export function ServicesGrid() {
       </FadeIn>
       <FadeIn delay={0.05}>
         <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
-          Three capabilities. One clear outcome.
+          Eight capabilities. One clear outcome.
         </h2>
       </FadeIn>
 
-      <div className="mt-14 grid gap-6 lg:grid-cols-3">
+      <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {services.map((service, index) => (
           <FadeIn key={service.slug} delay={index * 0.08} className="h-full">
             <article
@@ -43,12 +44,12 @@ export function ServicesGrid() {
                   ))}
                 </ul>
               </div>
-              <a
-                href="/contact"
+              <Link
+                href={`/services/${service.slug}`}
                 className="mt-8 inline-block w-fit font-semibold underline decoration-current underline-offset-4"
               >
                 {service.ctaLabel}
-              </a>
+              </Link>
             </article>
           </FadeIn>
         ))}

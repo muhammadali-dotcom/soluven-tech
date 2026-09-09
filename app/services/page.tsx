@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
-import { services } from "@/data/services";
-import { buildMetadata, breadcrumbJsonLd, serviceJsonLd, JsonLd } from "@/lib/seo";
+import Link from "next/link";
+import { services, type ServiceVariant } from "@/data/services";
+import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
 import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = buildMetadata({
   title: "Services",
   description:
-    "Web development, mobile app development, ecommerce setup, and technical consulting from Soluven.",
+    "Website development, e-commerce, software, mobile apps, logo design, digital marketing, social media marketing, and SEO from Soluven.",
   path: "/services",
 });
+
+const variantClasses: Record<ServiceVariant, string> = {
+  blue: "bg-[var(--soluven-blue)]/15 border-[var(--soluven-blue)]/30",
+  green: "bg-[var(--soluven-green)]/15 border-[var(--soluven-green)]/30",
+  ink: "bg-[var(--color-background)] border-[var(--soluven-blue)] border-b-4 border-b-[var(--soluven-green)]",
+};
 
 export default function ServicesPage() {
   return (
@@ -27,40 +34,28 @@ export default function ServicesPage() {
         The full range of what we do, from first line of code to launch.
       </p>
 
-      <div className="mt-16 flex flex-col gap-16">
+      <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {services.map((service, index) => (
-          <Reveal key={service.slug}>
-            <section
-              id={service.slug}
-              className={`scroll-mt-24 grid gap-8 border-t border-[var(--color-border)] pt-12 md:grid-cols-2 ${
-                index % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""
-              }`}
+          <Reveal key={service.slug} className="h-full">
+            <Link
+              href={`/services/${service.slug}`}
+              className={`group flex h-full flex-col justify-between rounded-lg border p-8 text-[var(--color-ink)] transition-transform duration-300 hover:-translate-y-1 ${variantClasses[service.variant]}`}
             >
-              <JsonLd data={serviceJsonLd(service)} />
               <div>
-                <h2 className="font-[family-name:var(--font-heading)] text-3xl font-bold">
+                <span className="font-[family-name:var(--font-heading)] text-sm font-semibold text-[var(--color-muted)]">
+                  0{index + 1}
+                </span>
+                <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl font-semibold">
                   {service.name}
                 </h2>
-                <p className="mt-4 text-lg text-[var(--color-text-muted)]">
-                  {service.description}
+                <p className="mt-3 text-sm text-[var(--color-muted)]">
+                  {service.summary}
                 </p>
-                {service.whoItsFor && (
-                  <p className="mt-4 border-l-2 border-[var(--color-border)] pl-4 text-sm font-semibold text-[var(--color-text-muted)]">
-                    {service.whoItsFor}
-                  </p>
-                )}
               </div>
-              <ul className="space-y-3 self-start">
-                {service.included.map((item) => (
-                  <li
-                    key={item}
-                    className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-sm font-semibold"
-                  >
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </section>
+              <span className="mt-8 inline-block w-fit font-semibold underline decoration-current underline-offset-4">
+                Learn more →
+              </span>
+            </Link>
           </Reveal>
         ))}
       </div>
