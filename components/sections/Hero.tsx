@@ -2,6 +2,7 @@ import { LinkButton } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { TiltCard } from "@/components/motion/TiltCard";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { HeroLogoMark } from "@/components/sections/HeroLogoMark";
 
 const floatingLabels = [
   { label: "Websites", className: "left-[-2%] top-[10%]" },
@@ -11,7 +12,8 @@ const floatingLabels = [
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden">
+    <section className="section-dark relative overflow-hidden bg-[var(--color-background)] text-[var(--color-ink)]">
+      <HeroLogoMark />
       <div className="relative mx-auto grid max-w-[1280px] gap-16 px-6 py-20 md:px-16 md:py-28 lg:grid-cols-2 lg:items-center">
         <div>
           <FadeIn>

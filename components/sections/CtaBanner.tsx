@@ -5,7 +5,7 @@ import { contactEmail } from "@/lib/constants";
 
 export function CtaBanner() {
   return (
-    <section className="relative overflow-hidden border-y border-[var(--color-border)] bg-[var(--color-background)] py-24 text-center text-[var(--color-ink)] md:py-32">
+    <section className="section-dark relative overflow-hidden border-y border-[var(--color-border)] bg-[var(--color-background)] py-24 text-center text-[var(--color-ink)] md:py-32">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-40 -right-40 h-[28rem] w-[28rem] rounded-full opacity-25 blur-3xl"

@@ -24,6 +24,16 @@
   --color-blue-hover: color-mix(in srgb, var(--soluven-blue) 80%, var(--soluven-ink));
 }
 
+.section-dark {
+  --color-background: var(--soluven-ink);
+  --color-ink: var(--soluven-cream);
+  --color-text: var(--soluven-cream);
+  --color-muted: color-mix(in srgb, var(--soluven-cream) 65%, transparent);
+  --color-text-muted: color-mix(in srgb, var(--soluven-cream) 65%, transparent);
+  --color-border: color-mix(in srgb, var(--soluven-cream) 15%, transparent);
+  --color-surface: color-mix(in srgb, var(--soluven-cream) 6%, var(--soluven-ink));
+}
+
 @theme inline {
   --color-background: var(--color-background);
   --color-ink: var(--color-ink);
@@ -70,12 +80,29 @@ h3 {
   animation: marquee 28s linear infinite;
 }
 
+@keyframes logo-drift {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-logo-drift {
+  animation: logo-drift 90s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
   .animate-marquee {
+    animation: none;
+  }
+
+  .animate-logo-drift {
     animation: none;
   }
 
