@@ -3,7 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Marquee } from "@/components/sections/Marquee";
 import { Manifesto } from "@/components/sections/Manifesto";
 import { WhatWeBelieve } from "@/components/sections/WhatWeBelieve";
-import { ServicesGrid } from "@/components/sections/ServicesGrid";
+import { ServicesShowcase } from "@/components/sections/ServicesShowcase";
 import { Work } from "@/components/sections/Work";
 import { Faq } from "@/components/sections/Faq";
 import { CtaBanner } from "@/components/sections/CtaBanner";
@@ -22,7 +22,7 @@ export default function HomePage() {
       <Marquee />
       <Manifesto />
       <WhatWeBelieve />
-      <ServicesGrid />
+      <ServicesShowcase />
       <Work />
       <Faq />
       <CtaBanner />

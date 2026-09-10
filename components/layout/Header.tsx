@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { navLinks } from "./nav-links";
 import { MobileNav } from "./MobileNav";
 import { Logo } from "@/components/ui/Logo";
@@ -100,11 +101,18 @@ export function Header() {
                   onClick={() =>
                     setOpenDropdown((current) => (current === link.href ? null : link.href))
                   }
-                  className={`font-semibold underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current ${
+                  className={`flex items-center gap-1 font-semibold underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current ${
                     isActive(link.href) ? "text-[var(--soluven-blue)]" : "text-[var(--color-ink)]"
                   }`}
                 >
                   {link.label}
+                  <ChevronDown
+                    aria-hidden="true"
+                    size={16}
+                    className={`transition-transform duration-200 ${
+                      openDropdown === link.href ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
                 <AnimatePresence>
                   {openDropdown === link.href && (

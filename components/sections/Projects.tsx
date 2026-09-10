@@ -4,6 +4,7 @@ import type { PortfolioProject } from "@/data/portfolio";
 import { services } from "@/data/services";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { CursorLabel } from "@/components/motion/CursorLabel";
+import { ProjectVisual } from "@/components/sections/ProjectVisual";
 
 export function Projects({ projects }: { projects: PortfolioProject[] }) {
   return (
@@ -31,16 +32,8 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
                         className="object-cover transition-transform duration-500 group-hover:scale-105"
                       />
                     ) : (
-                      <div
-                        className={`flex h-full w-full items-center justify-center ${
-                          project.category === "ecommerce"
-                            ? "bg-gradient-to-br from-[var(--soluven-cream)] to-[var(--soluven-green)]/30"
-                            : "bg-gradient-to-br from-[var(--soluven-cream)] to-[var(--soluven-blue)]/30"
-                        } transition-transform duration-500 group-hover:scale-105`}
-                      >
-                        <span className="font-[family-name:var(--font-heading)] text-lg font-semibold text-[var(--color-ink)]">
-                          {project.title}
-                        </span>
+                      <div className="h-full w-full transition-transform duration-500 group-hover:scale-105">
+                        <ProjectVisual project={project} />
                       </div>
                     )}
                   </div>
@@ -77,7 +70,7 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
               {relatedService && (
                 <div className="p-6 pt-4">
                   <Link
-                    href={`/services#${relatedService.slug}`}
+                    href={`/services/${relatedService.slug}`}
                     className="text-sm font-semibold underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current hover:text-[var(--soluven-blue)]"
                   >
                     Built with our {relatedService.name} work →
