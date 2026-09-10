@@ -34,18 +34,18 @@ const reasons = [
 
 export default function WhySoluvenPage() {
   return (
-    <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-16 md:py-24">
+    <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-[85px] md:py-24">
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", url: siteConfig.url },
           { name: "Why Soluven", url: `${siteConfig.url}/why-soluven` },
         ])}
       />
-      <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold md:text-5xl">
+      <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold md:text-4xl">
         Why Soluven
       </h1>
       {/* TODO: refine once user provides final positioning copy */}
-      <p className="mt-6 max-w-2xl text-lg text-[var(--color-text-muted)]">
+      <p className="mt-6 max-w-2xl text-base text-[var(--color-text-muted)]">
         There are a lot of ways to get a website or product built. Here&apos;s
         what working with Soluven actually looks like.
       </p>
@@ -56,7 +56,7 @@ export default function WhySoluvenPage() {
             key={reason.title}
             className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6"
           >
-            <h2 className="font-[family-name:var(--font-heading)] text-xl font-semibold">
+            <h2 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
               {reason.title}
             </h2>
             <p className="mt-2 text-sm text-[var(--color-muted)]">

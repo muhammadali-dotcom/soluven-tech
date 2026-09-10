@@ -2,6 +2,7 @@ export type PortfolioProject = {
   slug: string;
   title: string;
   category: "ecommerce" | "software";
+  visual: "browser" | "ops" | "mobile";
   description: string;
   problem: string;
   approach: string;
@@ -23,6 +24,7 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: "evergreen-goods",
     title: "Evergreen Goods",
     category: "ecommerce",
+    visual: "browser",
     description:
       "A considered commerce experience for an everyday-living brand.",
     problem:
@@ -40,6 +42,7 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: "clearflow",
     title: "Clearflow",
     category: "software",
+    visual: "ops",
     description:
       "A focused operations platform that turns complex work into clear decisions.",
     problem:
@@ -57,6 +60,7 @@ export const portfolioProjects: PortfolioProject[] = [
     slug: "northline",
     title: "Northline",
     category: "software",
+    visual: "mobile",
     description:
       "A subscription product concept built for predictable, recurring growth.",
     problem:

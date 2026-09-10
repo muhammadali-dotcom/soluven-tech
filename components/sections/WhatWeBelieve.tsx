@@ -9,7 +9,7 @@ const pillars = [
 
 export function WhatWeBelieve() {
   return (
-    <section className="relative mx-auto max-w-[1280px] overflow-hidden px-6 py-20 md:px-16 md:py-28">
+    <section className="relative mx-auto max-w-[1280px] overflow-hidden px-6 py-20 md:px-[85px] md:py-28">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute right-0 top-1/2 hidden h-[26rem] w-[26rem] -translate-y-1/2 translate-x-1/4 rounded-full border border-dashed border-[var(--color-border)] lg:block"
@@ -21,19 +21,19 @@ export function WhatWeBelieve() {
 
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-          Chapter 02 · What we believe
+          What we believe
         </p>
       </FadeIn>
       <div className="relative mt-8 grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
         <FadeIn>
-          <h2 className="font-[family-name:var(--font-heading)] text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+          <h2 className="font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
             Your vision deserves{" "}
             <span className="bg-[var(--soluven-blue)]/25 px-1">more than</span>{" "}
             <span className="bg-[var(--soluven-green)]/25 px-1">a template.</span>
           </h2>
         </FadeIn>
         <FadeIn delay={0.1}>
-          <p className="text-lg leading-relaxed text-[var(--color-muted)]">
+          <p className="text-base leading-relaxed text-[var(--color-muted)]">
             Good digital work does more than look impressive. It makes your
             offer clearer, your business easier to run and your next stage
             of growth possible.
@@ -47,7 +47,7 @@ export function WhatWeBelieve() {
             {pillars.map(({ label, icon: Icon }, index) => (
               <div key={label} className="flex items-center gap-4 sm:contents">
                 <div className="flex flex-1 flex-col items-start gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
-                  <span className="font-[family-name:var(--font-heading)] text-3xl font-bold leading-none text-[var(--color-ink)]/15">
+                  <span className="font-[family-name:var(--font-heading)] text-2xl font-bold leading-none text-[var(--color-ink)]/15">
                     0{index + 1}
                   </span>
                   <div

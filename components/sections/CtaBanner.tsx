@@ -14,14 +14,14 @@ export function CtaBanner() {
             "radial-gradient(circle, var(--soluven-green) 0%, transparent 70%)",
         }}
       />
-      <div className="relative mx-auto max-w-2xl px-6 md:px-16">
+      <div className="relative mx-auto max-w-2xl px-6 md:px-[85px]">
         <FadeIn>
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
             Your next move
           </p>
         </FadeIn>
         <FadeIn delay={0.05}>
-          <h2 className="mt-6 font-[family-name:var(--font-heading)] text-4xl font-semibold tracking-tight md:text-5xl">
+          <h2 className="mt-6 font-[family-name:var(--font-heading)] text-2xl font-semibold tracking-tight md:text-3xl">
             You see the future.{" "}
             <span style={{ color: "var(--soluven-blue)" }}>
               Let&apos;s build towards it.

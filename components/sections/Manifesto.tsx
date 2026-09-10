@@ -10,14 +10,14 @@ export function Manifesto() {
         strokeB="var(--soluven-cream)"
         opacityClass="opacity-[0.15]"
       />
-      <div className="relative mx-auto max-w-[1000px] px-6 md:px-16">
+      <div className="relative mx-auto max-w-[1000px] px-6 md:px-[85px]">
         <FadeIn>
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-ink)]/70">
-            Chapter 01 · The idea
+            Our philosophy
           </p>
         </FadeIn>
         <FadeIn delay={0.05}>
-          <p className="mt-8 font-[family-name:var(--font-heading)] text-3xl font-semibold leading-tight tracking-tight text-[var(--soluven-ink)] md:text-5xl">
+          <p className="mt-8 font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight text-[var(--soluven-ink)] md:text-3xl">
             The best digital products do not begin with technology. They{" "}
             <span className="bg-[var(--soluven-cream)] px-2 text-[var(--soluven-ink)]">
               begin with a clear view of what should exist next.

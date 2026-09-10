@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/portfolio",
     "/why-soluven",
     "/about",
+    "/faq",
     "/contact",
   ];
 

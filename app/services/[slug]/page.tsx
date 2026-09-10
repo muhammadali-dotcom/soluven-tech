@@ -37,7 +37,7 @@ export default async function ServiceDetailPage({
   const Icon = serviceIcons[service.slug];
 
   return (
-    <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-16 md:py-24">
+    <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-[85px] md:py-24">
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", url: siteConfig.url },
@@ -61,10 +61,10 @@ export default async function ServiceDetailPage({
               <Icon aria-hidden="true" size={24} className="text-[var(--soluven-blue)]" />
             </div>
           )}
-          <h1 className="mt-6 font-[family-name:var(--font-heading)] text-4xl font-bold md:text-5xl">
+          <h1 className="mt-6 font-[family-name:var(--font-heading)] text-3xl font-bold md:text-4xl">
             {service.heading}
           </h1>
-          <p className="mt-6 text-lg text-[var(--color-text-muted)]">
+          <p className="mt-6 text-base text-[var(--color-text-muted)]">
             {service.description}
           </p>
           {service.whoItsFor && (

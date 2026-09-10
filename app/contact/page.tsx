@@ -12,17 +12,17 @@ export const metadata: Metadata = buildMetadata({
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-16 md:py-24">
+    <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-[85px] md:py-24">
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", url: siteConfig.url },
           { name: "Contact", url: `${siteConfig.url}/contact` },
         ])}
       />
-      <h1 className="font-[family-name:var(--font-heading)] text-4xl font-bold md:text-5xl">
+      <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold md:text-4xl">
         Get in touch
       </h1>
-      <p className="mt-4 max-w-2xl text-lg text-[var(--color-text-muted)]">
+      <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
         Tell us about your project, or reach out directly.
       </p>
 

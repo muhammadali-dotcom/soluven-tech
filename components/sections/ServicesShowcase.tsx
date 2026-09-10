@@ -13,14 +13,14 @@ export function ServicesShowcase() {
   const accent = active % 2 === 1 ? "--soluven-blue" : "--soluven-green";
 
   return (
-    <section id="services" className="mx-auto max-w-[1280px] px-6 py-20 md:px-16 md:py-28 scroll-mt-24">
+    <section id="services" className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28 scroll-mt-24">
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-          Chapter 03 · What we build
+          What we build
         </p>
       </FadeIn>
       <FadeIn delay={0.05}>
-        <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+        <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
           Eight capabilities. One clear outcome.
         </h2>
       </FadeIn>
@@ -33,6 +33,7 @@ export function ServicesShowcase() {
               key={item.slug}
               type="button"
               onClick={() => setActive(index)}
+              aria-current={index === active}
               className={`flex flex-col gap-2 border-b border-[var(--color-border)] p-4 text-left transition-colors first:border-t sm:first:border-t sm:[&:nth-child(2)]:border-t ${
                 index === active
                   ? "border-l-4 border-l-[var(--soluven-blue)] bg-[var(--soluven-blue)]/10"
@@ -42,13 +43,13 @@ export function ServicesShowcase() {
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-baseline gap-3">
                   <span
-                    className={`font-[family-name:var(--font-heading)] text-2xl font-bold ${
+                    className={`font-[family-name:var(--font-heading)] text-xl font-bold ${
                       index === active ? "text-[var(--soluven-blue)]" : "text-[var(--color-muted)]"
                     }`}
                   >
                     0{index + 1}
                   </span>
-                  <span className="font-[family-name:var(--font-heading)] text-lg font-semibold leading-snug">
+                  <span className="font-[family-name:var(--font-heading)] text-base font-semibold leading-snug">
                     {item.heading}
                   </span>
                 </div>
@@ -98,7 +99,7 @@ export function ServicesShowcase() {
 
             <div className="relative mt-6 px-6">
               <Logo size={16} />
-              <p className="mt-4 max-w-[70%] font-[family-name:var(--font-heading)] text-lg font-semibold leading-snug text-[var(--soluven-ink)] sm:text-xl">
+              <p className="mt-4 max-w-[70%] font-[family-name:var(--font-heading)] text-base font-semibold leading-snug text-[var(--soluven-ink)] sm:text-lg">
                 {service.heading.replace(/\.$/, "").split(" ").slice(0, -2).join(" ")}{" "}
                 <span style={{ color: `var(${accent})` }}>
                   {service.heading.replace(/\.$/, "").split(" ").slice(-2).join(" ")}

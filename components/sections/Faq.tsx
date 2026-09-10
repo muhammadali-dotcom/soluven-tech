@@ -5,15 +5,15 @@ import { JsonLd, faqJsonLd } from "@/lib/seo";
 
 export function Faq() {
   return (
-    <section className="mx-auto max-w-[1280px] px-6 py-20 md:px-16 md:py-28">
+    <section className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
       <JsonLd data={faqJsonLd(faqItems)} />
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-          Chapter 05 · Questions
+          FAQ
         </p>
       </FadeIn>
       <FadeIn delay={0.05}>
-        <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-4xl font-semibold leading-tight tracking-tight md:text-5xl">
+        <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
           Before you reach out.
         </h2>
       </FadeIn>
@@ -22,7 +22,7 @@ export function Faq() {
         {faqItems.map((item, index) => (
           <FadeIn key={item.question} delay={index * 0.05}>
             <details className="group py-5">
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-[family-name:var(--font-heading)] text-lg font-semibold">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-[family-name:var(--font-heading)] text-base font-semibold">
                 {item.question}
                 <ChevronDown
                   aria-hidden="true"

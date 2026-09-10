@@ -10,8 +10,9 @@ export const navLinks = [
       label: service.name,
     })),
   },
-  { href: "/#work", label: "Work" },
+  { href: "/portfolio", label: "Work" },
   { href: "/why-soluven", label: "Why Soluven" },
   { href: "/about", label: "About" },
+  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];

@@ -7,7 +7,7 @@ import { Logo } from "@/components/ui/Logo";
 export function Footer() {
   return (
     <footer className="mt-auto border-t border-[var(--color-border)] bg-[var(--color-background)] text-[var(--color-ink)]">
-      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-3 md:px-16">
+      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-3 md:px-[85px]">
         <div>
           <Logo />
           <p className="mt-3 max-w-xs text-sm text-[var(--color-muted)]">
@@ -70,7 +70,7 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-[var(--color-border)] px-6 py-6 md:px-16">
+      <div className="border-t border-[var(--color-border)] px-6 py-6 md:px-[85px]">
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-3 text-center text-xs text-[var(--color-muted)] sm:flex-row sm:justify-between sm:text-left">
           <div>
             <p>© {new Date().getFullYear()} Soluven. All rights reserved.</p>

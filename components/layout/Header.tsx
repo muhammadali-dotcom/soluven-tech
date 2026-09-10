@@ -77,7 +77,7 @@ export function Header() {
         Skip to content
       </a>
       <div
-        className={`mx-auto flex max-w-[1280px] items-center justify-between px-6 transition-all duration-300 md:px-16 ${
+        className={`mx-auto flex max-w-[1280px] items-center justify-between px-6 transition-all duration-300 md:px-[85px] ${
           scrolled ? "py-3" : "py-5"
         }`}
       >

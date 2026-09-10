@@ -8,7 +8,7 @@ function TickerContent({ hidden = false }: { hidden?: boolean }) {
     >
       {items.map((item, index) => (
         <span key={index} className="flex items-center gap-8">
-          <span className="font-[family-name:var(--font-heading)] text-lg font-semibold uppercase tracking-wide text-[var(--color-ink)] sm:text-2xl">
+          <span className="font-[family-name:var(--font-heading)] text-base font-semibold uppercase tracking-wide text-[var(--color-ink)] sm:text-xl">
             {item}
           </span>
           <span aria-hidden="true" className="text-[var(--soluven-green)]">
