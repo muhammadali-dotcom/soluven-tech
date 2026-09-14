@@ -5,9 +5,9 @@ import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Portfolio",
+  title: "Concept Projects",
   description:
-    "Concept projects showing what Soluven can build across web, ecommerce, and custom software.",
+    "Fictional sample projects showing what Soluven can build across web, ecommerce, and custom software.",
   path: "/portfolio",
 });
 
@@ -17,14 +17,20 @@ export default function PortfolioPage() {
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", url: siteConfig.url },
-          { name: "Portfolio", url: `${siteConfig.url}/portfolio` },
+          { name: "Concept Projects", url: `${siteConfig.url}/portfolio` },
         ])}
       />
       <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold md:text-4xl">
-        Portfolio
+        Concept Projects
       </h1>
       <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
-        Concept projects showing how we&apos;d approach real problems.
+        Fictional sample builds created to show how Soluven would approach
+        real ecommerce, software, and product challenges.
+      </p>
+      <p className="mt-3 max-w-2xl text-sm text-[var(--color-text-muted)]">
+        These are not client case studies. They are intentionally labeled
+        concepts, with no fake testimonials, client logos, or performance
+        claims.
       </p>
 
       <div className="mt-12">

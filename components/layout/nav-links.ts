@@ -13,6 +13,5 @@ export const navLinks = [
   { href: "/portfolio", label: "Work" },
   { href: "/why-soluven", label: "Why Soluven" },
   { href: "/about", label: "About" },
-  { href: "/faq", label: "FAQ" },
   { href: "/contact", label: "Contact" },
 ];

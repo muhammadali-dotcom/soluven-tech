@@ -16,9 +16,8 @@ export type PortfolioProject = {
   relatedService?: string;
 };
 
-// Concept projects illustrating what Soluven can build — not real client
-// work. Clearly labeled "CONCEPT" wherever displayed. Narrative fields
-// describe an approach, not fabricated performance metrics.
+// Fictional concept projects illustrating what Soluven can build. These are
+// not client case studies, and they avoid fake metrics, testimonials, or logos.
 export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "evergreen-goods",
@@ -26,13 +25,13 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "ecommerce",
     visual: "browser",
     description:
-      "A considered commerce experience for an everyday-living brand.",
+      "A fictional ecommerce storefront concept for an everyday-living brand.",
     problem:
       "An everyday-living brand needs a storefront that feels as considered as its products, without slowing down checkout.",
     approach:
       "A calm, editorial product presentation paired with a streamlined cart and checkout flow built for repeat purchases.",
     outcome:
-      "A storefront concept that balances brand feel with the speed and clarity customers expect from checkout.",
+      "A sample storefront direction that balances brand feel with the speed and clarity customers expect from checkout.",
     tech: ["Next.js", "Shopify"],
     isConcept: true,
     featured: true,
@@ -44,13 +43,13 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "software",
     visual: "ops",
     description:
-      "A focused operations platform that turns complex work into clear decisions.",
+      "A fictional operations dashboard concept for teams managing complex work.",
     problem:
       "Teams running multi-step operations often lose track of status across scattered spreadsheets and tools.",
     approach:
       "A single operations dashboard that surfaces what needs attention now, with clear ownership at every stage.",
     outcome:
-      "A concept platform that replaces status-chasing with a clear, always-current view of the work.",
+      "A sample platform direction that replaces status-chasing with a clear, always-current view of the work.",
     tech: ["Next.js", "TypeScript"],
     isConcept: true,
     featured: true,
@@ -62,13 +61,13 @@ export const portfolioProjects: PortfolioProject[] = [
     category: "software",
     visual: "mobile",
     description:
-      "A subscription product concept built for predictable, recurring growth.",
+      "A fictional mobile subscription app concept built around account self-service.",
     problem:
       "Subscription businesses need onboarding, billing, and retention to feel like one connected experience, not three bolted-on tools.",
     approach:
       "A unified subscriber dashboard covering plan management, billing history, and lifecycle messaging in one place.",
     outcome:
-      "A concept product designed so subscribers manage their plan without ever contacting support.",
+      "A sample product direction designed so subscribers can manage their plan without contacting support.",
     tech: ["Next.js", "Stripe"],
     isConcept: true,
     featured: true,

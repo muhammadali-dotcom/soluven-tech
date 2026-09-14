@@ -10,6 +10,7 @@ export type Service = {
   ctaLabel: string;
   variant: ServiceVariant;
   whoItsFor?: string;
+  image?: string;
 };
 
 export const services: Service[] = [
@@ -25,6 +26,7 @@ export const services: Service[] = [
     variant: "blue",
     whoItsFor:
       "Businesses that need a fast, credible web presence built to perform, not a templated site.",
+    image: "/services/website-development.jpg",
   },
   {
     slug: "ecommerce",
@@ -38,6 +40,7 @@ export const services: Service[] = [
     variant: "green",
     whoItsFor:
       "Brands launching or migrating an online store that need it done right the first time.",
+    image: "/services/ecommerce.jpg",
   },
   {
     slug: "software-development",
@@ -51,6 +54,7 @@ export const services: Service[] = [
     variant: "ink",
     whoItsFor:
       "Founders and teams who need a product or internal tool built around how they actually work.",
+    image: "/services/software-development.jpg",
   },
   {
     slug: "logo-design",

@@ -33,7 +33,7 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
                     className="h-2 w-2 rounded-full"
                     style={{ background: `var(${accent})` }}
                   />
-                  {project.category} concept · 0{index + 1}
+                  Fictional {project.category} sample · 0{index + 1}
                 </div>
                 <h3 className="mt-5 max-w-md font-[family-name:var(--font-heading)] text-xl font-semibold leading-tight tracking-tight md:text-2xl">
                   {project.title}
@@ -47,7 +47,7 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
                     href={`/services/${relatedService.slug}`}
                     className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--color-muted)] underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current hover:text-[var(--soluven-blue)]"
                   >
-                    Built with our {relatedService.name} work →
+                    Related service: {relatedService.name} →
                   </Link>
                 )}
               </div>
