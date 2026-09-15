@@ -8,6 +8,7 @@ import { HowWeWork } from "@/components/sections/HowWeWork";
 import { WorkTeaser } from "@/components/sections/WorkTeaser";
 import { ProjectWizard } from "@/components/sections/ProjectWizard";
 import { Faq } from "@/components/sections/Faq";
+import { CtaBanner } from "@/components/sections/CtaBanner";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -28,6 +29,7 @@ export default function HomePage() {
       <WorkTeaser />
       <ProjectWizard />
       <Faq />
+      <CtaBanner />
     </>
   );
 }
