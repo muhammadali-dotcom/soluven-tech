@@ -3,11 +3,12 @@ import { Mail, MessageCircle, ArrowUp } from "lucide-react";
 import { contactEmail, whatsappLink, socialLinks } from "@/lib/constants";
 import { navLinks } from "./nav-links";
 import { Logo } from "@/components/ui/Logo";
+import { services } from "@/data/services";
 
 export function Footer() {
   return (
     <footer className="mt-auto border-t border-[var(--color-border)] bg-[var(--color-background)] text-[var(--color-ink)]">
-      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-3 md:px-[85px]">
+      <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4 md:px-[85px]">
         <div>
           <Logo />
           <p className="mt-3 max-w-xs text-sm text-[var(--color-muted)]">
@@ -27,6 +28,23 @@ export function Footer() {
                 className="w-fit text-sm font-semibold underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current hover:text-[var(--soluven-blue)]"
               >
                 {link.label}
+              </Link>
+            ))}
+          </nav>
+        </div>
+
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-widest text-[var(--color-muted)]">
+            Services
+          </p>
+          <nav aria-label="Footer services" className="mt-4 flex flex-col gap-2">
+            {services.map((service) => (
+              <Link
+                key={service.slug}
+                href={`/services/${service.slug}`}
+                className="w-fit text-sm font-semibold underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current hover:text-[var(--soluven-blue)]"
+              >
+                {service.name}
               </Link>
             ))}
           </nav>
