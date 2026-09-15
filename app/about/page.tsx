@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manifesto } from "@/components/sections/Manifesto";
+import { MissionVisionValues } from "@/components/sections/MissionVisionValues";
 import { WhatWeBelieve } from "@/components/sections/WhatWeBelieve";
 import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
@@ -24,14 +25,15 @@ export default function AboutPage() {
         <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold md:text-4xl">
           About Soluven
         </h1>
-        {/* TODO: replace with real company story / founder info once provided */}
-        <p className="mt-6 max-w-2xl text-base text-[var(--color-text-muted)]">
-          Soluven is a software house building web, mobile, and ecommerce
-          products for local and international clients, backed by hands-on
-          technical consulting. We work directly with founders and teams to
-          ship software that holds up in production, not just in a demo.
+        <p className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-xl font-semibold leading-snug md:text-2xl">
+          We build technology with a purpose.
+        </p>
+        <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
+          Soluven is a digital solutions studio focused on helping businesses
+          turn ideas and challenges into practical digital products.
         </p>
       </div>
+      <MissionVisionValues />
       <Manifesto />
       <WhatWeBelieve />
     </>

@@ -5,6 +5,7 @@ import { MagneticButton } from "@/components/motion/MagneticButton";
 import { TiltCard } from "@/components/motion/TiltCard";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { HeroLogoMark } from "@/components/sections/HeroLogoMark";
+import { whatsappLink } from "@/lib/constants";
 
 const capabilityCards = [
   { label: "Websites", Icon: AppWindow, dot: "--soluven-blue", className: "left-[-4%] top-[4%]" },
@@ -17,7 +18,16 @@ export function Hero() {
     <section className="section-dark relative overflow-hidden bg-[var(--color-background)] text-[var(--color-ink)]">
       <HeroLogoMark />
       <div className="relative mx-auto grid max-w-[1280px] gap-16 px-6 py-20 md:px-[85px] md:py-28 lg:grid-cols-2 lg:items-center">
-        <div>
+        <div className="relative">
+          <div
+            aria-hidden="true"
+            className="animate-hero-drift pointer-events-none absolute -left-10 -top-16 -z-10 h-[420px] w-[420px] opacity-[0.12]"
+            style={{
+              backgroundImage:
+                "radial-gradient(circle at 30% 30%, var(--soluven-blue) 0%, transparent 60%), radial-gradient(circle at 70% 70%, var(--soluven-green) 0%, transparent 60%), linear-gradient(var(--soluven-ink) 1px, transparent 1px), linear-gradient(90deg, var(--soluven-ink) 1px, transparent 1px)",
+              backgroundSize: "auto, auto, 28px 28px, 28px 28px",
+            }}
+          />
           <FadeIn>
             <p className="text-sm font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]">
               Digital solutions studio
@@ -44,6 +54,18 @@ export function Hero() {
                   Tell us your idea
                 </LinkButton>
               </MagneticButton>
+              {whatsappLink && (
+                <MagneticButton>
+                  <LinkButton
+                    href={whatsappLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="secondary"
+                  >
+                    Chat on WhatsApp
+                  </LinkButton>
+                </MagneticButton>
+              )}
               <Link
                 href="/services"
                 className="font-semibold underline decoration-[var(--soluven-blue)] underline-offset-4"

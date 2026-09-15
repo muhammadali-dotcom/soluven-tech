@@ -3,6 +3,7 @@ import { Sora, Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { PageLoader } from "@/components/sections/PageLoader";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { CursorLight } from "@/components/motion/CursorLight";
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         <main id="content" className="flex-1">{children}</main>
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

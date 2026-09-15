@@ -33,7 +33,7 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
                     className="h-2 w-2 rounded-full"
                     style={{ background: `var(${accent})` }}
                   />
-                  Fictional {project.category} sample · 0{index + 1}
+                  {project.category} project · 0{index + 1}
                 </div>
                 <h3 className="mt-5 max-w-md font-[family-name:var(--font-heading)] text-xl font-semibold leading-tight tracking-tight md:text-2xl">
                   {project.title}
@@ -42,14 +42,26 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
 
                 <ProjectDetailDialog project={project} />
 
-                {relatedService && (
-                  <Link
-                    href={`/services/${relatedService.slug}`}
-                    className="mt-6 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--color-muted)] underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current hover:text-[var(--soluven-blue)]"
-                  >
-                    Related service: {relatedService.name} →
-                  </Link>
-                )}
+                <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
+                  {relatedService && (
+                    <Link
+                      href={`/services/${relatedService.slug}`}
+                      className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--color-muted)] underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current hover:text-[var(--soluven-blue)]"
+                    >
+                      Related service: {relatedService.name} →
+                    </Link>
+                  )}
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--color-muted)] underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current hover:text-[var(--soluven-blue)]"
+                    >
+                      View code →
+                    </a>
+                  )}
+                </div>
               </div>
 
               <div
@@ -60,7 +72,7 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 ) : (
                   <ProjectVisual project={project} />

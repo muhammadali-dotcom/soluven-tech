@@ -13,11 +13,11 @@ export function buildMetadata({
   const url = `${siteConfig.url}${path}`;
 
   return {
-    title: `${title} | ${siteConfig.name}`,
+    title: `${siteConfig.name} - ${title}`,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${title} | ${siteConfig.name}`,
+      title: `${siteConfig.name} - ${title}`,
       description,
       url,
       siteName: siteConfig.name,
@@ -25,7 +25,7 @@ export function buildMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${title} | ${siteConfig.name}`,
+      title: `${siteConfig.name} - ${title}`,
       description,
     },
   };

@@ -20,10 +20,14 @@ export default function ContactPage() {
         ])}
       />
       <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold md:text-4xl">
-        Get in touch
+        Let&apos;s build something useful.
       </h1>
-      <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
-        Tell us about your project, or reach out directly.
+      <p className="mt-4 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+        Have an idea?
+      </p>
+      <p className="mt-2 max-w-2xl text-base text-[var(--color-text-muted)]">
+        Tell us what you&apos;re trying to build, what problem you&apos;re
+        facing, or what you want to improve.
       </p>
 
       <div className="mt-12 grid gap-12 md:grid-cols-2">

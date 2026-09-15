@@ -2,19 +2,22 @@
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
-import { services } from "@/data/services";
+import { Pill } from "@/components/ui/Pill";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+const projectTypes = ["Website", "E-commerce", "Mobile App", "Custom Software", "Marketing", "Other"];
+
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const [projectType, setProjectType] = useState("");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setStatus("submitting");
 
     const formData = new FormData(event.currentTarget);
-    const payload = Object.fromEntries(formData.entries());
+    const payload = { ...Object.fromEntries(formData.entries()), projectType };
 
     try {
       const res = await fetch("/api/contact", {
@@ -25,6 +28,7 @@ export function ContactForm() {
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
       event.currentTarget.reset();
+      setProjectType("");
     } catch {
       setStatus("error");
     }
@@ -70,29 +74,25 @@ export function ContactForm() {
         />
       </div>
 
-      <div className="flex flex-col gap-1">
-        <label htmlFor="projectType" className="text-sm font-semibold">
-          Project type <span className="font-normal text-[var(--color-muted)]">(optional)</span>
-        </label>
-        <select
-          id="projectType"
-          name="projectType"
-          defaultValue=""
-          className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
-        >
-          <option value="">Select one</option>
-          {services.map((service) => (
-            <option key={service.slug} value={service.name}>
-              {service.name}
-            </option>
+      <div className="flex flex-col gap-2">
+        <span className="text-sm font-semibold">
+          What do you need? <span className="font-normal text-[var(--color-muted)]">(optional)</span>
+        </span>
+        <div className="flex flex-wrap gap-2">
+          {projectTypes.map((type) => (
+            <Pill
+              key={type}
+              label={type}
+              active={projectType === type}
+              onClick={() => setProjectType(type)}
+            />
           ))}
-          <option value="Other">Other</option>
-        </select>
+        </div>
       </div>
 
       <div className="flex flex-col gap-1">
         <label htmlFor="message" className="text-sm font-semibold">
-          Message
+          Tell us about your project
         </label>
         <textarea
           id="message"
@@ -104,7 +104,7 @@ export function ContactForm() {
       </div>
 
       <Button type="submit" disabled={status === "submitting"}>
-        {status === "submitting" ? "Sending..." : "Send message"}
+        {status === "submitting" ? "Sending..." : "Send Project →"}
       </Button>
 
       {status === "success" && (

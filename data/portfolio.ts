@@ -8,7 +8,7 @@ export type PortfolioProject = {
   approach: string;
   outcome: string;
   tech: string[];
-  isConcept: true;
+  isConcept?: boolean;
   link?: string;
   image?: string;
   featured?: boolean;
@@ -16,60 +16,82 @@ export type PortfolioProject = {
   relatedService?: string;
 };
 
-// Fictional concept projects illustrating what Soluven can build. These are
-// not client case studies, and they avoid fake metrics, testimonials, or logos.
+// Real, independently built projects. Not client case studies yet — client
+// work will replace or join these as engagements are delivered.
 export const portfolioProjects: PortfolioProject[] = [
   {
-    slug: "evergreen-goods",
-    title: "Evergreen Goods",
-    category: "ecommerce",
+    slug: "ems",
+    title: "EMS — Enterprise Employee Management System",
+    category: "software",
     visual: "browser",
     description:
-      "A fictional ecommerce storefront concept for an everyday-living brand.",
+      "A role-based workforce platform with real-time dashboards, attendance tracking, and department management.",
     problem:
-      "An everyday-living brand needs a storefront that feels as considered as its products, without slowing down checkout.",
+      "Growing teams need a way to manage attendance, departments, and access levels that feels like a real enterprise product, not a spreadsheet workaround.",
     approach:
-      "A calm, editorial product presentation paired with a streamlined cart and checkout flow built for repeat purchases.",
+      "Built a role-based access system with real-time dashboards, attendance tracking, and department management, including full light/dark theme support.",
     outcome:
-      "A sample storefront direction that balances brand feel with the speed and clarity customers expect from checkout.",
-    tech: ["Next.js", "Shopify"],
-    isConcept: true,
-    featured: true,
-    relatedService: "ecommerce",
-  },
-  {
-    slug: "clearflow",
-    title: "Clearflow",
-    category: "software",
-    visual: "ops",
-    description:
-      "A fictional operations dashboard concept for teams managing complex work.",
-    problem:
-      "Teams running multi-step operations often lose track of status across scattered spreadsheets and tools.",
-    approach:
-      "A single operations dashboard that surfaces what needs attention now, with clear ownership at every stage.",
-    outcome:
-      "A sample platform direction that replaces status-chasing with a clear, always-current view of the work.",
+      "A working employee management platform covering the day-to-day operations a growing team needs, from attendance to department structure.",
     tech: ["Next.js", "TypeScript"],
-    isConcept: true,
+    link: "https://github.com/muhammadali-dotcom/Employee_Management.git",
+    image: "/portfolio/ems.webp",
     featured: true,
     relatedService: "software-development",
   },
   {
-    slug: "northline",
-    title: "Northline",
+    slug: "querybridge",
+    title: "QueryBridge — AI-Powered Natural Language SQL Platform",
+    category: "software",
+    visual: "browser",
+    description:
+      "A schema-aware platform that turns natural language into safe SQL queries.",
+    problem:
+      "Non-technical team members and even engineers lose time writing and re-checking SQL for routine data questions.",
+    approach:
+      "Built on Next.js and the OpenAI API, QueryBridge is schema-aware and translates natural language into SQL, actively blocking destructive operations like DELETE, UPDATE, or DROP, with query history and interactive result visualization.",
+    outcome:
+      "A safe, schema-aware natural language query tool that lets people explore a database without writing or risking unsafe SQL.",
+    tech: ["Next.js", "OpenAI API"],
+    link: "https://github.com/muhammadali-dotcom/QueryBridge.git",
+    image: "/portfolio/querybridge.webp",
+    featured: true,
+    relatedService: "software-development",
+  },
+  {
+    slug: "roomtalk",
+    title: "RoomTalk — Real-Time Multi-Room Chat App",
     category: "software",
     visual: "mobile",
     description:
-      "A fictional mobile subscription app concept built around account self-service.",
+      "A Socket.io-powered chat platform with public rooms, private messaging, and Redis-backed sessions.",
     problem:
-      "Subscription businesses need onboarding, billing, and retention to feel like one connected experience, not three bolted-on tools.",
+      "Real-time chat needs to feel instant across many concurrent rooms and private conversations without the backend falling over.",
     approach:
-      "A unified subscriber dashboard covering plan management, billing history, and lifecycle messaging in one place.",
+      "Built with Socket.io for real-time messaging across public rooms and private conversations, using Redis TTL to manage temporary active sessions.",
     outcome:
-      "A sample product direction designed so subscribers can manage their plan without contacting support.",
-    tech: ["Next.js", "Stripe"],
-    isConcept: true,
+      "A real-time, multi-room chat platform that handles public and private messaging with lightweight, self-expiring session state.",
+    tech: ["Socket.io", "Redis", "Node.js"],
+    link: "https://github.com/muhammadali-dotcom/RoomTalk",
+    image: "/portfolio/roomtalk.webp",
+    featured: true,
+    relatedService: "software-development",
+  },
+  {
+    slug: "expenzo",
+    title: "Expenzo — Expense Tracker & Group Settlements",
+    category: "software",
+    visual: "ops",
+    description:
+      "A personal and group expense tracker with budgeting, analytics, and automated settlements.",
+    problem:
+      "Splitting and tracking group expenses across categories and people usually means messy spreadsheets and manual settlement math.",
+    approach:
+      "Built with Django to log income and expenses by category, visualize monthly trends and budgets, and automatically calculate settlements for group expenses split across a people directory.",
+    outcome:
+      "An expense tracker that handles personal budgeting and group settlements in one place, with automated math instead of manual reconciliation.",
+    tech: ["Django", "Python"],
+    link: "https://github.com/muhammadali-dotcom/django-expense-tracker",
+    image: "/portfolio/expenzo.webp",
     featured: true,
     relatedService: "software-development",
   },

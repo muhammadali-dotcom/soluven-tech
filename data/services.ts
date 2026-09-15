@@ -11,6 +11,7 @@ export type Service = {
   variant: ServiceVariant;
   whoItsFor?: string;
   image?: string;
+  featured?: boolean;
 };
 
 export const services: Service[] = [
@@ -18,43 +19,72 @@ export const services: Service[] = [
     slug: "website-development",
     name: "Website development",
     heading: "Websites that earn attention.",
-    summary: "Strategic, responsive websites built to convert.",
+    summary: "Websites that turn visitors into customers.",
     description:
       "Strategic, responsive websites that explain your value quickly and turn interest into action.",
-    included: ["Brand websites", "Web applications", "CMS development"],
+    included: [
+      "Business websites",
+      "Landing pages",
+      "Corporate websites",
+      "Portfolio websites",
+      "Web applications",
+    ],
     ctaLabel: "Build your website",
     variant: "blue",
     whoItsFor:
       "Businesses that need a fast, credible web presence built to perform, not a templated site.",
     image: "/services/website-development.jpg",
+    featured: true,
   },
   {
     slug: "ecommerce",
     name: "E-commerce",
     heading: "Commerce built for momentum.",
-    summary: "Storefronts designed around conversion and growth.",
+    summary: "Online stores designed to sell.",
     description:
       "Fast, intuitive storefronts designed around customer confidence, conversion and repeat growth.",
-    included: ["Shopify stores", "Custom ecommerce", "Conversion optimisation"],
+    included: [
+      "Shopify",
+      "Custom stores",
+      "Product catalogs",
+      "Payment integration",
+      "Order management",
+    ],
     ctaLabel: "Grow your store",
     variant: "green",
     whoItsFor:
       "Brands launching or migrating an online store that need it done right the first time.",
     image: "/services/ecommerce.jpg",
+    featured: true,
+  },
+  {
+    slug: "mobile-app-development",
+    name: "Mobile app development",
+    heading: "Apps built for daily use.",
+    summary: "Apps your customers actually want to use.",
+    description:
+      "Native and cross-platform mobile apps designed for daily use, not just a launch-day demo.",
+    included: ["Android", "iOS", "Cross-platform", "Customer apps", "Business apps"],
+    ctaLabel: "Build your app",
+    variant: "green",
+    whoItsFor:
+      "Teams taking a product mobile-first or extending an existing platform to iOS and Android.",
+    featured: true,
   },
   {
     slug: "software-development",
     name: "Software development",
     heading: "Software shaped around your work.",
-    summary: "Purpose-built products and internal systems.",
+    summary: "Software designed around your business.",
     description:
       "Purpose-built products and internal systems that solve the problems generic tools cannot.",
-    included: ["Custom platforms", "Process automation", "Product engineering"],
+    included: ["CRM", "Dashboards", "Management systems", "Internal tools", "Automation"],
     ctaLabel: "Discuss your product",
     variant: "ink",
     whoItsFor:
       "Founders and teams who need a product or internal tool built around how they actually work.",
     image: "/services/software-development.jpg",
+    featured: true,
   },
   {
     slug: "logo-design",
@@ -68,19 +98,6 @@ export const services: Service[] = [
     variant: "blue",
     whoItsFor:
       "New businesses and rebrands that need a mark they can build a visual identity around.",
-  },
-  {
-    slug: "mobile-app-development",
-    name: "Mobile app development",
-    heading: "Apps built for daily use.",
-    summary: "iOS and Android apps designed around real user habits.",
-    description:
-      "Native and cross-platform mobile apps designed for daily use, not just a launch-day demo.",
-    included: ["iOS & Android apps", "Cross-platform builds", "App store readiness"],
-    ctaLabel: "Build your app",
-    variant: "green",
-    whoItsFor:
-      "Teams taking a product mobile-first or extending an existing platform to iOS and Android.",
   },
   {
     slug: "digital-marketing",

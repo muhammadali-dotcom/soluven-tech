@@ -1,7 +1,7 @@
 import { LinkButton } from "@/components/ui/Button";
 import { MagneticButton } from "@/components/motion/MagneticButton";
 import { FadeIn } from "@/components/motion/FadeIn";
-import { contactEmail } from "@/lib/constants";
+import { contactEmail, whatsappLink } from "@/lib/constants";
 
 export function CtaBanner() {
   return (
@@ -35,12 +35,24 @@ export function CtaBanner() {
           </p>
         </FadeIn>
         <FadeIn delay={0.15}>
-          <div className="mt-10 flex justify-center">
+          <div className="mt-10 flex flex-wrap justify-center gap-6">
             <MagneticButton>
               <LinkButton href={`mailto:${contactEmail}`} variant="primary">
                 {contactEmail}
               </LinkButton>
             </MagneticButton>
+            {whatsappLink && (
+              <MagneticButton>
+                <LinkButton
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="secondary"
+                >
+                  Chat on WhatsApp
+                </LinkButton>
+              </MagneticButton>
+            )}
           </div>
         </FadeIn>
       </div>

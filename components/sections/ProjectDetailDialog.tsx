@@ -33,7 +33,7 @@ export function ProjectDetailDialog({ project }: { project: PortfolioProject }) 
           </strong>
           <button
             type="button"
-            aria-label="Close concept details"
+            aria-label="Close project details"
             onClick={() => dialogRef.current?.close()}
             className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] transition-colors hover:bg-[var(--color-background)]"
           >

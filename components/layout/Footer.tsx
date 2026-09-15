@@ -1,9 +1,15 @@
 import Link from "next/link";
-import { Mail, MessageCircle, ArrowUp } from "lucide-react";
+import { Mail, ArrowUp } from "lucide-react";
 import { contactEmail, whatsappLink, socialLinks } from "@/lib/constants";
 import { navLinks } from "./nav-links";
 import { Logo } from "@/components/ui/Logo";
 import { services } from "@/data/services";
+import { WhatsAppIcon, FacebookIcon, InstagramIcon } from "@/components/icons/BrandIcons";
+
+const socialIcons = {
+  facebook: FacebookIcon,
+  instagram: InstagramIcon,
+};
 
 export function Footer() {
   return (
@@ -69,21 +75,27 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 font-semibold hover:text-[var(--soluven-blue)]"
               >
-                <MessageCircle size={16} aria-hidden="true" />
+                <WhatsAppIcon size={16} aria-hidden="true" />
                 WhatsApp
               </a>
             )}
-            {socialLinks.map((social) => (
-              <a
-                key={social.href}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-semibold hover:text-[var(--soluven-blue)]"
-              >
-                {social.label}
-              </a>
-            ))}
+            <div className="flex items-center gap-4">
+              {socialLinks.map((social) => {
+                const Icon = socialIcons[social.icon];
+                return (
+                  <a
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="text-[var(--color-ink)] hover:text-[var(--soluven-blue)]"
+                  >
+                    <Icon size={20} aria-hidden="true" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

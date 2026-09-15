@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { Marquee } from "@/components/sections/Marquee";
 import { ServicesTeaser } from "@/components/sections/ServicesTeaser";
+import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+import { WhoWeWorkWith } from "@/components/sections/WhoWeWorkWith";
+import { HowWeWork } from "@/components/sections/HowWeWork";
 import { WorkTeaser } from "@/components/sections/WorkTeaser";
-import { CtaBanner } from "@/components/sections/CtaBanner";
+import { ProjectWizard } from "@/components/sections/ProjectWizard";
 import { Faq } from "@/components/sections/Faq";
 import { buildMetadata } from "@/lib/seo";
 
@@ -19,8 +22,11 @@ export default function HomePage() {
       <Hero />
       <Marquee />
       <ServicesTeaser />
+      <WhyChooseUs />
+      <WhoWeWorkWith />
+      <HowWeWork />
       <WorkTeaser />
-      <CtaBanner />
+      <ProjectWizard />
       <Faq />
     </>
   );

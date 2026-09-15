@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { services } from "@/data/services";
 import { serviceIcons } from "@/lib/service-icons";
+import { serviceIllustrations } from "@/components/icons/ServiceIllustrations";
 import { buildMetadata, breadcrumbJsonLd, serviceJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
 
@@ -35,6 +36,7 @@ export default async function ServiceDetailPage({
   const service = services.find((item) => item.slug === slug);
   if (!service) notFound();
   const Icon = serviceIcons[service.slug];
+  const Illustration = serviceIllustrations[service.slug];
 
   return (
     <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-[85px] md:py-24">
@@ -79,17 +81,23 @@ export default async function ServiceDetailPage({
             {service.ctaLabel}
           </Link>
         </div>
-        <ul className="space-y-3 self-start">
-          {service.included.map((item) => (
-            <li
-              key={item}
-              className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-sm font-semibold"
-            >
-              {item}
-            </li>
-          ))}
-        </ul>
+        {Illustration && (
+          <div className="flex items-center justify-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+            <Illustration aria-hidden="true" className="w-full max-w-sm" />
+          </div>
+        )}
       </div>
+
+      <ul className="mt-10 flex flex-wrap gap-3">
+        {service.included.map((item) => (
+          <li
+            key={item}
+            className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-sm font-semibold"
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

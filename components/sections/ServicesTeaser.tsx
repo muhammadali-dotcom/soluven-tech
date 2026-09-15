@@ -27,7 +27,7 @@ export function ServicesTeaser() {
           <FadeIn key={service.slug} delay={0.05}>
             <Link
               href={`/services/${service.slug}`}
-              className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] transition-transform duration-300 hover:-translate-y-1"
+              className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] transition-all duration-300 hover:-translate-y-[5px] hover:border-[var(--soluven-blue)] hover:shadow-[0_12px_24px_-12px_var(--soluven-blue)]"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--soluven-cream)]">
                 {service.image && (
@@ -35,7 +35,7 @@ export function ServicesTeaser() {
                     src={service.image}
                     alt={service.name}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 )}
               </div>

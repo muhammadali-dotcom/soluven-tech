@@ -14,17 +14,22 @@ export function WorkTeaser() {
       </FadeIn>
       <FadeIn delay={0.05}>
         <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
-          Concepts that show how we think.
+          Projects we&apos;ve shipped.
         </h2>
       </FadeIn>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-3">
-        {portfolioProjects.map((project) => (
+      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {portfolioProjects.filter((project) => project.featured).map((project) => (
           <FadeIn key={project.slug} delay={0.05}>
-            <div className="flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
+            <div className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
               <div className="relative aspect-[16/10] w-full overflow-hidden">
                 {project.image ? (
-                  <Image src={project.image} alt={project.title} fill className="object-cover" />
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
                 ) : (
                   <ProjectVisual project={project} />
                 )}

@@ -1,5 +1,5 @@
 export const siteConfig = {
-  name: "Soluven",
+  name: "Soluven Tech",
   tagline: "Building solutions for the future you see.",
   description:
     "Soluven builds high-performing websites, ecommerce experiences and custom software for ambitious businesses.",
@@ -15,5 +15,19 @@ export const whatsappLink = whatsappNumber
   ? `https://wa.me/${whatsappNumber}`
   : null;
 
-// TODO(open item, REQUIREMENTS.md): confirm which social accounts exist.
-export const socialLinks: { label: string; href: string }[] = [];
+export const socialLinks: {
+  label: string;
+  href: string;
+  icon: "facebook" | "instagram";
+}[] = [
+  {
+    label: "Facebook",
+    href: "https://www.facebook.com/share/1Db6oNytZL/?mibextid=wwXIfr",
+    icon: "facebook",
+  },
+  {
+    label: "Instagram",
+    href: "https://www.instagram.com/soluventech?stkn=dXQ2M3pvZmdibXk1&utm_source=qr",
+    icon: "instagram",
+  },
+];
