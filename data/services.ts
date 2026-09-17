@@ -39,10 +39,10 @@ export const services: Service[] = [
   {
     slug: "ecommerce",
     name: "E-commerce",
-    heading: "Commerce built for momentum.",
+    heading: "Your online store should make buying feel easy.",
     summary: "Online stores designed to sell.",
     description:
-      "Fast, intuitive storefronts designed around customer confidence, conversion and repeat growth.",
+      "From first click to checkout, we build thoughtful e-commerce experiences that earn trust, remove friction and help your brand grow.",
     included: [
       "Shopify",
       "Custom stores",
@@ -52,8 +52,7 @@ export const services: Service[] = [
     ],
     ctaLabel: "Grow your store",
     variant: "green",
-    whoItsFor:
-      "Brands launching or migrating an online store that need it done right the first time.",
+    whoItsFor: "Because every lost click can become a lost customer.",
     image: "/services/ecommerce.jpg",
     featured: true,
   },

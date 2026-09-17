@@ -77,15 +77,15 @@ export function Header() {
         Skip to content
       </a>
       <div
-        className={`mx-auto flex max-w-[1280px] items-center justify-between px-6 transition-all duration-300 md:px-[85px] ${
-          scrolled ? "py-3" : "py-5"
+        className={`mx-auto flex max-w-[1440px] items-center justify-between px-6 transition-all duration-300 md:px-[72px] xl:px-[85px] ${
+          scrolled ? "py-3" : "py-4"
         }`}
       >
         <Link href="/" aria-label="Soluven home" className="flex items-center">
           <Logo size={scrolled ? 24 : 30} />
         </Link>
 
-        <nav aria-label="Primary" className="hidden gap-8 md:flex">
+        <nav aria-label="Primary" className="hidden gap-10 text-[1.05rem] lg:flex">
           {navLinks.map((link) =>
             link.children ? (
               <div
@@ -159,10 +159,10 @@ export function Header() {
           )}
         </nav>
 
-        <div className="hidden items-center gap-6 md:flex">
+        <div className="hidden items-center gap-6 lg:flex">
           <span aria-hidden="true" className="h-6 w-px bg-[var(--color-border)]" />
           <MagneticButton>
-            <LinkButton href="/contact" variant="primary">
+            <LinkButton href="/contact" variant="primary" className="rounded-lg px-8 py-4 text-lg">
               Start a project
             </LinkButton>
           </MagneticButton>

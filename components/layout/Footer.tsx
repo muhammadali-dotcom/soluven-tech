@@ -104,7 +104,6 @@ export function Footer() {
         <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-3 text-center text-xs text-[var(--color-muted)] sm:flex-row sm:justify-between sm:text-left">
           <div>
             <p>© {new Date().getFullYear()} Soluven. All rights reserved.</p>
-            <p className="mt-1">Concept website — built to demonstrate what Soluven can build for you.</p>
           </div>
           <a
             href="#top"
