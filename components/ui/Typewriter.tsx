@@ -33,9 +33,12 @@ export function Typewriter({
         }
 
         if (isDeleting && text === "") {
-            setIsDeleting(false);
-            setWordIndex((prev) => (prev + 1) % words.length);
-            return;
+            const timeout = setTimeout(() => {
+                setIsDeleting(false);
+                setWordIndex((prev) => (prev + 1) % words.length);
+            }, 0);
+
+            return () => clearTimeout(timeout);
         }
 
         const timeout = setTimeout(

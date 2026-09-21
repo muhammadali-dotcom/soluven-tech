@@ -2,7 +2,6 @@ import Link from "next/link";
 import { AnimatedHeadline } from "@/components/ui/animated-headline";
 import {
   Check,
-  CheckCircle2,
   Code2,
   FlaskConical,
   GitBranch,

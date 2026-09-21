@@ -37,6 +37,7 @@ class WebGLRenderer {
   private vs: WebGLShader | null = null;
   private fs: WebGLShader | null = null;
   private buffer: WebGLBuffer | null = null;
+  private uniforms: Record<string, WebGLUniformLocation | null> = {};
   private scale: number;
   private shaderSource: string;
   private mouseMove = [0, 0];
@@ -129,12 +130,14 @@ void main(){gl_Position=position;}`;
     const pos = gl.getAttribLocation(p, "position");
     gl.enableVertexAttribArray(pos);
     gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
-    (p as any).resolution = gl.getUniformLocation(p, "resolution");
-    (p as any).time = gl.getUniformLocation(p, "time");
-    (p as any).move = gl.getUniformLocation(p, "move");
-    (p as any).touch = gl.getUniformLocation(p, "touch");
-    (p as any).pointerCount = gl.getUniformLocation(p, "pointerCount");
-    (p as any).pointers = gl.getUniformLocation(p, "pointers");
+    this.uniforms = {
+      resolution: gl.getUniformLocation(p, "resolution"),
+      time: gl.getUniformLocation(p, "time"),
+      move: gl.getUniformLocation(p, "move"),
+      touch: gl.getUniformLocation(p, "touch"),
+      pointerCount: gl.getUniformLocation(p, "pointerCount"),
+      pointers: gl.getUniformLocation(p, "pointers"),
+    };
   }
 
   render(now = 0) {
@@ -145,12 +148,12 @@ void main(){gl_Position=position;}`;
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.useProgram(p);
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
-    gl.uniform2f((p as any).resolution, this.canvas.width, this.canvas.height);
-    gl.uniform1f((p as any).time, now * 1e-3);
-    gl.uniform2f((p as any).move, ...this.mouseMove);
-    gl.uniform2f((p as any).touch, ...this.mouseCoords);
-    gl.uniform1i((p as any).pointerCount, this.nbrOfPointers);
-    gl.uniform2fv((p as any).pointers, this.pointerCoords);
+    gl.uniform2f(this.uniforms.resolution, this.canvas.width, this.canvas.height);
+    gl.uniform1f(this.uniforms.time, now * 1e-3);
+    gl.uniform2f(this.uniforms.move, this.mouseMove[0], this.mouseMove[1]);
+    gl.uniform2f(this.uniforms.touch, this.mouseCoords[0], this.mouseCoords[1]);
+    gl.uniform1i(this.uniforms.pointerCount, this.nbrOfPointers);
+    gl.uniform2fv(this.uniforms.pointers, this.pointerCoords);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
 }
@@ -200,7 +203,7 @@ class PointerHandler {
 // ── Shader Background Hook ──────────────────────────────
 function useShaderBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animFrameRef = useRef<number>();
+  const animFrameRef = useRef<number | null>(null);
   const rendererRef = useRef<WebGLRenderer | null>(null);
   const pointersRef = useRef<PointerHandler | null>(null);
 
