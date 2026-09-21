@@ -53,6 +53,14 @@ html {
   scroll-behavior: smooth;
 }
 
+@utility transform-3d {
+  transform-style: preserve-3d;
+}
+
+@utility backface-hidden {
+  backface-visibility: hidden;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-ink);
@@ -130,6 +138,42 @@ h3 {
 
 .animate-hero-enter {
   animation: hero-enter 720ms ease both;
+}
+
+@keyframes cta-grid-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+@keyframes cta-line-move {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes cta-corner-trace {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  25% {
+    stroke-dashoffset: 100;
+  }
+  50% {
+    stroke-dashoffset: 200;
+  }
+  75% {
+    stroke-dashoffset: 300;
+  }
+  100% {
+    stroke-dashoffset: 400;
+  }
 }
 
 .website-dev-hero {
@@ -2088,99 +2132,14 @@ h3 {
   min-width: 0;
 }
 
-.ld-grid {
-  position: absolute;
-  inset: 8%;
-  z-index: 0;
-  border-radius: 24px;
-  background-image:
-    linear-gradient(rgba(20, 39, 43, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(20, 39, 43, 0.05) 1px, transparent 1px);
-  background-size: 12.5% 12.5%;
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 60%, transparent 78%);
-  mask-image: radial-gradient(circle at 50% 50%, #000 60%, transparent 78%);
-}
-
-.ld-orbit {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  margin: auto;
-  width: min(46%, 340px);
-  height: min(46%, 340px);
-  border-radius: 999px;
-  border: 1.5px dashed rgba(99, 203, 248, 0.4);
-  animation: ld-orbit-spin 34s linear infinite;
-}
-
-@keyframes ld-orbit-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-.ld-node {
-  position: absolute;
-  z-index: 2;
-  height: 8px;
-  width: 8px;
-  border-radius: 999px;
-  background: var(--soluven-blue);
-  box-shadow: 0 0 0 4px rgba(99, 203, 248, 0.2);
-  animation: ld-node-pulse 3.2s ease-in-out infinite;
-}
-
-@keyframes ld-node-pulse {
-  0%,
-  100% {
-    opacity: 0.55;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.25);
-  }
-}
-
-.ld-node-a {
-  left: 50%;
-  top: 25%;
-}
-
-.ld-node-b {
-  left: 75%;
-  top: 50%;
-  background: var(--soluven-green);
-  box-shadow: 0 0 0 4px rgba(126, 217, 87, 0.22);
-  animation-delay: 0.8s;
-}
-
-.ld-node-c {
-  left: 50%;
-  top: 75%;
-  animation-delay: 1.6s;
-}
-
-.ld-node-d {
-  left: 25%;
-  top: 50%;
-  background: var(--soluven-green);
-  box-shadow: 0 0 0 4px rgba(126, 217, 87, 0.22);
-  animation-delay: 2.4s;
-}
+/* Shared logo mark, reused at different scales across the mockups --- */
 
 .ld-logo-mark {
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  z-index: 3;
-  width: min(20%, 168px);
-  height: fit-content;
-  aspect-ratio: 1;
-  animation: hero-float 5.6s ease-in-out infinite alternate;
+  position: relative;
+  display: block;
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
 }
 
 .ld-ribbon {
@@ -2188,8 +2147,8 @@ h3 {
   left: 0;
   width: 100%;
   height: 58%;
-  border-radius: 30px;
-  box-shadow: 0 22px 40px rgba(20, 39, 43, 0.26);
+  border-radius: 22%;
+  box-shadow: 0 10px 18px rgba(20, 39, 43, 0.22);
 }
 
 .ld-ribbon-blue {
@@ -2204,351 +2163,185 @@ h3 {
   background: linear-gradient(135deg, #c8f2a6, var(--soluven-green) 55%, #3f8f2c);
 }
 
-/* Floating cards ---------------------------------------------------- */
+/* Mockups ------------------------------------------------------------ */
 
-.ld-card {
+.ld-mockup {
   position: absolute;
-  z-index: 5;
-  min-width: 168px;
-  padding: 13px 16px;
-  border: 1px solid rgba(20, 39, 43, 0.08);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.94);
+  animation: hero-float 5.4s ease-in-out infinite alternate;
+}
+
+.ld-mockup-card {
+  inset: 0;
+  margin: auto;
+  z-index: 3;
+  width: min(48%, 380px);
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  padding: 26px 28px;
+  border-radius: 22px;
+  background: #fffdf7;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.7),
     0 2px 4px rgba(20, 39, 43, 0.06),
-    0 18px 34px rgba(20, 39, 43, 0.12);
-  animation: hero-float 5s ease-in-out infinite alternate;
-  transition: box-shadow 0.25s ease, transform 0.25s ease;
+    0 10px 18px rgba(20, 39, 43, 0.1),
+    0 32px 54px -12px rgba(20, 39, 43, 0.3);
+  --wd-tilt: -1.5deg;
 }
 
-.ld-card:hover {
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.8),
-    0 2px 4px rgba(20, 39, 43, 0.08),
-    0 22px 40px rgba(20, 39, 43, 0.18);
+.ld-card-mark {
+  display: block;
 }
 
-.ld-card-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 13px;
+.ld-card-mark .ld-logo-mark {
+  width: 40px;
+  height: 40px;
+}
+
+.ld-card-name {
+  margin-top: 18px;
+  font-family: var(--font-heading), Arial, Helvetica, sans-serif;
+  font-size: 19px;
   font-weight: 800;
   color: #14272b;
 }
 
-.ld-card p {
-  margin: 6px 0 0;
-  font-size: 10px;
+.ld-card-tagline {
+  margin-top: 2px;
+  font-size: 11px;
   font-weight: 700;
-  color: #526672;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8a97a0;
 }
 
-.ld-card-shape {
-  left: 8%;
-  top: 10%;
-}
-
-.ld-shape-row {
+.ld-card-lines {
   display: flex;
+  flex-direction: column;
   gap: 6px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 
-.ld-shape-row i {
+.ld-card-lines i {
   display: block;
-  height: 18px;
-  width: 18px;
-}
-
-.ld-shape-circle {
+  height: 5px;
   border-radius: 999px;
-  background: rgba(99, 203, 248, 0.7);
+  background: rgba(20, 39, 43, 0.1);
 }
 
-.ld-shape-tri {
-  width: 0 !important;
-  height: 0 !important;
-  background: transparent !important;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-bottom: 16px solid rgba(126, 217, 87, 0.7);
+.ld-card-lines i:first-child {
+  width: 70%;
 }
 
-.ld-shape-square {
-  border-radius: 4px;
-  background: rgba(20, 39, 43, 0.55);
+.ld-card-lines i:last-child {
+  width: 45%;
 }
 
-.ld-shape-blob {
-  border-radius: 40% 60% 55% 45% / 50% 45% 55% 50%;
-  background: linear-gradient(135deg, var(--soluven-blue), var(--soluven-green));
-}
-
-.ld-card-type {
+.ld-mockup-icon {
   right: 8%;
-  top: 10%;
+  top: 8%;
+  z-index: 4;
+  display: flex;
+  width: min(17%, 116px);
+  aspect-ratio: 1;
+  align-items: center;
+  justify-content: center;
+  border-radius: 26%;
+  background: linear-gradient(135deg, #eaf9ff, #eafbe4);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 18px 34px rgba(20, 39, 43, 0.14);
   animation-delay: 0.2s;
 }
 
-.ld-type-glyph {
+.ld-mockup-icon .ld-logo-mark {
+  width: 46%;
+  height: 46%;
+}
+
+.ld-mockup-bag {
+  left: 6%;
+  bottom: 8%;
+  z-index: 2;
   display: flex;
-  height: 24px;
-  width: 24px;
+  width: min(15%, 118px);
+  aspect-ratio: 0.82;
   align-items: center;
   justify-content: center;
-  border-radius: 7px;
-  background: rgba(20, 39, 43, 0.06);
-  font-family: var(--font-heading), Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  font-weight: 800;
-  color: #14272b;
-}
-
-.ld-type-bars {
-  display: flex;
-  gap: 5px;
-  margin-top: 10px;
-}
-
-.ld-type-bars i {
-  display: block;
-  height: 6px;
-  width: 28px;
-  border-radius: 999px;
-}
-
-.ld-bar-blue {
-  background: var(--soluven-blue);
-}
-
-.ld-bar-ink {
-  background: rgba(20, 39, 43, 0.6);
-}
-
-.ld-bar-muted {
-  background: rgba(20, 39, 43, 0.18);
-}
-
-.ld-card-concept {
-  left: 4%;
-  top: 44%;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-width: 0;
+  border-radius: 14px 14px 20px 20px;
+  background: linear-gradient(180deg, #fffdf7, #f1ead8);
+  box-shadow: 0 18px 34px rgba(20, 39, 43, 0.14);
   animation-delay: 0.35s;
 }
 
-.ld-concept-cell {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
+.ld-mockup-bag::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 46%;
+  height: 26px;
+  transform: translateX(-50%);
+  border: 5px solid #d8cbaa;
+  border-bottom: 0;
+  border-radius: 16px 16px 0 0;
 }
 
-.ld-concept-cell em {
-  font-size: 8px;
-  font-style: normal;
+.ld-bag-mark .ld-logo-mark {
+  width: 34px;
+  height: 34px;
+}
+
+.ld-caption {
+  position: absolute;
+  z-index: 5;
+  font-size: 10px;
   font-weight: 800;
-  color: #8a97a0;
-  text-transform: uppercase;
   letter-spacing: 0.05em;
-}
-
-.ld-rough-mark {
-  display: block;
-  height: 32px;
-  width: 32px;
-  border-radius: 8px;
-  border: 2px dashed rgba(20, 39, 43, 0.3);
-  background: rgba(20, 39, 43, 0.05);
-}
-
-.ld-final-mark {
-  display: block;
-  height: 32px;
-  width: 32px;
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background: linear-gradient(135deg, var(--soluven-blue), var(--soluven-green));
-}
-
-.ld-concept-arrow {
-  flex-shrink: 0;
+  text-transform: uppercase;
   color: #8a97a0;
 }
 
-.ld-card-color {
-  left: 9%;
-  bottom: 10%;
-  animation-delay: 0.5s;
-}
-
-.ld-color-row {
-  display: flex;
-  gap: 6px;
-  margin-top: 10px;
-}
-
-.ld-color-row i {
-  display: block;
-  height: 20px;
-  width: 20px;
-  border-radius: 999px;
-  border: 2px solid #fffdf7;
-  box-shadow: 0 0 0 1px rgba(20, 39, 43, 0.1);
-}
-
-.ld-color-ink {
-  background: var(--soluven-ink);
-}
-
-.ld-color-blue {
-  background: var(--soluven-blue);
-}
-
-.ld-color-green {
-  background: var(--soluven-green);
-}
-
-.ld-card-grid {
+.ld-caption-icon {
   right: 9%;
-  bottom: 10%;
-  animation-delay: 0.65s;
+  top: 25%;
 }
 
-.ld-grid-glyph {
-  display: grid;
-  grid-template-columns: repeat(3, 6px);
-  gap: 4px;
-  margin-top: 10px;
+.ld-caption-card {
+  left: 50%;
+  bottom: 6%;
+  transform: translateX(-50%);
 }
 
-.ld-grid-glyph i {
-  display: block;
-  height: 6px;
-  width: 6px;
-  border-radius: 2px;
-  background: rgba(20, 39, 43, 0.18);
-}
-
-.ld-card-system {
-  right: 2%;
-  top: 44%;
-  min-width: 190px;
-  padding: 14px 16px;
-  animation-delay: 0.8s;
-}
-
-.ld-system-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 12px;
-  font-weight: 800;
-  color: #14272b;
-}
-
-.ld-system-dots {
-  display: flex;
-  gap: 3px;
-}
-
-.ld-system-dots i {
-  display: block;
-  height: 3px;
-  width: 3px;
-  border-radius: 999px;
-  background: #b7c0c5;
-}
-
-.ld-system-list {
-  display: grid;
-  gap: 7px;
-  margin: 10px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.ld-system-list li {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  font-weight: 700;
-  color: #526672;
-}
-
-.ld-system-list li.is-active {
-  color: #14272b;
-  font-weight: 800;
-}
-
-.ld-system-list svg {
-  flex-shrink: 0;
-  color: #00a8d9;
-}
-
-.ld-system-list li.is-active svg {
-  color: var(--soluven-blue);
-}
-
-.ld-grid {
-  opacity: 0.7;
-  transition: opacity 0.3s ease;
-}
-
-.ld-stage:hover .ld-grid {
-  opacity: 1;
-}
-
-.ld-orbit {
-  transition: border-color 0.3s ease;
-}
-
-.ld-stage:hover .ld-orbit {
-  border-color: rgba(99, 203, 248, 0.7);
+.ld-caption-bag {
+  left: 7%;
+  bottom: 2%;
 }
 
 @media (max-width: 1180px) {
-  .ld-logo-mark {
-    width: min(24%, 148px);
+  .ld-mockup-card {
+    width: min(58%, 340px);
+    padding: 22px 24px;
   }
 
-  .ld-orbit {
-    width: min(52%, 300px);
-    height: min(52%, 300px);
-  }
-
-  .ld-card {
-    min-width: 148px;
-    padding: 11px 14px;
-  }
-
-  .ld-card-shape {
-    left: 2%;
-  }
-
-  .ld-card-type {
-    right: 2%;
-  }
-
-  .ld-card-concept {
-    left: 0%;
-  }
-
-  .ld-card-system {
-    right: 0%;
-    min-width: 170px;
-  }
-
-  .ld-card-color {
-    left: 4%;
-  }
-
-  .ld-card-grid {
+  .ld-mockup-icon {
     right: 4%;
+    top: 6%;
+    width: min(20%, 100px);
+  }
+
+  .ld-mockup-bag {
+    left: 2%;
+    bottom: 6%;
+    width: min(18%, 104px);
+  }
+
+  .ld-caption-icon {
+    right: 5%;
+  }
+
+  .ld-caption-bag {
+    left: 3%;
   }
 }
 
@@ -2557,126 +2350,70 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 680px !important;
+    min-height: 480px !important;
   }
 
-  .ld-orbit,
-  .ld-grid,
-  .ld-node {
-    display: none;
-  }
-
-  .ld-logo-mark {
+  .ld-mockup-card {
     position: relative;
     inset: auto;
     margin: 0 auto;
-    width: 150px;
+    width: min(78%, 340px);
   }
 
-  .ld-stage .ld-card {
+  .ld-stage .ld-mockup-icon,
+  .ld-stage .ld-mockup-bag {
     position: absolute;
-    width: auto;
-    min-width: 150px;
   }
 
-  .ld-card-shape {
-    left: 2%;
-    top: 2%;
-  }
-
-  .ld-card-type {
-    right: 2%;
-    top: 6%;
-  }
-
-  .ld-card-concept {
-    left: 2%;
-    top: 44%;
-  }
-
-  .ld-card-system {
-    right: 2%;
-    top: 44%;
-    min-width: 170px;
-  }
-
-  .ld-card-color {
-    left: 6%;
-    bottom: 8%;
-  }
-
-  .ld-card-grid {
+  .ld-mockup-icon {
     right: 6%;
-    bottom: 8%;
-  }
-}
-
-@media (max-width: 640px) {
-  .ld-card {
-    min-width: 0;
-    max-width: 44%;
-    padding: 9px 11px;
+    top: 4%;
   }
 
-  .ld-card-head {
-    font-size: 11px;
+  .ld-mockup-bag {
+    left: 4%;
+    bottom: 4%;
   }
 
-  .ld-card p {
-    font-size: 9px;
+  .ld-caption-icon {
+    right: 7%;
+    top: 22%;
   }
 
-  .ld-card-system {
-    max-width: 60%;
-  }
-
-  .ld-card-concept {
-    max-width: 40%;
-    gap: 5px;
+  .ld-caption-bag {
+    left: 5%;
+    bottom: -2%;
   }
 }
 
 @media (max-width: 480px) {
   .ld-stage {
-    min-height: 860px !important;
+    min-height: 420px !important;
   }
 
-  .ld-logo-mark {
-    width: 120px;
+  .ld-mockup-card {
+    width: 84%;
+    padding: 18px 20px;
   }
 
-  .ld-card-shape {
-    left: 0%;
+  .ld-mockup-icon {
+    width: 74px;
+    right: 2%;
     top: 0%;
   }
 
-  .ld-card-type {
-    right: 0%;
-    top: 0%;
-  }
-
-  .ld-card-concept {
+  .ld-mockup-bag {
+    width: 78px;
     left: 0%;
-    top: 62%;
-    bottom: auto;
+    bottom: 0%;
   }
 
-  .ld-card-system {
-    right: 0%;
-    top: 62%;
-    bottom: auto;
+  .ld-card-name {
+    font-size: 16px;
   }
 
-  .ld-card-color {
-    left: 0%;
-    top: 84%;
-    bottom: auto;
-  }
-
-  .ld-card-grid {
-    right: 0%;
-    top: 90%;
-    bottom: auto;
+  .ld-caption {
+    display: none;
   }
 }
 
@@ -2704,10 +2441,7 @@ h3 {
   .ec-card,
   .ma-phone,
   .sd-editor,
-  .ld-logo-mark,
-  .ld-card,
-  .ld-orbit,
-  .ld-node {
+  .ld-mockup {
     animation: none;
   }
 

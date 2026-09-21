@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnimatedHeadline } from "@/components/ui/animated-headline";
 import {
   BarChart3,
   CheckCircle2,
@@ -42,7 +43,12 @@ export function WebsiteDevelopmentHero() {
           </p>
 
           <h1 className="mt-4 max-w-[460px] font-[family-name:var(--font-heading)] text-[28px] font-extrabold leading-[1.12] text-[#14272B] md:text-[32px] lg:text-[36px] xl:text-[38px]">
-            Your website should bring customers, not lose them.
+            <AnimatedHeadline
+              bgClass="bg-[var(--soluven-cream)]"
+              textClass="text-[#14272B]"
+            >
+              Your website should bring customers, not lose them.
+            </AnimatedHeadline>
           </h1>
 
           <p className="mt-4 max-w-[460px] text-sm font-medium leading-[1.5] text-[#526672] md:text-[15px]">

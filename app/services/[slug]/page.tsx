@@ -9,6 +9,7 @@ import { EcommerceHero } from "@/components/sections/EcommerceHero";
 import { MobileAppHero } from "@/components/sections/MobileAppHero";
 import { SoftwareDevelopmentHero } from "@/components/sections/SoftwareDevelopmentHero";
 import { LogoDesignHero } from "@/components/sections/LogoDesignHero";
+import { DigitalMarketingHero } from "@/components/sections/DigitalMarketingHero";
 import { WhatWeBuild } from "@/components/sections/WhatWeBuild";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { CtaBanner } from "@/components/sections/CtaBanner";
@@ -134,6 +135,25 @@ export default async function ServiceDetailPage({
         />
         <JsonLd data={serviceJsonLd(service)} />
         <LogoDesignHero />
+        <WhatWeBuild items={service.included} />
+        <HowWeWork />
+        <CtaBanner />
+      </>
+    );
+  }
+
+  if (service.slug === "digital-marketing") {
+    return (
+      <>
+        <JsonLd
+          data={breadcrumbJsonLd([
+            { name: "Home", url: siteConfig.url },
+            { name: "Services", url: `${siteConfig.url}/services` },
+            { name: service.name, url: `${siteConfig.url}/services/${service.slug}` },
+          ])}
+        />
+        <JsonLd data={serviceJsonLd(service)} />
+        <DigitalMarketingHero />
         <WhatWeBuild items={service.included} />
         <HowWeWork />
         <CtaBanner />

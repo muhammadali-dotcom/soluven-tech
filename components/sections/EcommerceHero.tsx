@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AnimatedHeadline } from "@/components/ui/animated-headline";
 import {
   Glasses,
   Lock,
@@ -42,7 +43,12 @@ export function EcommerceHero() {
           </p>
 
           <h1 className="mt-4 max-w-[460px] font-[family-name:var(--font-heading)] text-[28px] font-extrabold leading-[1.12] text-[#14272B] md:text-[32px] lg:text-[36px] xl:text-[38px]">
-            Your online store should make buying feel easy.
+            <AnimatedHeadline
+              bgClass="bg-[var(--soluven-cream)]"
+              textClass="text-[#14272B]"
+            >
+              Your online store should make buying feel easy.
+            </AnimatedHeadline>
           </h1>
 
           <p className="mt-4 max-w-[460px] text-sm font-medium leading-[1.5] text-[#526672] md:text-[15px]">

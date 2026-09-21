@@ -2,7 +2,6 @@
 
 import { useState, type FormEvent } from "react";
 import { Button } from "@/components/ui/Button";
-import { Pill } from "@/components/ui/Pill";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -10,7 +9,13 @@ const projectTypes = ["Website", "E-commerce", "Mobile App", "Custom Software", 
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
-  const [projectType, setProjectType] = useState("");
+  const [projectType, setProjectType] = useState<string[]>([]);
+
+  function toggleProjectType(type: string) {
+    setProjectType((prev) =>
+      prev.includes(type) ? prev.filter((t) => t !== type) : [...prev, type]
+    );
+  }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,7 +33,7 @@ export function ContactForm() {
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
       event.currentTarget.reset();
-      setProjectType("");
+      setProjectType([]);
     } catch {
       setStatus("error");
     }
@@ -78,14 +83,20 @@ export function ContactForm() {
         <span className="text-sm font-semibold">
           What do you need? <span className="font-normal text-[var(--color-muted)]">(optional)</span>
         </span>
-        <div className="flex flex-wrap gap-2">
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
           {projectTypes.map((type) => (
-            <Pill
+            <label
               key={type}
-              label={type}
-              active={projectType === type}
-              onClick={() => setProjectType(type)}
-            />
+              className="flex items-center gap-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-3 py-2 text-sm font-medium has-[:checked]:border-[var(--color-blue)]"
+            >
+              <input
+                type="checkbox"
+                checked={projectType.includes(type)}
+                onChange={() => toggleProjectType(type)}
+                className="h-4 w-4 rounded border-[var(--color-border)] text-[var(--color-blue)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-ink)]"
+              />
+              {type}
+            </label>
           ))}
         </div>
       </div>
