@@ -11,9 +11,10 @@ function TickerContent({ hidden = false }: { hidden?: boolean }) {
           <span className="font-[family-name:var(--font-heading)] text-base font-semibold uppercase tracking-wide text-[var(--color-ink)] sm:text-xl">
             {item}
           </span>
-          <span aria-hidden="true" className="text-[var(--soluven-green)]">
-            ✦
-          </span>
+          <span
+            aria-hidden="true"
+            className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--soluven-green)]"
+          />
         </span>
       ))}
     </div>

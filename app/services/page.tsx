@@ -22,8 +22,8 @@ const variantClasses: Record<ServiceVariant, string> = {
 };
 
 export default function ServicesPage() {
-  const featuredServices = services.filter((service) => service.featured);
-  const otherServices = services.filter((service) => !service.featured);
+  const buildServices = services.filter((service) => service.tier === "build");
+  const growServices = services.filter((service) => service.tier === "grow");
 
   return (
     <>
@@ -45,16 +45,22 @@ export default function ServicesPage() {
       <ServicesShowcase />
 
       <div className="mx-auto max-w-[1280px] px-6 pb-16 md:px-[85px] md:pb-24">
-        <div className="grid gap-6 sm:grid-cols-2">
-          {featuredServices.map((service) => {
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-blue)]">
+          Build
+        </p>
+        <p className="mt-2 max-w-2xl text-base text-[var(--color-text-muted)]">
+          Your main technical capabilities:
+        </p>
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          {buildServices.map((service) => {
             const Illustration = serviceIllustrations[service.slug];
             return (
               <Reveal key={service.slug} className="h-full">
                 <div
-                  className={`flex h-full flex-col rounded-2xl border p-8 text-[var(--color-ink)] transition-all duration-300 hover:-translate-y-[5px] hover:border-[var(--soluven-blue)] hover:shadow-[0_12px_24px_-12px_var(--soluven-blue)] ${variantClasses[service.variant]}`}
+                  className={`flex h-full flex-col rounded-lg border p-8 text-[var(--color-ink)] transition-colors duration-300 hover:border-[var(--soluven-blue)] ${variantClasses[service.variant]}`}
                 >
                   {Illustration && (
-                    <div className="flex items-center justify-center rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+                    <div className="flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
                       <Illustration aria-hidden="true" className="h-32 w-32" />
                     </div>
                   )}
@@ -88,17 +94,20 @@ export default function ServicesPage() {
           })}
         </div>
 
-        <p className="mt-16 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-          More ways we help
+        <p className="mt-16 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-green)]">
+          Grow
+        </p>
+        <p className="mt-2 max-w-2xl text-base text-[var(--color-text-muted)]">
+          Capabilities that help a business establish and grow its digital presence:
         </p>
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {otherServices.map((service, index) => {
+          {growServices.map((service, index) => {
             const Icon = serviceIcons[service.slug];
             return (
               <Reveal key={service.slug} className="h-full">
                 <Link
                   href={`/services/${service.slug}`}
-                  className={`group flex h-full flex-col justify-between rounded-lg border p-8 text-[var(--color-ink)] transition-all duration-300 hover:-translate-y-[5px] hover:border-[var(--soluven-blue)] hover:shadow-[0_12px_24px_-12px_var(--soluven-blue)] ${variantClasses[service.variant]}`}
+                  className={`group flex h-full flex-col justify-between rounded-lg border p-8 text-[var(--color-ink)] transition-colors duration-300 hover:border-[var(--soluven-blue)] ${variantClasses[service.variant]}`}
                 >
                   <div>
                     <div className="flex items-center justify-between">

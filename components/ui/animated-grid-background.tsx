@@ -36,7 +36,7 @@ export function AnimatedGridBackground({
                 )}
                 style={{
                   background:
-                    "linear-gradient(90deg, transparent 0%, var(--soluven-blue) 20%, var(--soluven-green) 50%, var(--soluven-blue) 80%, transparent 100%)",
+                    "linear-gradient(90deg, transparent 0%, var(--soluven-blue) 50%, transparent 100%)",
                 }}
               />
             </div>

@@ -23,7 +23,7 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
 
         return (
           <FadeIn key={project.slug} delay={index * 0.05}>
-            <article className="group grid gap-8 overflow-hidden rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] transition-shadow duration-300 hover:shadow-xl lg:grid-cols-2 lg:items-stretch lg:gap-0">
+            <article className="group grid gap-8 overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] lg:grid-cols-2 lg:items-stretch lg:gap-0">
               <div
                 className={`flex flex-col justify-center p-8 md:p-12 ${flip ? "lg:order-2" : "lg:order-1"}`}
               >
@@ -72,7 +72,7 @@ export function Projects({ projects }: { projects: PortfolioProject[] }) {
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="object-cover"
                   />
                 ) : (
                   <ProjectVisual project={project} />

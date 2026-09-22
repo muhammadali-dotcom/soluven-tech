@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { CaretDown } from "@phosphor-icons/react/dist/ssr";
 import { navLinks } from "./nav-links";
 import { MobileNav } from "./MobileNav";
 import { Logo } from "@/components/ui/Logo";
@@ -66,7 +66,7 @@ export function Header() {
       id="top"
       className={`sticky top-0 z-40 border-b transition-all duration-300 ${
         scrolled
-          ? "border-[var(--color-border)] bg-[var(--color-background)]/80 backdrop-blur-md"
+          ? "border-[var(--color-border)] bg-[var(--color-background)]"
           : "border-transparent bg-[var(--color-background)]"
       }`}
     >
@@ -106,7 +106,7 @@ export function Header() {
                   }`}
                 >
                   {link.label}
-                  <ChevronDown
+                  <CaretDown
                     aria-hidden="true"
                     size={16}
                     className={`transition-transform duration-200 ${
@@ -123,7 +123,7 @@ export function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute left-0 top-full z-50 mt-3 w-64 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] p-2 shadow-lg"
+                      className="absolute left-0 top-full z-50 mt-3 w-64 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] p-2"
                     >
                       {link.children.map((child) => (
                         <Link

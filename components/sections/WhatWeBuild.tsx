@@ -1,4 +1,3 @@
-import { CheckCircle2 } from "lucide-react";
 import { FadeIn } from "@/components/motion/FadeIn";
 
 export function WhatWeBuild({ items }: { items: string[] }) {
@@ -15,15 +14,16 @@ export function WhatWeBuild({ items }: { items: string[] }) {
         </h2>
       </FadeIn>
 
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-12 grid gap-4 sm:grid-cols-2">
         {items.map((item, index) => (
           <FadeIn key={item} delay={index * 0.05}>
-            <div className="flex items-center gap-3 rounded-xl border border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-4">
-              <CheckCircle2
+            <div className="flex items-baseline gap-3 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-4">
+              <span
                 aria-hidden="true"
-                size={22}
-                className="shrink-0 text-[var(--soluven-blue)]"
-              />
+                className="shrink-0 font-[family-name:var(--font-heading)] text-sm font-bold tabular-nums text-[var(--soluven-blue)]"
+              >
+                {String(index + 1).padStart(2, "0")}
+              </span>
               <span className="text-sm font-semibold">{item}</span>
             </div>
           </FadeIn>

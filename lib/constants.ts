@@ -6,7 +6,7 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://soluven.com",
 };
 
-// TODO: confirmed email address — using a placeholder until provided.
+// TODO: confirmed email address, using a placeholder until provided.
 export const contactEmail = "hello@soluven.com";
 
 // TODO(open item, REQUIREMENTS.md): WhatsApp business number not yet provided.

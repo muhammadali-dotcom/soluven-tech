@@ -1,22 +1,22 @@
 import {
   Globe,
   ShoppingCart,
-  Code2,
-  PenTool,
-  Smartphone,
+  Code,
+  PenNib,
+  DeviceMobile,
   Megaphone,
-  Share2,
-  Search,
-  type LucideIcon,
-} from "lucide-react";
+  ShareNetwork,
+  MagnifyingGlass,
+} from "@phosphor-icons/react/dist/ssr";
+import type { Icon } from "@phosphor-icons/react";
 
-export const serviceIcons: Record<string, LucideIcon> = {
+export const serviceIcons: Record<string, Icon> = {
   "website-development": Globe,
   ecommerce: ShoppingCart,
-  "software-development": Code2,
-  "logo-design": PenTool,
-  "mobile-app-development": Smartphone,
+  "software-development": Code,
+  "logo-design": PenNib,
+  "mobile-app-development": DeviceMobile,
   "digital-marketing": Megaphone,
-  "social-media-marketing": Share2,
-  seo: Search,
+  "social-media-marketing": ShareNetwork,
+  seo: MagnifyingGlass,
 };

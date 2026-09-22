@@ -18,16 +18,16 @@ export function ServicesTeaser() {
       </FadeIn>
       <FadeIn delay={0.05}>
         <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
-          Websites, stores, and software — built to work together.
+          Websites, stores, and software, built to work together.
         </h2>
       </FadeIn>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-3">
+      <div className="mt-12 grid gap-6 sm:grid-cols-2">
         {featuredServices.map((service) => (
           <FadeIn key={service.slug} delay={0.05}>
             <Link
               href={`/services/${service.slug}`}
-              className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] transition-all duration-300 hover:-translate-y-[5px] hover:border-[var(--soluven-blue)] hover:shadow-[0_12px_24px_-12px_var(--soluven-blue)]"
+              className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] transition-colors duration-300 hover:border-[var(--soluven-blue)]"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--soluven-cream)]">
                 {service.image && (
@@ -35,7 +35,7 @@ export function ServicesTeaser() {
                     src={service.image}
                     alt={service.name}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="object-cover"
                   />
                 )}
               </div>
@@ -44,8 +44,8 @@ export function ServicesTeaser() {
                   {service.name}
                 </p>
                 <p className="mt-2 text-sm text-[var(--color-muted)]">{service.summary}</p>
-                <span className="mt-4 inline-flex w-fit items-center gap-1.5 text-sm font-semibold underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-current group-hover:text-[var(--soluven-blue)]">
-                  Learn more →
+                <span className="mt-4 inline-flex w-fit items-center gap-1.5 text-sm font-semibold underline decoration-current underline-offset-4">
+                  Learn more
                 </span>
               </div>
             </Link>

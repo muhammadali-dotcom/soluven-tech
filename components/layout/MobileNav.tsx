@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { List, X, CaretDown } from "@phosphor-icons/react/dist/ssr";
 import { AnimatePresence, motion } from "framer-motion";
 import { navLinks } from "./nav-links";
 import { LinkButton } from "@/components/ui/Button";
@@ -19,7 +19,7 @@ export function MobileNav() {
         onClick={() => setOpen((v) => !v)}
         className="p-2"
       >
-        {open ? <X size={24} /> : <Menu size={24} />}
+        {open ? <X size={24} /> : <List size={24} />}
       </button>
       <AnimatePresence>
         {open && (
@@ -53,7 +53,7 @@ export function MobileNav() {
                       }
                       className="p-1"
                     >
-                      <ChevronDown
+                      <CaretDown
                         size={18}
                         className={`transition-transform ${
                           expanded === link.href ? "rotate-180" : ""

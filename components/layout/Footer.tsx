@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { Envelope } from "@phosphor-icons/react/dist/ssr";
 import { contactEmail, whatsappLink, socialLinks } from "@/lib/constants";
 import { navLinks } from "./nav-links";
 import { Logo } from "@/components/ui/Logo";
@@ -82,7 +82,7 @@ export function Footer() {
                 href={`mailto:${contactEmail}`}
                 className="flex items-center gap-2 font-semibold hover:text-[var(--soluven-blue)]"
               >
-                <Mail size={16} aria-hidden="true" />
+                <Envelope size={16} aria-hidden="true" />
                 {contactEmail}
               </a>
               {whatsappLink && (
@@ -104,10 +104,10 @@ export function Footer() {
       {/* ── Dark island: text effect lives here on a contrasting bg ─────── */}
       {/* section-dark flips all CSS tokens to ink-on-cream automatically  */}
       <div className="section-dark relative overflow-hidden bg-[var(--color-background)]">
-        {/* Radial gradient backdrop — works properly on dark bg */}
+        {/* Radial gradient backdrop, works properly on dark bg */}
         <FooterBackgroundGradient />
 
-        {/* Bottom bar: social left | copyright right — sits ABOVE the text */}
+        {/* Bottom bar: social left | copyright right, sits ABOVE the text */}
         <div className="relative z-10 mx-auto max-w-[1280px] px-6 pt-10 md:px-[85px]">
           <hr className="border-t border-[var(--color-border)]" />
           <div className="flex flex-col items-center justify-between gap-4 py-6 text-xs text-[var(--color-muted)] sm:flex-row">
@@ -137,7 +137,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Giant hover text — full width, contained inside the dark island */}
+        {/* Giant hover text, full width, contained inside the dark island */}
         <Link
           href="/"
           aria-label="Soluven home"

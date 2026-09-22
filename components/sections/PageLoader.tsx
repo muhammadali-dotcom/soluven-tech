@@ -39,10 +39,7 @@ export function PageLoader() {
           <div className="h-[2px] w-40 overflow-hidden rounded-full bg-[var(--color-border)]">
             <motion.div
               className="h-full w-full"
-              style={{
-                background:
-                  "linear-gradient(90deg, var(--soluven-blue), var(--soluven-green))",
-              }}
+              style={{ background: "var(--soluven-blue)" }}
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
               transition={{ duration: 2.8, ease: "easeInOut" }}

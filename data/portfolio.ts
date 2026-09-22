@@ -16,12 +16,12 @@ export type PortfolioProject = {
   relatedService?: string;
 };
 
-// Real, independently built projects. Not client case studies yet — client
+// Real, independently built projects. Not client case studies yet; client
 // work will replace or join these as engagements are delivered.
 export const portfolioProjects: PortfolioProject[] = [
   {
     slug: "ems",
-    title: "EMS — Enterprise Employee Management System",
+    title: "EMS: Enterprise Employee Management System",
     category: "software",
     visual: "browser",
     description:
@@ -40,7 +40,7 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     slug: "querybridge",
-    title: "QueryBridge — AI-Powered Natural Language SQL Platform",
+    title: "QueryBridge: AI-Powered Natural Language SQL Platform",
     category: "software",
     visual: "browser",
     description:
@@ -59,7 +59,7 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     slug: "roomtalk",
-    title: "RoomTalk — Real-Time Multi-Room Chat App",
+    title: "RoomTalk: Real-Time Multi-Room Chat App",
     category: "software",
     visual: "mobile",
     description:
@@ -78,7 +78,7 @@ export const portfolioProjects: PortfolioProject[] = [
   },
   {
     slug: "expenzo",
-    title: "Expenzo — Expense Tracker & Group Settlements",
+    title: "Expenzo: Expense Tracker & Group Settlements",
     category: "software",
     visual: "ops",
     description:

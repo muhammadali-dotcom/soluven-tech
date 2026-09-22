@@ -1,4 +1,5 @@
 export type ServiceVariant = "blue" | "green" | "ink";
+export type ServiceTier = "build" | "grow";
 
 export type Service = {
   slug: string;
@@ -12,6 +13,7 @@ export type Service = {
   whoItsFor?: string;
   image?: string;
   featured?: boolean;
+  tier: ServiceTier;
 };
 
 export const services: Service[] = [
@@ -35,6 +37,7 @@ export const services: Service[] = [
       "Businesses that need a fast, credible web presence built to perform, not a templated site.",
     image: "/services/website-development.jpg",
     featured: true,
+    tier: "build",
   },
   {
     slug: "ecommerce",
@@ -55,6 +58,7 @@ export const services: Service[] = [
     whoItsFor: "Because every lost click can become a lost customer.",
     image: "/services/ecommerce.jpg",
     featured: true,
+    tier: "build",
   },
   {
     slug: "mobile-app-development",
@@ -69,6 +73,7 @@ export const services: Service[] = [
     whoItsFor:
       "Teams taking a product mobile-first or extending an existing platform to iOS and Android.",
     featured: true,
+    tier: "build",
   },
   {
     slug: "software-development",
@@ -84,6 +89,7 @@ export const services: Service[] = [
       "Founders and teams who need a product or internal tool built around how they actually work.",
     image: "/services/software-development.jpg",
     featured: true,
+    tier: "build",
   },
   {
     slug: "logo-design",
@@ -91,12 +97,13 @@ export const services: Service[] = [
     heading: "A mark that carries the brand.",
     summary: "Distinctive logos built to work everywhere your brand shows up.",
     description:
-      "A distinctive, versatile logo designed to hold up across your website, product, and print — not just a nice picture.",
+      "A distinctive, versatile logo designed to hold up across your website, product, and print, not just a nice picture.",
     included: ["Logo concepts", "Brand colour & type pairing", "Usage guidelines"],
     ctaLabel: "Design your logo",
     variant: "blue",
     whoItsFor:
       "New businesses and rebrands that need a mark they can build a visual identity around.",
+    tier: "grow",
   },
   {
     slug: "digital-marketing",
@@ -104,12 +111,27 @@ export const services: Service[] = [
     heading: "Marketing tied to real outcomes.",
     summary: "Campaigns and funnels built around measurable results.",
     description:
-      "Digital marketing built around measurable outcomes — traffic, leads, and conversions tied to a clear funnel, not vanity metrics.",
+      "Digital marketing built around measurable outcomes: traffic, leads, and conversions tied to a clear funnel, not vanity metrics.",
     included: ["Campaign strategy", "Landing page funnels", "Performance tracking"],
     ctaLabel: "Plan your campaign",
     variant: "ink",
     whoItsFor:
       "Businesses that need marketing efforts connected to their actual website and conversion goals.",
+    tier: "grow",
+  },
+  {
+    slug: "seo",
+    name: "Search engine optimization",
+    heading: "Findable when it matters.",
+    summary: "Technical and content SEO built into how the site is built.",
+    description:
+      "Technical and content SEO built into the site itself (structure, metadata, and performance) so it's found by the people looking for it.",
+    included: ["Technical SEO audits", "On-page optimisation", "Structured data & metadata"],
+    ctaLabel: "Improve your ranking",
+    variant: "green",
+    whoItsFor:
+      "Businesses whose website should be doing more of the work to bring in traffic.",
+    tier: "grow",
   },
   {
     slug: "social-media-marketing",
@@ -121,20 +143,7 @@ export const services: Service[] = [
     included: ["Content planning", "Community management", "Platform strategy"],
     ctaLabel: "Grow your presence",
     variant: "blue",
-    whoItsFor:
-      "Brands that need a consistent social presence without managing it in-house.",
-  },
-  {
-    slug: "seo",
-    name: "Search engine optimization",
-    heading: "Findable when it matters.",
-    summary: "Technical and content SEO built into how the site is built.",
-    description:
-      "Technical and content SEO built into the site itself — structure, metadata, and performance — so it's found by the people looking for it.",
-    included: ["Technical SEO audits", "On-page optimisation", "Structured data & metadata"],
-    ctaLabel: "Improve your ranking",
-    variant: "green",
-    whoItsFor:
-      "Businesses whose website should be doing more of the work to bring in traffic.",
+    whoItsFor: "Brands that need a consistent social presence without managing it in-house.",
+    tier: "grow",
   },
 ];

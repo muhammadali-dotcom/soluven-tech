@@ -2,6 +2,15 @@
 
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import {
+  Globe,
+  ShoppingCart,
+  DeviceMobile,
+  Code,
+  PenNib,
+  Megaphone,
+  DotsThree,
+} from "@phosphor-icons/react/dist/ssr";
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { FadeIn } from "@/components/motion/FadeIn";
@@ -9,13 +18,13 @@ import { FadeIn } from "@/components/motion/FadeIn";
 type Status = "idle" | "submitting" | "success" | "error";
 
 const categories = [
-  { value: "Website", emoji: "🌐", label: "Website" },
-  { value: "Online Store", emoji: "🛒", label: "Online Store" },
-  { value: "Mobile App", emoji: "📱", label: "Mobile App" },
-  { value: "Custom Software", emoji: "💻", label: "Custom Software" },
-  { value: "Branding", emoji: "🎨", label: "Branding" },
-  { value: "Digital Marketing", emoji: "📈", label: "Digital Marketing" },
-  { value: "Something else", emoji: "🤖", label: "Something else" },
+  { value: "Website", icon: Globe, label: "Website" },
+  { value: "Online Store", icon: ShoppingCart, label: "Online Store" },
+  { value: "Mobile App", icon: DeviceMobile, label: "Mobile App" },
+  { value: "Custom Software", icon: Code, label: "Custom Software" },
+  { value: "Branding", icon: PenNib, label: "Branding" },
+  { value: "Digital Marketing", icon: Megaphone, label: "Digital Marketing" },
+  { value: "Something else", icon: DotsThree, label: "Something else" },
 ];
 
 const subtypesByCategory: Record<string, string[]> = {
@@ -75,7 +84,7 @@ export function ProjectWizard() {
     event.preventDefault();
     setStatus("submitting");
 
-    const projectType = [answers.category, answers.subtype].filter(Boolean).join(" — ");
+    const projectType = [answers.category, answers.subtype].filter(Boolean).join(" / ");
     const message = `Budget: ${answers.budget}\n\n${answers.description}`;
 
     try {
@@ -111,10 +120,10 @@ export function ProjectWizard() {
         </h2>
       </FadeIn>
 
-      <div className="mt-12 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8 md:p-12">
+      <div className="mt-12 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-8 md:p-12">
         {status === "success" ? (
           <p role="status" className="text-lg font-semibold text-green-700">
-            Thanks, {answers.name || "there"} — we&apos;ll get back to you soon.
+            Thanks, {answers.name || "there"}. We&apos;ll get back to you soon.
           </p>
         ) : (
           <>
@@ -150,7 +159,7 @@ export function ProjectWizard() {
                         <Pill
                           key={option.value}
                           label={option.label}
-                          emoji={option.emoji}
+                          icon={option.icon}
                           active={answers.category === option.value}
                           onClick={() => {
                             setAnswers((a) => ({ ...a, category: option.value, subtype: "" }));

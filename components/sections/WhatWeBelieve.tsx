@@ -1,10 +1,10 @@
-import { Compass, PenTool, Code2, Users } from "lucide-react";
+import { Compass, PenNib, Code, Users } from "@phosphor-icons/react/dist/ssr";
 import { FadeIn } from "@/components/motion/FadeIn";
 
 const pillars = [
   { label: "Strategy", icon: Compass },
-  { label: "Design", icon: PenTool },
-  { label: "Engineering", icon: Code2 },
+  { label: "Design", icon: PenNib },
+  { label: "Engineering", icon: Code },
 ];
 
 export function WhatWeBelieve() {

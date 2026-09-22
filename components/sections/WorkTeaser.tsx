@@ -28,7 +28,7 @@ export function WorkTeaser() {
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    className="object-cover"
                   />
                 ) : (
                   <ProjectVisual project={project} />

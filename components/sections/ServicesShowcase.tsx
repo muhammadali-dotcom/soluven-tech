@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
 import { services } from "@/data/services";
 import { Logo } from "@/components/ui/Logo";
 import { FadeIn } from "@/components/motion/FadeIn";
@@ -36,8 +36,8 @@ export function ServicesShowcase() {
               aria-current={index === active}
               className={`flex flex-col gap-2 border-b border-[var(--color-border)] p-4 text-left transition-colors first:border-t sm:first:border-t sm:[&:nth-child(2)]:border-t ${
                 index === active
-                  ? "border-l-4 border-l-[var(--soluven-blue)] bg-[var(--soluven-blue)]/10"
-                  : "border-l-4 border-l-transparent hover:bg-[var(--color-surface)]"
+                  ? "bg-[var(--soluven-blue)]/10"
+                  : "hover:bg-[var(--color-surface)]"
               }`}
             >
               <div className="flex items-start justify-between gap-3">
@@ -65,7 +65,7 @@ export function ServicesShowcase() {
         </div>
 
         {/* Right: preview panel */}
-        <div className="section-dark rounded-2xl bg-[var(--color-background)] p-6 text-[var(--color-ink)] md:p-8">
+        <div className="section-dark rounded-lg bg-[var(--color-background)] p-6 text-[var(--color-ink)] md:p-8">
           <div className="flex items-center justify-between">
             <span className="font-[family-name:var(--font-heading)] text-sm font-semibold uppercase tracking-widest">
               <span style={{ color: `var(${accent})` }}>0{active + 1}</span> / {service.name}
@@ -80,7 +80,7 @@ export function ServicesShowcase() {
             </div>
           </div>
 
-          <div className="relative mt-6 overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-16 pt-4">
+          <div className="relative mt-6 overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-16 pt-4">
             <div className="flex items-center gap-1.5 px-4">
               <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[var(--soluven-blue)]/60" />
               <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[var(--soluven-green)]/60" />
@@ -110,17 +110,12 @@ export function ServicesShowcase() {
                 className="mt-4 inline-block h-6 w-20 rounded-full"
                 style={{ background: `var(${accent})` }}
               />
-              <div
-                aria-hidden="true"
-                className="absolute -right-6 top-0 h-24 w-24 rounded-full opacity-70 blur-2xl"
-                style={{ background: `radial-gradient(circle, var(${accent}) 0%, transparent 70%)` }}
-              />
             </div>
 
             {/* Overlapping phone mockup */}
             <div
               aria-hidden="true"
-              className="absolute -bottom-6 right-4 hidden h-32 w-16 rounded-lg border border-[var(--color-border)] bg-[var(--soluven-cream)] shadow-lg sm:block"
+              className="absolute -bottom-6 right-4 hidden h-32 w-16 rounded-md border border-[var(--color-border)] bg-[var(--soluven-cream)] sm:block"
             >
               <div className="flex items-center justify-center pt-1.5">
                 <Logo size={9} withWordmark={false} />

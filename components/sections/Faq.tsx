@@ -1,4 +1,4 @@
-import { ChevronDown } from "lucide-react";
+import { CaretDown } from "@phosphor-icons/react/dist/ssr";
 import { faqItems } from "@/data/faq";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { JsonLd, faqJsonLd } from "@/lib/seo";
@@ -24,7 +24,7 @@ export function Faq() {
             <details className="group py-5">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-[family-name:var(--font-heading)] text-base font-semibold">
                 {item.question}
-                <ChevronDown
+                <CaretDown
                   aria-hidden="true"
                   size={20}
                   className="shrink-0 text-[var(--color-muted)] transition-transform duration-200 group-open:rotate-180"

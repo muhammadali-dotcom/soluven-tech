@@ -3,7 +3,7 @@
 import React, { useRef, useEffect } from "react";
 import Link from "next/link";
 
-// Types for component props — adapted for Next.js (href instead of onClick, ReactNode headlines)
+// Types for component props, adapted for Next.js (href instead of onClick, ReactNode headlines)
 interface HeroProps {
   trustBadge?: {
     text: string;
@@ -295,7 +295,7 @@ export default function AnimatedShaderHero({
         {/* Trust Badge */}
         {trustBadge && (
           <div className="mb-8 anim-down">
-            <div className="flex items-center gap-2 px-6 py-2 bg-[var(--soluven-ink)]/60 backdrop-blur-md border border-[var(--color-border)] rounded-full text-sm font-medium">
+            <div className="flex items-center gap-2 px-6 py-2 bg-[var(--soluven-ink)] border border-[var(--color-border)] rounded-md text-sm font-medium">
               {trustBadge.icons && (
                 <div className="flex text-[var(--soluven-green)]">
                   {trustBadge.icons.map((icon, i) => (

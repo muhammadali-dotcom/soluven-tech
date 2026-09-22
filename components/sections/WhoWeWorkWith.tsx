@@ -1,74 +1,232 @@
+import Link from "next/link";
+import {
+  Rocket,
+  Storefront,
+  ChartLineUp,
+  Buildings,
+  ArrowRight,
+  Heartbeat,
+  House,
+  ShoppingCart,
+  GraduationCap,
+  Package,
+  ChartLine,
+  Users,
+} from "@phosphor-icons/react/dist/ssr";
+import type { Icon } from "@phosphor-icons/react";
 import { FadeIn } from "@/components/motion/FadeIn";
 
-const stages = [
+type Accent = "blue" | "green";
+
+type Stage = {
+  number: string;
+  title: string;
+  icon: Icon;
+  description: string;
+  outcome: string;
+  accent: Accent;
+  badge?: string;
+  emphasized?: boolean;
+};
+
+const stages: Stage[] = [
   {
+    number: "01",
     title: "Startups",
-    description: "Turn your idea into a working product.",
+    icon: Rocket,
+    description: "Turn a promising idea into a product people can use and believe in.",
+    outcome: "Launch with confidence",
+    accent: "blue",
   },
   {
-    title: "Small Businesses",
-    description: "Build a professional digital presence.",
+    number: "02",
+    title: "Small businesses",
+    icon: Storefront,
+    description: "Build a credible digital presence that helps the right customers choose you.",
+    outcome: "Win more trust",
+    accent: "blue",
   },
   {
-    title: "Growing Companies",
-    description: "Automate processes and scale your systems.",
+    number: "03",
+    title: "Growing companies",
+    icon: ChartLineUp,
+    description: "Connect your systems, remove repetitive work and make growth easier to manage.",
+    outcome: "Scale without chaos",
+    accent: "green",
+    badge: "Ready to scale",
+    emphasized: true,
   },
   {
-    title: "Established Businesses",
-    description: "Modernize existing software and digital operations.",
+    number: "04",
+    title: "Established businesses",
+    icon: Buildings,
+    description: "Modernise outdated software and create smoother digital operations.",
+    outcome: "Move forward faster",
+    accent: "green",
   },
 ];
 
-const industries = [
-  "Healthcare",
-  "Real Estate",
-  "E-commerce",
-  "Education",
-  "Logistics",
-  "Finance",
-  "Professional Services",
+const industries: { label: string; icon: Icon }[] = [
+  { label: "Healthcare", icon: Heartbeat },
+  { label: "Real estate", icon: House },
+  { label: "E-commerce", icon: ShoppingCart },
+  { label: "Education", icon: GraduationCap },
+  { label: "Logistics", icon: Package },
+  { label: "Finance", icon: ChartLine },
+  { label: "Professional services", icon: Users },
 ];
+
+const accentClasses: Record<Accent, { text: string; ring: string; iconBg: string; pillBg: string }> = {
+  blue: {
+    text: "text-[var(--soluven-blue)]",
+    ring: "border-[var(--soluven-blue)]",
+    iconBg: "bg-[var(--soluven-blue)]/15",
+    pillBg: "bg-[var(--soluven-blue)]/15",
+  },
+  green: {
+    text: "text-[var(--soluven-green)]",
+    ring: "border-[var(--soluven-green)]",
+    iconBg: "bg-[var(--soluven-green)]/15",
+    pillBg: "bg-[var(--soluven-green)]/15",
+  },
+};
 
 export function WhoWeWorkWith() {
   return (
-    <section className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
+    <section
+      aria-labelledby="who-we-work-with-heading"
+      className="relative mx-auto max-w-[1280px] overflow-hidden px-6 py-20 md:px-[85px] md:py-28"
+    >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute -left-24 -top-24 h-[340px] w-[340px] rounded-full bg-[var(--soluven-blue)]/10 blur-3xl" />
+        <div className="absolute -bottom-32 -right-16 h-[380px] w-[380px] rounded-full bg-[var(--soluven-green)]/10 blur-3xl" />
+        <svg
+          className="absolute right-0 top-0 hidden h-[260px] w-[420px] opacity-20 md:block"
+          viewBox="0 0 420 260"
+          fill="none"
+        >
+          <defs>
+            <linearGradient id="growth-line-gradient" x1="0" y1="260" x2="420" y2="0">
+              <stop offset="0%" stopColor="var(--soluven-blue)" />
+              <stop offset="100%" stopColor="var(--soluven-green)" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M0 220C90 220 120 120 210 110C300 100 330 20 420 10"
+            stroke="url(#growth-line-gradient)"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+          <circle cx="210" cy="110" r="4" fill="var(--soluven-blue)" />
+          <circle cx="420" cy="10" r="4" fill="var(--soluven-green)" />
+        </svg>
+      </div>
+
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
           Who we work with
         </p>
       </FadeIn>
       <FadeIn delay={0.05}>
-        <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
-          Built for businesses at every stage.
+        <h2
+          id="who-we-work-with-heading"
+          className="mt-6 max-w-3xl font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight tracking-tight text-[var(--color-ink)] md:text-4xl"
+        >
+          Built for where you are. Ready for where you&apos;re going.
         </h2>
       </FadeIn>
+      <FadeIn delay={0.1}>
+        <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
+          From the first idea to the next stage of growth, we build the digital tools your
+          business needs to move forward with confidence.
+        </p>
+      </FadeIn>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        {stages.map((stage, index) => (
-          <FadeIn key={stage.title} delay={index * 0.05}>
-            <div className="h-full rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
-              <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
-                {stage.title}
-              </h3>
-              <p className="mt-2 text-sm text-[var(--color-muted)]">{stage.description}</p>
-            </div>
-          </FadeIn>
-        ))}
+      <div className="relative mt-14">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute top-[18px] left-0 right-0 hidden h-px lg:block"
+          style={{
+            background: "linear-gradient(to right, var(--soluven-blue), var(--soluven-green))",
+          }}
+        />
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {stages.map((stage, index) => {
+            const accent = accentClasses[stage.accent];
+            const Icon = stage.icon;
+            return (
+              <FadeIn key={stage.title} delay={index * 0.05}>
+                <div className="h-full">
+                  <div className="relative z-10 mb-3 flex h-9 w-9 items-center justify-center rounded-full border-2 bg-[var(--color-background)] text-sm font-semibold text-[var(--color-ink)]"
+                    style={{ borderColor: stage.accent === "blue" ? "var(--soluven-blue)" : "var(--soluven-green)" }}
+                  >
+                    {stage.number}
+                  </div>
+                  <Link
+                    href="/portfolio"
+                    className={`group relative flex h-full flex-col rounded-lg border bg-[var(--color-background)] p-5 transition-colors duration-300 ${
+                      stage.emphasized
+                        ? "border-[var(--soluven-green)]"
+                        : stage.accent === "blue"
+                          ? "border-[var(--color-border)] hover:border-[var(--soluven-blue)]"
+                          : "border-[var(--color-border)] hover:border-[var(--soluven-green)]"
+                    }`}
+                  >
+                    {stage.badge && (
+                      <span className="absolute right-4 top-4 max-w-[calc(100%-4.5rem)] truncate rounded-full bg-[var(--soluven-green)]/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[var(--soluven-green)]">
+                        {stage.badge}
+                      </span>
+                    )}
+                    <div className={`flex h-10 w-10 items-center justify-center rounded-full ${accent.iconBg}`}>
+                      <Icon aria-hidden="true" size={18} className={accent.text} />
+                    </div>
+                    <h3 className="mt-3 font-[family-name:var(--font-heading)] text-base font-semibold text-[var(--color-ink)]">
+                      {stage.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                      {stage.description}
+                    </p>
+                    <span
+                      className={`mt-3 inline-block w-fit rounded-full px-3 py-1 text-xs font-semibold text-[var(--color-ink)] ${accent.pillBg}`}
+                    >
+                      {stage.outcome}
+                    </span>
+                    <span className="mt-auto flex h-9 w-9 items-center justify-center self-end rounded-full border border-[var(--color-border)]">
+                      <ArrowRight aria-hidden="true" size={16} className="text-[var(--color-ink)]" />
+                    </span>
+                  </Link>
+                </div>
+              </FadeIn>
+            );
+          })}
+        </div>
       </div>
 
       <FadeIn delay={0.2}>
-        <p className="mt-16 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-          Industries we serve
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          {industries.map((industry) => (
-            <span
-              key={industry}
-              className="rounded-full border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-2 text-sm font-semibold"
-            >
-              {industry}
-            </span>
-          ))}
+        <div className="mt-16 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+              Industries we serve
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              {industries.map(({ label, icon: Icon }) => (
+                <span
+                  key={label}
+                  className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-4 py-2 text-sm font-semibold text-[var(--color-ink)]"
+                >
+                  <Icon aria-hidden="true" size={16} className="text-[var(--color-muted)]" />
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+          <Link
+            href="/portfolio"
+            className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--soluven-blue)] underline decoration-current underline-offset-4"
+          >
+            Explore our work
+            <ArrowRight aria-hidden="true" size={16} />
+          </Link>
         </div>
       </FadeIn>
     </section>

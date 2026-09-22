@@ -28,7 +28,7 @@ export default function PortfolioPage() {
         ecommerce, and custom software challenges.
       </p>
       <p className="mt-3 max-w-2xl text-sm text-[var(--color-text-muted)]">
-        These are independent builds, not client case studies yet — client
+        These are independent builds, not client case studies yet; client
         work will join this page as engagements are delivered.
       </p>
 

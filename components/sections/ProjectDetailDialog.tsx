@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { ArrowRight, X } from "lucide-react";
+import { ArrowRight, X } from "@phosphor-icons/react/dist/ssr";
 import type { PortfolioProject } from "@/data/portfolio";
 
 export function ProjectDetailDialog({ project }: { project: PortfolioProject }) {
@@ -22,7 +22,7 @@ export function ProjectDetailDialog({ project }: { project: PortfolioProject }) 
       <dialog
         ref={dialogRef}
         aria-labelledby={titleId}
-        className="w-[min(680px,calc(100vw-2rem))] rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-0 text-[var(--color-ink)] shadow-2xl backdrop:bg-[var(--soluven-ink)]/55 backdrop:backdrop-blur-sm"
+        className="w-[min(680px,calc(100vw-2rem))] rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-0 text-[var(--color-ink)] backdrop:bg-[var(--soluven-ink)]/55"
         onClick={(event) => {
           if (event.target === dialogRef.current) dialogRef.current?.close();
         }}
@@ -40,7 +40,7 @@ export function ProjectDetailDialog({ project }: { project: PortfolioProject }) 
             <X aria-hidden="true" size={16} />
           </button>
         </div>
-        <div className="grid gap-6 px-6 py-7 sm:grid-cols-3 md:px-8">
+        <div className="grid gap-6 px-6 py-7 sm:grid-cols-2 md:px-8">
           <div>
             <span className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-[var(--soluven-blue)]">
               Problem

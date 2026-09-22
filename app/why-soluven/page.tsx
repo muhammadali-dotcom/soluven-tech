@@ -13,7 +13,7 @@ const reasons = [
   {
     title: "Direct access, no layers",
     description:
-      "You work with the people actually building your product — not an account manager relaying messages.",
+      "You work with the people actually building your product, not an account manager relaying messages.",
   },
   {
     title: "Clear scope, clear pricing",
@@ -28,7 +28,7 @@ const reasons = [
   {
     title: "Modern, considered stack",
     description:
-      "Tools chosen for what will serve your business long-term — typically Next.js and TypeScript, or Shopify and a custom stack for ecommerce — not whatever's trending.",
+      "Tools chosen for what will serve your business long-term (typically Next.js and TypeScript, or Shopify and a custom stack for ecommerce), not whatever's trending.",
   },
 ];
 

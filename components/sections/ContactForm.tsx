@@ -83,7 +83,7 @@ export function ContactForm() {
         <span className="text-sm font-semibold">
           What do you need? <span className="font-normal text-[var(--color-muted)]">(optional)</span>
         </span>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {projectTypes.map((type) => (
             <label
               key={type}
@@ -120,7 +120,7 @@ export function ContactForm() {
 
       {status === "success" && (
         <p role="status" className="text-sm font-semibold text-green-700">
-          Thanks — we&apos;ll get back to you soon.
+          Thanks. We&apos;ll get back to you soon.
         </p>
       )}
       {status === "error" && (

@@ -26,7 +26,7 @@ function ChromeBar({ accent }: { accent: string }) {
 
 function BrowserFrame({ accent }: { accent: string }) {
   return (
-    <div className="w-[82%] max-w-[280px] rounded-xl border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-4 shadow-xl transition-transform duration-500 group-hover:-translate-y-1">
+    <div className="w-[82%] max-w-[280px] rounded-lg border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-4">
       <ChromeBar accent={accent} />
       <div className="mt-3 grid grid-cols-2 gap-2 px-4">
         <div
@@ -42,7 +42,7 @@ function BrowserFrame({ accent }: { accent: string }) {
 
 function OpsFrame({ accent }: { accent: string }) {
   return (
-    <div className="w-[82%] max-w-[280px] rounded-xl border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-4 shadow-xl transition-transform duration-500 group-hover:-translate-y-1">
+    <div className="w-[82%] max-w-[280px] rounded-lg border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-4">
       <ChromeBar accent={accent} />
       <div className="mt-3 grid grid-cols-[44px_1fr] gap-2 px-4">
         <div className="row-span-3 h-full min-h-[92px] rounded-lg bg-[var(--soluven-ink)]" />
@@ -59,14 +59,14 @@ function OpsFrame({ accent }: { accent: string }) {
 
 function MobileFrame({ accent }: { accent: string }) {
   return (
-    <div className="w-[54%] max-w-[190px] rounded-[2rem] border-[6px] border-[var(--soluven-ink)] bg-[var(--soluven-cream)] p-3 shadow-xl transition-transform duration-500 group-hover:-translate-y-1">
+    <div className="w-[54%] max-w-[190px] rounded-lg border-[6px] border-[var(--soluven-ink)] bg-[var(--soluven-cream)] p-3">
       <div className="mx-auto mb-3 h-2.5 w-12 rounded-full bg-[var(--soluven-ink)]" />
       <div
-        className="h-20 rounded-2xl"
+        className="h-20 rounded-md"
         style={{ background: `linear-gradient(135deg, var(${accent}) 0%, transparent 100%)`, opacity: 0.4 }}
       />
-      <div className="mt-2.5 h-9 rounded-xl bg-[var(--soluven-ink)]/[0.06]" />
-      <div className="mt-2.5 h-9 rounded-xl bg-[var(--soluven-ink)]/[0.06]" />
+      <div className="mt-2.5 h-9 rounded-md bg-[var(--soluven-ink)]/[0.06]" />
+      <div className="mt-2.5 h-9 rounded-md bg-[var(--soluven-ink)]/[0.06]" />
     </div>
   );
 }
@@ -79,18 +79,6 @@ export function ProjectVisual({ project }: { project: PortfolioProject }) {
       aria-hidden="true"
       className="relative flex h-full min-h-[280px] w-full items-center justify-center overflow-hidden bg-[var(--color-surface)]"
     >
-      <div
-        className="absolute -left-10 -top-10 h-40 w-40 rounded-full opacity-70 blur-2xl"
-        style={{ background: `radial-gradient(circle, var(${accent}) 0%, transparent 70%)` }}
-      />
-      <div
-        className="absolute -bottom-12 -right-12 h-48 w-48 rounded-full opacity-60 mix-blend-multiply blur-2xl"
-        style={{
-          background: `radial-gradient(circle, var(${
-            accent === "--soluven-blue" ? "--soluven-green" : "--soluven-blue"
-          }) 0%, transparent 70%)`,
-        }}
-      />
       {project.visual === "browser" && <BrowserFrame accent={accent} />}
       {project.visual === "ops" && <OpsFrame accent={accent} />}
       {project.visual === "mobile" && <MobileFrame accent={accent} />}

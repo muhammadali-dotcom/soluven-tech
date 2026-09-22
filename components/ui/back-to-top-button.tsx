@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUp } from "lucide-react";
+import { ArrowUp } from "@phosphor-icons/react/dist/ssr";
 
 function handleClick() {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

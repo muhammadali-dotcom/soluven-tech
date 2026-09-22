@@ -194,7 +194,7 @@ export default async function ServiceDetailPage({
               {service.description}
             </p>
             {service.whoItsFor && (
-              <p className="mt-6 border-l-2 border-[var(--color-border)] pl-4 text-sm font-semibold text-[var(--color-text-muted)]">
+              <p className="mt-6 rounded-md border border-[var(--color-border)] bg-[var(--color-surface)] px-4 py-3 text-sm font-semibold text-[var(--color-text-muted)]">
                 {service.whoItsFor}
               </p>
             )}
@@ -206,7 +206,7 @@ export default async function ServiceDetailPage({
             </Link>
           </div>
           {Illustration && (
-            <div className="flex items-center justify-center rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
+            <div className="flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-8">
               <Illustration aria-hidden="true" className="w-full max-w-sm" />
             </div>
           )}

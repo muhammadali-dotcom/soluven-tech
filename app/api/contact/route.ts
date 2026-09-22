@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 // TODO(open item, REQUIREMENTS.md / ARCHITECTURE.md): no email/notification
-// service is wired up yet — provider TBD (e.g. Resend, Formspree). This
+// service is wired up yet; provider TBD (e.g. Resend, Formspree). This
 // currently just validates and logs the submission.
 export async function POST(request: Request) {
   const body = await request.json();

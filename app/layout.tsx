@@ -6,7 +6,6 @@ import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { PageLoader } from "@/components/sections/PageLoader";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
-import { CursorLight } from "@/components/motion/CursorLight";
 import { JsonLd, organizationJsonLd, buildMetadata } from "@/lib/seo";
 
 const sora = Sora({
@@ -37,7 +36,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <JsonLd data={organizationJsonLd()} />
         <PageLoader />
         <ScrollProgress />
-        <CursorLight />
         <Header />
         <main id="content" className="flex-1">{children}</main>
         <Footer />
