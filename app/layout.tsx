@@ -7,6 +7,7 @@ import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { PageLoader } from "@/components/sections/PageLoader";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { JsonLd, organizationJsonLd, buildMetadata } from "@/lib/seo";
+import { siteConfig } from "@/lib/constants";
 
 const sora = Sora({
   variable: "--font-sora",
@@ -20,11 +21,14 @@ const manrope = Manrope({
   weight: ["400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = buildMetadata({
-  title: "Building solutions for the future you see",
-  description:
-    "Soluven builds high-performing websites, ecommerce experiences and custom software for ambitious businesses.",
-});
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  ...buildMetadata({
+    title: "Building solutions for the future you see",
+    description:
+      "Soluven builds high-performing websites, ecommerce experiences and custom software for ambitious businesses.",
+  }),
+};
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (

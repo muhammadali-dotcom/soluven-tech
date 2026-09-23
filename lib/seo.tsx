@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { siteConfig } from "./constants";
+import { contactEmail, siteConfig, socialLinks, whatsappNumber } from "./constants";
 
 export function buildMetadata({
   title,
@@ -11,6 +11,14 @@ export function buildMetadata({
   path?: string;
 }): Metadata {
   const url = `${siteConfig.url}${path}`;
+  // Pages set their own openGraph object, which replaces the root one, so the
+  // shared preview card from app/opengraph-image.tsx is attached explicitly.
+  const image = {
+    url: `${siteConfig.url}/opengraph-image`,
+    width: 1200,
+    height: 630,
+    alt: `${siteConfig.name}: ${siteConfig.tagline}`,
+  };
 
   return {
     title: `${siteConfig.name} - ${title}`,
@@ -22,11 +30,13 @@ export function buildMetadata({
       url,
       siteName: siteConfig.name,
       type: "website",
+      images: [image],
     },
     twitter: {
       card: "summary_large_image",
       title: `${siteConfig.name} - ${title}`,
       description,
+      images: [image.url],
     },
   };
 }
@@ -37,7 +47,19 @@ export function organizationJsonLd() {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
+    logo: `${siteConfig.url}/soluven_icon.png`,
     description: siteConfig.description,
+    slogan: siteConfig.tagline,
+    email: contactEmail,
+    sameAs: socialLinks.map((link) => link.href),
+    areaServed: [{ "@type": "Country", name: "Pakistan" }, "Worldwide"],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "sales",
+      email: contactEmail,
+      ...(whatsappNumber ? { telephone: `+${whatsappNumber.replace(/^\+/, "")}` } : {}),
+      availableLanguage: ["English", "Urdu"],
+    },
   };
 }
 

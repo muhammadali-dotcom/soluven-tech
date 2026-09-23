@@ -81,7 +81,7 @@ void main(){gl_Position=position;}`;
     const gl = this.gl;
     gl.shaderSource(shader, source);
     gl.compileShader(shader);
-    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+    if (process.env.NODE_ENV !== "production" && !gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
       console.error("Shader compile error:", gl.getShaderInfoLog(shader));
     }
   }
@@ -116,7 +116,7 @@ void main(){gl_Position=position;}`;
     gl.attachShader(this.program, this.vs);
     gl.attachShader(this.program, this.fs);
     gl.linkProgram(this.program);
-    if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+    if (process.env.NODE_ENV !== "production" && !gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
       console.error(gl.getProgramInfoLog(this.program));
     }
   }

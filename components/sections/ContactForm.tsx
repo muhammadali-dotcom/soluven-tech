@@ -19,8 +19,12 @@ import {
 } from "@phosphor-icons/react";
 import type { Icon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/Button";
+import { FieldError } from "@/components/ui/FieldError";
+import { FormSubmitError } from "@/components/ui/FormSubmitError";
+import { validateContact, type ContactField } from "@/lib/contact-validation";
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "submitting" | "success" | "error" | "rate-limited";
+type FieldErrors = Partial<Record<ContactField, string>>;
 
 const projectTypes: { label: string; value: string; Icon: Icon }[] = [
   { label: "Website", value: "Website", Icon: Monitor },
@@ -48,12 +52,28 @@ const timelineOptions = [
 ];
 
 const fieldClasses =
-  "min-h-[52px] w-full rounded-xl border border-[var(--color-border)] bg-[#FFFFFF] px-12 py-3 text-sm text-[#14272B] transition-colors placeholder:text-[var(--color-muted)] hover:border-[var(--color-muted)] focus:border-[#63CBF8] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#14272B]";
+  "min-h-[52px] w-full rounded-xl border border-[var(--color-border)] bg-[#FFFFFF] px-12 py-3 text-sm text-[#14272B] transition-colors placeholder:text-[var(--color-muted)] hover:border-[var(--color-muted)] focus:border-[#63CBF8] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#14272B] aria-[invalid=true]:border-red-700";
 const labelClasses = "text-sm font-bold text-[#14272B]";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [projectType, setProjectType] = useState<string[]>([]);
+  const [errors, setErrors] = useState<FieldErrors>({});
+
+  function showErrors(form: HTMLFormElement, fieldErrors: FieldErrors) {
+    setErrors(fieldErrors);
+    const first = (["name", "email", "message"] as const).find((f) => fieldErrors[f]);
+    if (first) (form.elements.namedItem(first) as HTMLElement | null)?.focus();
+  }
+
+  function clearError(field: string) {
+    if (!(field in errors)) return;
+    setErrors((prev) => {
+      const next = { ...prev };
+      delete next[field as ContactField];
+      return next;
+    });
+  }
 
   function toggleProjectType(type: string) {
     setProjectType((prev) =>
@@ -63,10 +83,20 @@ export function ContactForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("submitting");
-
-    const formData = new FormData(event.currentTarget);
+    // currentTarget is null once we await, so hold on to the form.
+    const form = event.currentTarget;
+    const formData = new FormData(form);
     const payload = { ...Object.fromEntries(formData.entries()), projectType };
+
+    const result = validateContact(payload);
+    if (!result.ok) {
+      showErrors(form, result.errors);
+      setStatus("idle");
+      return;
+    }
+
+    setErrors({});
+    setStatus("submitting");
 
     try {
       const res = await fetch("/api/contact", {
@@ -74,9 +104,21 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      if (res.status === 429) {
+        setStatus("rate-limited");
+        return;
+      }
+      if (res.status === 400) {
+        const data = (await res.json().catch(() => null)) as { fields?: FieldErrors } | null;
+        if (data?.fields && Object.keys(data.fields).length > 0) {
+          showErrors(form, data.fields);
+          setStatus("idle");
+          return;
+        }
+      }
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
-      event.currentTarget.reset();
+      form.reset();
       setProjectType([]);
     } catch {
       setStatus("error");
@@ -84,7 +126,18 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+    <form
+      onSubmit={handleSubmit}
+      onInput={(event) => clearError((event.target as HTMLInputElement).name)}
+      noValidate
+      className="flex flex-col gap-5"
+    >
+      {/* Honeypot: hidden from people and assistive tech, bots tend to fill it. */}
+      <div aria-hidden="true" className="sr-only">
+        <label htmlFor="website">Website</label>
+        <input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" />
+      </div>
+
       <div className="grid gap-4 md:grid-cols-2">
         <div className="flex flex-col gap-2">
           <label htmlFor="name" className={labelClasses}>
@@ -99,12 +152,16 @@ export function ContactForm() {
             <input
               id="name"
               name="name"
+              aria-invalid={Boolean(errors.name)}
+              aria-describedby={errors.name ? "name-error" : undefined}
               type="text"
               required
               placeholder="Your name"
+              maxLength={100}
               className={fieldClasses}
             />
           </div>
+          <FieldError id="name-error" message={errors.name} />
         </div>
 
         <div className="flex flex-col gap-2">
@@ -120,12 +177,16 @@ export function ContactForm() {
             <input
               id="email"
               name="email"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
               type="email"
               required
               placeholder="you@company.com"
+              maxLength={254}
               className={fieldClasses}
             />
           </div>
+          <FieldError id="email-error" message={errors.email} />
         </div>
       </div>
 
@@ -201,12 +262,16 @@ export function ContactForm() {
           <textarea
             id="message"
             name="message"
+            aria-invalid={Boolean(errors.message)}
+            aria-describedby={errors.message ? "message-error" : undefined}
             rows={5}
             required
             placeholder="What are you building, improving or trying to fix?"
+            maxLength={5000}
             className={`${fieldClasses} resize-y pl-12`}
           />
         </div>
+        <FieldError id="message-error" message={errors.message} />
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
@@ -289,13 +354,11 @@ export function ContactForm() {
           Thanks. We&apos;ll get back to you soon.
         </p>
       )}
-      {status === "error" && (
-        <p
-          role="alert"
+      {(status === "error" || status === "rate-limited") && (
+        <FormSubmitError
+          rateLimited={status === "rate-limited"}
           className="rounded-md border border-red-700/30 bg-red-700/10 px-3 py-2.5 text-sm font-semibold text-red-700"
-        >
-          Something went wrong. Please email us directly instead.
-        </p>
+        />
       )}
     </form>
   );

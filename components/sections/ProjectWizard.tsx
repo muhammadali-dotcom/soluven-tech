@@ -14,8 +14,12 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { FieldError } from "@/components/ui/FieldError";
+import { FormSubmitError } from "@/components/ui/FormSubmitError";
+import { validateContact, type ContactField } from "@/lib/contact-validation";
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "submitting" | "success" | "error" | "rate-limited";
+type FieldErrors = Partial<Record<ContactField, string>>;
 
 const categories = [
   { value: "Website", icon: Globe, label: "Website" },
@@ -66,6 +70,7 @@ export function ProjectWizard() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>(initialAnswers);
   const [status, setStatus] = useState<Status>("idle");
+  const [errors, setErrors] = useState<FieldErrors>({});
 
   const hasSubtype = Boolean(subtypesByCategory[answers.category]);
   const steps = hasSubtype
@@ -82,24 +87,41 @@ export function ProjectWizard() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setStatus("submitting");
+    const form = event.currentTarget;
 
     const projectType = [answers.category, answers.subtype].filter(Boolean).join(" / ");
     const message = `Budget: ${answers.budget}\n\n${answers.description}`;
+    const payload = {
+      name: answers.name,
+      email: answers.email,
+      message,
+      projectType,
+      category: answers.category,
+      budget: answers.budget,
+      website: new FormData(form).get("website"),
+    };
+
+    const result = validateContact(payload);
+    if (!result.ok) {
+      setErrors(result.errors);
+      const first = result.errors.name ? "wizard-name" : result.errors.email ? "wizard-email" : null;
+      if (first) document.getElementById(first)?.focus();
+      return;
+    }
+
+    setErrors({});
+    setStatus("submitting");
 
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: answers.name,
-          email: answers.email,
-          message,
-          projectType,
-          category: answers.category,
-          budget: answers.budget,
-        }),
+        body: JSON.stringify(payload),
       });
+      if (res.status === 429) {
+        setStatus("rate-limited");
+        return;
+      }
       if (!res.ok) throw new Error("Request failed");
       setStatus("success");
     } catch {
@@ -224,6 +246,7 @@ export function ProjectWizard() {
                         setAnswers((a) => ({ ...a, description: e.target.value }))
                       }
                       rows={5}
+                      maxLength={4800}
                       className="mt-6 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
                       placeholder="What are you trying to achieve?"
                     />
@@ -239,7 +262,17 @@ export function ProjectWizard() {
                 )}
 
                 {currentKey === "details" && (
-                  <form onSubmit={handleSubmit}>
+                  <form onSubmit={handleSubmit} noValidate>
+                    <div aria-hidden="true" className="sr-only">
+                      <label htmlFor="wizard-website">Website</label>
+                      <input
+                        id="wizard-website"
+                        name="website"
+                        type="text"
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
                     <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
                       Your details
                     </h3>
@@ -250,14 +283,18 @@ export function ProjectWizard() {
                         </label>
                         <input
                           id="wizard-name"
+                          aria-invalid={Boolean(errors.name)}
+                          aria-describedby={errors.name ? "wizard-name-error" : undefined}
                           type="text"
                           required
                           value={answers.name}
                           onChange={(e) =>
                             setAnswers((a) => ({ ...a, name: e.target.value }))
                           }
-                          className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
+                          maxLength={100}
+                          className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-red-700"
                         />
+                        <FieldError id="wizard-name-error" message={errors.name} />
                       </div>
                       <div className="flex flex-col gap-1">
                         <label htmlFor="wizard-email" className="text-sm font-semibold">
@@ -265,22 +302,27 @@ export function ProjectWizard() {
                         </label>
                         <input
                           id="wizard-email"
+                          aria-invalid={Boolean(errors.email)}
+                          aria-describedby={errors.email ? "wizard-email-error" : undefined}
                           type="email"
                           required
                           value={answers.email}
                           onChange={(e) =>
                             setAnswers((a) => ({ ...a, email: e.target.value }))
                           }
-                          className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
+                          maxLength={254}
+                          className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-red-700"
                         />
+                        <FieldError id="wizard-email-error" message={errors.email} />
                       </div>
                       <Button type="submit" disabled={status === "submitting"}>
                         {status === "submitting" ? "Sending..." : "Send Project Request →"}
                       </Button>
-                      {status === "error" && (
-                        <p role="alert" className="text-sm font-semibold text-red-700">
-                          Something went wrong. Please email us directly instead.
-                        </p>
+                      {(status === "error" || status === "rate-limited") && (
+                        <FormSubmitError
+                          rateLimited={status === "rate-limited"}
+                          className="text-sm font-semibold text-red-700"
+                        />
                       )}
                     </div>
                   </form>
