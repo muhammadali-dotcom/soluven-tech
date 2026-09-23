@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 // currently just validates and logs the submission.
 export async function POST(request: Request) {
   const body = await request.json();
-  const { name, email, message, company, projectType, category, budget } = body as {
+  const { name, email, message, company, projectType, category, budget, timeline } = body as {
     name?: string;
     email?: string;
     message?: string;
@@ -13,6 +13,7 @@ export async function POST(request: Request) {
     projectType?: string;
     category?: string;
     budget?: string;
+    timeline?: string;
   };
 
   if (!name || !email || !message) {
@@ -30,6 +31,7 @@ export async function POST(request: Request) {
     projectType,
     category,
     budget,
+    timeline,
   });
 
   return NextResponse.json({ ok: true });
