@@ -1,70 +1,126 @@
 import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
+import { FadeIn } from "@/components/motion/FadeIn";
 
 export const metadata: Metadata = buildMetadata({
   title: "Why Soluven",
   description:
-    "Why work with Soluven: a small, direct team building maintainable web, mobile, and ecommerce products with clear scope and pricing.",
+    "We focus on building the right thing — with clear communication, thoughtful decisions, and technology that serves a purpose.",
   path: "/why-soluven",
 });
 
-const reasons = [
+const differentiators = [
   {
-    title: "Direct access, no layers",
+    number: "01",
+    title: "We Think Before We Build",
     description:
-      "You work with the people actually building your product, not an account manager relaying messages.",
+      "We take time to understand the problem before jumping into development.",
   },
   {
-    title: "Clear scope, clear pricing",
+    number: "02",
+    title: "You Work With The People Building It",
     description:
-      "We scope the work before any commitment, so you know what you're getting and what it costs.",
+      "No unnecessary layers or confusing handoffs. Communication stays direct.",
   },
   {
-    title: "Built to last",
+    number: "03",
+    title: "We Keep Things Clear",
     description:
-      "Code and systems built to hold up in production and be maintained afterward, not just to demo well once.",
+      "Clear scope, realistic expectations, and straightforward communication from start to finish.",
   },
   {
-    title: "Modern, considered stack",
+    number: "04",
+    title: "We Build For The Long Term",
     description:
-      "Tools chosen for what will serve your business long-term (typically Next.js and TypeScript, or Shopify and a custom stack for ecommerce), not whatever's trending.",
+      "We care about maintainability, reliability, and what happens after launch — not just getting something out the door.",
   },
 ];
 
 export default function WhySoluvenPage() {
   return (
-    <div className="mx-auto max-w-[1280px] px-6 py-16 md:px-[85px] md:py-24">
+    <>
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Home", url: siteConfig.url },
           { name: "Why Soluven", url: `${siteConfig.url}/why-soluven` },
         ])}
       />
-      <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold md:text-4xl">
-        Why Soluven
-      </h1>
-      {/* TODO: refine once user provides final positioning copy */}
-      <p className="mt-6 max-w-2xl text-base text-[var(--color-text-muted)]">
-        There are a lot of ways to get a website or product built. Here&apos;s
-        what working with Soluven actually looks like.
-      </p>
 
-      <div className="mt-16 grid gap-8 sm:grid-cols-2">
-        {reasons.map((reason) => (
-          <div
-            key={reason.title}
-            className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-6"
-          >
-            <h2 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
-              {reason.title}
-            </h2>
-            <p className="mt-2 text-sm text-[var(--color-muted)]">
-              {reason.description}
+      {/* 1. Hero */}
+      <section className="mx-auto max-w-[1280px] px-6 py-16 md:px-[85px] md:py-24">
+        <FadeIn>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+            The Soluven Difference
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.05}>
+          <h1 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+            Why Soluven?
+          </h1>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--color-muted)]">
+            Because building something isn&apos;t enough. We focus on building
+            the right thing — with clear communication, thoughtful decisions,
+            and technology that serves a purpose.
+          </p>
+        </FadeIn>
+      </section>
+
+      {/* 2. What Makes Us Different */}
+      <section className="border-t border-[var(--color-border)] bg-[var(--color-ink)]">
+        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
+          <FadeIn>
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-cream)]/50">
+              What Makes Us Different
             </p>
+          </FadeIn>
+          <div className="mt-10 divide-y divide-[var(--soluven-cream)]/10 border-t border-[var(--soluven-cream)]/10">
+            {differentiators.map((item, index) => (
+              <FadeIn key={item.number} delay={index * 0.05}>
+                <div className="flex flex-col gap-2 py-8 sm:flex-row sm:items-start sm:gap-10">
+                  <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-[var(--soluven-blue)] sm:w-16 sm:shrink-0">
+                    {item.number}
+                  </span>
+                  <div>
+                    <h2 className="font-[family-name:var(--font-heading)] text-lg font-semibold text-[var(--soluven-cream)]">
+                      {item.title}
+                    </h2>
+                    <p className="mt-2 max-w-xl text-[var(--soluven-cream)]/60">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </FadeIn>
+            ))}
           </div>
-        ))}
-      </div>
-    </div>
+        </div>
+      </section>
+
+      {/* 3. Our Commitment */}
+      <section className="border-t border-[var(--color-border)]">
+        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
+            <FadeIn>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+                Our Commitment
+              </p>
+              <h2 className="mt-4 font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
+                Built around your goals.
+              </h2>
+            </FadeIn>
+            <FadeIn delay={0.05}>
+              <p className="text-base leading-relaxed text-[var(--color-muted)]">
+                Every project is different. We don&apos;t believe in forcing
+                businesses into predefined solutions. We listen, understand the
+                context, and shape our approach around what actually makes sense
+                for you.
+              </p>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

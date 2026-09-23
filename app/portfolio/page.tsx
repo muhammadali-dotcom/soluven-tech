@@ -20,21 +20,28 @@ export default function PortfolioPage() {
           { name: "Our Work", url: `${siteConfig.url}/portfolio` },
         ])}
       />
-      <h1 className="font-[family-name:var(--font-heading)] text-3xl font-bold md:text-4xl">
-        Our Work
-      </h1>
-      <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
-        Real, independently built projects showing how we approach web,
-        ecommerce, and custom software challenges.
-      </p>
-      <p className="mt-3 max-w-2xl text-sm text-[var(--color-text-muted)]">
-        These are independent builds, not client case studies yet; client
-        work will join this page as engagements are delivered.
-      </p>
 
-      <div className="mt-12">
-        <Projects projects={portfolioProjects} />
+      {/* Page intro */}
+      <div className="mb-14 md:mb-20">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+          Our Work
+        </p>
+        <h1 className="mt-4 max-w-2xl font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+          Things we&apos;ve built.
+        </h1>
+        <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--color-muted)]">
+          A look at the products and tools we&apos;ve designed and engineered
+          — each one built to solve a specific problem.
+        </p>
       </div>
+
+      <Projects projects={portfolioProjects} />
+
+      {/* Disclaimer footnote */}
+      <p className="mt-16 text-sm text-[var(--color-muted)]">
+        These are independent builds. Client work will join this page as
+        engagements are delivered.
+      </p>
     </div>
   );
 }
