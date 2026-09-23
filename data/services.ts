@@ -35,7 +35,6 @@ export const services: Service[] = [
     variant: "blue",
     whoItsFor:
       "Businesses that need a fast, credible web presence built to perform, not a templated site.",
-    image: "/services/website-development.jpg",
     featured: true,
     tier: "build",
   },
@@ -56,7 +55,6 @@ export const services: Service[] = [
     ctaLabel: "Grow your store",
     variant: "green",
     whoItsFor: "Because every lost click can become a lost customer.",
-    image: "/services/ecommerce.jpg",
     featured: true,
     tier: "build",
   },
@@ -87,7 +85,6 @@ export const services: Service[] = [
     variant: "ink",
     whoItsFor:
       "Founders and teams who need a product or internal tool built around how they actually work.",
-    image: "/services/software-development.jpg",
     featured: true,
     tier: "build",
   },
