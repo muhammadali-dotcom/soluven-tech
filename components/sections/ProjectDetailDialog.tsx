@@ -22,7 +22,7 @@ export function ProjectDetailDialog({ project }: { project: PortfolioProject }) 
       <dialog
         ref={dialogRef}
         aria-labelledby={titleId}
-        className="w-[min(680px,calc(100vw-2rem))] rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-0 text-[var(--color-ink)] backdrop:bg-[var(--soluven-ink)]/55"
+        className="m-auto w-[min(680px,calc(100vw-2rem))] rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-0 text-[var(--color-ink)] backdrop:bg-[var(--soluven-ink)]/55"
         onClick={(event) => {
           if (event.target === dialogRef.current) dialogRef.current?.close();
         }}

@@ -95,33 +95,8 @@ export function WhoWeWorkWith() {
   return (
     <section
       aria-labelledby="who-we-work-with-heading"
-      className="relative mx-auto max-w-[1280px] overflow-hidden px-6 py-20 md:px-[85px] md:py-28"
+      className="page-container py-20 md:py-28"
     >
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 -top-24 h-[340px] w-[340px] rounded-full bg-[var(--soluven-blue)]/10 blur-3xl" />
-        <div className="absolute -bottom-32 -right-16 h-[380px] w-[380px] rounded-full bg-[var(--soluven-green)]/10 blur-3xl" />
-        <svg
-          className="absolute right-0 top-0 hidden h-[260px] w-[420px] opacity-20 md:block"
-          viewBox="0 0 420 260"
-          fill="none"
-        >
-          <defs>
-            <linearGradient id="growth-line-gradient" x1="0" y1="260" x2="420" y2="0">
-              <stop offset="0%" stopColor="var(--soluven-blue)" />
-              <stop offset="100%" stopColor="var(--soluven-green)" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M0 220C90 220 120 120 210 110C300 100 330 20 420 10"
-            stroke="url(#growth-line-gradient)"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-          <circle cx="210" cy="110" r="4" fill="var(--soluven-blue)" />
-          <circle cx="420" cy="10" r="4" fill="var(--soluven-green)" />
-        </svg>
-      </div>
-
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
           Who we work with
@@ -143,20 +118,13 @@ export function WhoWeWorkWith() {
       </FadeIn>
 
       <div className="relative mt-14">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute top-[18px] left-0 right-0 hidden h-px lg:block"
-          style={{
-            background: "linear-gradient(to right, var(--soluven-blue), var(--soluven-green))",
-          }}
-        />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2">
           {stages.map((stage, index) => {
             const accent = accentClasses[stage.accent];
             const Icon = stage.icon;
             return (
               <FadeIn key={stage.title} delay={index * 0.05}>
-                <div className="h-full">
+                <div className="flex h-full flex-col">
                   <div className="relative z-10 mb-3 flex h-9 w-9 items-center justify-center rounded-full border-2 bg-[var(--color-background)] text-sm font-semibold text-[var(--color-ink)]"
                     style={{ borderColor: stage.accent === "blue" ? "var(--soluven-blue)" : "var(--soluven-green)" }}
                   >
@@ -164,7 +132,7 @@ export function WhoWeWorkWith() {
                   </div>
                   <Link
                     href="/portfolio"
-                    className={`group relative flex h-full flex-col rounded-lg border bg-[var(--color-background)] p-5 transition-colors duration-300 ${
+                    className={`group relative flex flex-1 flex-col rounded-lg border bg-[var(--color-background)] p-5 transition-colors duration-300 ${
                       stage.emphasized
                         ? "border-[var(--soluven-green)]"
                         : stage.accent === "blue"

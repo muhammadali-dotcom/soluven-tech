@@ -44,7 +44,7 @@ export default function ServicesPage() {
 
       <ServicesShowcase />
 
-      <div className="mx-auto max-w-[1280px] px-6 pb-16 md:px-[85px] md:pb-24">
+      <div className="page-container pb-16 md:pb-24">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-blue)]">
           Build
         </p>
@@ -100,7 +100,7 @@ export default function ServicesPage() {
         <p className="mt-2 max-w-2xl text-base text-[var(--color-text-muted)]">
           Capabilities that help a business establish and grow its digital presence:
         </p>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {growServices.map((service, index) => {
             const Icon = serviceIcons[service.slug];
             return (

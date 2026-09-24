@@ -36,7 +36,7 @@ const steps = [
 
 export function HowWeWork() {
   return (
-    <section className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
+    <section className="page-container py-20 md:py-28">
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
           From idea to launch
@@ -48,7 +48,7 @@ export function HowWeWork() {
         </h2>
       </FadeIn>
 
-      <div className="relative mt-16 max-w-2xl pl-10 sm:pl-14">
+      <div className="relative mt-16 ml-4 max-w-2xl pl-10 sm:ml-0 sm:pl-14">
         <VerticalProgressLine />
         <div className="flex flex-col gap-12">
           {steps.map((step, index) => (

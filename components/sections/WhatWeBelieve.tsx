@@ -9,7 +9,7 @@ const pillars = [
 
 export function WhatWeBelieve() {
   return (
-    <section className="relative mx-auto max-w-[1280px] overflow-hidden px-6 py-20 md:px-[85px] md:py-28">
+    <section className="page-container relative overflow-hidden py-20 md:py-28">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute right-0 top-1/2 hidden h-[26rem] w-[26rem] -translate-y-1/2 translate-x-1/4 rounded-full border border-dashed border-[var(--color-border)] lg:block"

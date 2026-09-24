@@ -10,9 +10,12 @@ export function Hero() {
           line1: (
             <span>
               Building{" "}
-              <Typewriter
-                words={["websites", "apps", "software", "solutions"]}
-              />
+              {/* Own line on mobile so the headline height doesn't jump as words change. */}
+              <span className="block sm:inline">
+                <Typewriter
+                  words={["websites", "apps", "software", "solutions"]}
+                />
+              </span>
             </span>
           ),
           line2: "for the future you see.",

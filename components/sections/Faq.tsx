@@ -5,7 +5,7 @@ import { JsonLd, faqJsonLd } from "@/lib/seo";
 
 export function Faq() {
   return (
-    <section className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
+    <section className="page-container py-20 md:py-28">
       <JsonLd data={faqJsonLd(faqItems)} />
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">

@@ -30,223 +30,207 @@ interface HeroProps {
 }
 
 // ── WebGL Renderer ──────────────────────────────────────
-class WebGLRenderer {
-  private canvas: HTMLCanvasElement;
-  private gl: WebGL2RenderingContext;
-  private program: WebGLProgram | null = null;
-  private vs: WebGLShader | null = null;
-  private fs: WebGLShader | null = null;
-  private buffer: WebGLBuffer | null = null;
-  private uniforms: Record<string, WebGLUniformLocation | null> = {};
-  private scale: number;
-  private shaderSource: string;
-  private mouseMove = [0, 0];
-  private mouseCoords = [0, 0];
-  private pointerCoords = [0, 0];
-  private nbrOfPointers = 0;
-
-  private vertexSrc = `#version 300 es
+const VERTEX_SOURCE = `#version 300 es
 precision highp float;
 in vec4 position;
 void main(){gl_Position=position;}`;
 
-  private vertices = [-1, 1, -1, -1, 1, 1, 1, -1];
+class WebGLRenderer {
+  private canvas: HTMLCanvasElement;
+  private gl: WebGL2RenderingContext;
+  private program: WebGLProgram | null = null;
+  private shaders: WebGLShader[] = [];
+  private buffer: WebGLBuffer | null = null;
+  private resolution: WebGLUniformLocation | null = null;
+  private time: WebGLUniformLocation | null = null;
 
-  constructor(canvas: HTMLCanvasElement, scale: number) {
+  constructor(canvas: HTMLCanvasElement, gl: WebGL2RenderingContext) {
     this.canvas = canvas;
-    this.scale = scale;
-    this.gl = canvas.getContext("webgl2")!;
-    this.gl.viewport(0, 0, canvas.width * scale, canvas.height * scale);
-    this.shaderSource = SHADER_SOURCE;
+    this.gl = gl;
   }
 
-  updateShader(source: string) {
-    this.reset();
-    this.shaderSource = source;
-    this.setup();
-    this.init();
-  }
-
-  updateMove(d: number[]) { this.mouseMove = d; }
-  updateMouse(c: number[]) { this.mouseCoords = c; }
-  updatePointerCoords(c: number[]) { this.pointerCoords = c; }
-  updatePointerCount(n: number) { this.nbrOfPointers = n; }
-
-  updateScale(scale: number) {
-    this.scale = scale;
-    this.gl.viewport(0, 0, this.canvas.width * scale, this.canvas.height * scale);
-  }
-
-  compile(shader: WebGLShader, source: string) {
+  // Returns false when the GPU can't compile or link the shader, so the
+  // caller can fall back to the static background instead of crashing.
+  setup(fragmentSource: string): boolean {
     const gl = this.gl;
-    gl.shaderSource(shader, source);
-    gl.compileShader(shader);
-    if (process.env.NODE_ENV !== "production" && !gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-      console.error("Shader compile error:", gl.getShaderInfoLog(shader));
+    const program = gl.createProgram();
+    if (!program) return false;
+    this.program = program;
+
+    const sources = [
+      [gl.VERTEX_SHADER, VERTEX_SOURCE],
+      [gl.FRAGMENT_SHADER, fragmentSource],
+    ] as const;
+    for (const [type, source] of sources) {
+      const shader = gl.createShader(type);
+      if (!shader) return false;
+      this.shaders.push(shader);
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        if (process.env.NODE_ENV !== "production") {
+          console.error("Shader compile error:", gl.getShaderInfoLog(shader));
+        }
+        return false;
+      }
+      gl.attachShader(program, shader);
     }
-  }
 
-  test(source: string) {
-    const gl = this.gl;
-    const s = gl.createShader(gl.FRAGMENT_SHADER)!;
-    gl.shaderSource(s, source);
-    gl.compileShader(s);
-    const ok = gl.getShaderParameter(s, gl.COMPILE_STATUS);
-    const log = ok ? null : gl.getShaderInfoLog(s);
-    gl.deleteShader(s);
-    return log;
-  }
-
-  reset() {
-    const gl = this.gl;
-    if (this.program && !gl.getProgramParameter(this.program, gl.DELETE_STATUS)) {
-      if (this.vs) { gl.detachShader(this.program, this.vs); gl.deleteShader(this.vs); }
-      if (this.fs) { gl.detachShader(this.program, this.fs); gl.deleteShader(this.fs); }
-      gl.deleteProgram(this.program);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+      if (process.env.NODE_ENV !== "production") {
+        console.error("Shader link error:", gl.getProgramInfoLog(program));
+      }
+      return false;
     }
-  }
 
-  setup() {
-    const gl = this.gl;
-    this.vs = gl.createShader(gl.VERTEX_SHADER)!;
-    this.fs = gl.createShader(gl.FRAGMENT_SHADER)!;
-    this.compile(this.vs, this.vertexSrc);
-    this.compile(this.fs, this.shaderSource);
-    this.program = gl.createProgram()!;
-    gl.attachShader(this.program, this.vs);
-    gl.attachShader(this.program, this.fs);
-    gl.linkProgram(this.program);
-    if (process.env.NODE_ENV !== "production" && !gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-      console.error(gl.getProgramInfoLog(this.program));
-    }
-  }
-
-  init() {
-    const gl = this.gl;
-    const p = this.program!;
     this.buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.vertices), gl.STATIC_DRAW);
-    const pos = gl.getAttribLocation(p, "position");
-    gl.enableVertexAttribArray(pos);
-    gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
-    this.uniforms = {
-      resolution: gl.getUniformLocation(p, "resolution"),
-      time: gl.getUniformLocation(p, "time"),
-      move: gl.getUniformLocation(p, "move"),
-      touch: gl.getUniformLocation(p, "touch"),
-      pointerCount: gl.getUniformLocation(p, "pointerCount"),
-      pointers: gl.getUniformLocation(p, "pointers"),
-    };
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, 1, -1, -1, 1, 1, 1, -1]), gl.STATIC_DRAW);
+    const position = gl.getAttribLocation(program, "position");
+    gl.enableVertexAttribArray(position);
+    gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
+    this.resolution = gl.getUniformLocation(program, "resolution");
+    this.time = gl.getUniformLocation(program, "time");
+    return true;
   }
 
-  render(now = 0) {
+  resize(width: number, height: number) {
+    this.canvas.width = width;
+    this.canvas.height = height;
+    this.gl.viewport(0, 0, width, height);
+  }
+
+  render(seconds: number) {
     const gl = this.gl;
-    const p = this.program;
-    if (!p || gl.getProgramParameter(p, gl.DELETE_STATUS)) return;
-    gl.clearColor(0, 0, 0, 1);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.useProgram(p);
-    gl.bindBuffer(gl.ARRAY_BUFFER, this.buffer);
-    gl.uniform2f(this.uniforms.resolution, this.canvas.width, this.canvas.height);
-    gl.uniform1f(this.uniforms.time, now * 1e-3);
-    gl.uniform2f(this.uniforms.move, this.mouseMove[0], this.mouseMove[1]);
-    gl.uniform2f(this.uniforms.touch, this.mouseCoords[0], this.mouseCoords[1]);
-    gl.uniform1i(this.uniforms.pointerCount, this.nbrOfPointers);
-    gl.uniform2fv(this.uniforms.pointers, this.pointerCoords);
+    if (!this.program) return;
+    gl.useProgram(this.program);
+    gl.uniform2f(this.resolution, this.canvas.width, this.canvas.height);
+    gl.uniform1f(this.time, seconds);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
   }
-}
 
-// ── Pointer Handler ─────────────────────────────────────
-class PointerHandler {
-  private scale: number;
-  private active = false;
-  private pointers = new Map<number, number[]>();
-  private lastCoords = [0, 0];
-  private moves = [0, 0];
-
-  constructor(el: HTMLCanvasElement, scale: number) {
-    this.scale = scale;
-    const map = (el: HTMLCanvasElement, s: number, x: number, y: number) =>
-      [x * s, el.height - y * s];
-
-    el.addEventListener("pointerdown", (e) => {
-      this.active = true;
-      this.pointers.set(e.pointerId, map(el, this.scale, e.clientX, e.clientY));
-    });
-    el.addEventListener("pointerup", (e) => {
-      if (this.count === 1) this.lastCoords = this.first;
-      this.pointers.delete(e.pointerId);
-      this.active = this.pointers.size > 0;
-    });
-    el.addEventListener("pointerleave", (e) => {
-      if (this.count === 1) this.lastCoords = this.first;
-      this.pointers.delete(e.pointerId);
-      this.active = this.pointers.size > 0;
-    });
-    el.addEventListener("pointermove", (e) => {
-      if (!this.active) return;
-      this.lastCoords = [e.clientX, e.clientY];
-      this.pointers.set(e.pointerId, map(el, this.scale, e.clientX, e.clientY));
-      this.moves = [this.moves[0] + e.movementX, this.moves[1] + e.movementY];
-    });
+  dispose() {
+    const gl = this.gl;
+    for (const shader of this.shaders) gl.deleteShader(shader);
+    if (this.program) gl.deleteProgram(this.program);
+    if (this.buffer) gl.deleteBuffer(this.buffer);
+    this.shaders = [];
+    this.program = null;
+    this.buffer = null;
   }
-
-  updateScale(s: number) { this.scale = s; }
-  get count() { return this.pointers.size; }
-  get move() { return this.moves; }
-  get coords() { return this.pointers.size > 0 ? Array.from(this.pointers.values()).flat() : [0, 0]; }
-  get first() { return this.pointers.values().next().value || this.lastCoords; }
 }
 
 // ── Shader Background Hook ──────────────────────────────
+// Cap on rendered pixels; the canvas is stretched with CSS and the clouds are
+// soft, so the lower internal resolution isn't visible.
+const MAX_PIXELS = 1_200_000;
+// Render-scale steps for adaptive quality on slow GPUs.
+const QUALITY_STEPS = [1, 0.6, 0.4];
+const SLOW_FRAME_MS = 22;
+const SAMPLE_FRAMES = 60;
+// Frames skipped before sampling, so page load and hydration don't count as a slow GPU.
+const WARMUP_FRAMES = 45;
+// Point in the animation shown as a still when the visitor prefers reduced motion.
+const STATIC_FRAME_SECONDS = 8;
+
 function useShaderBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animFrameRef = useRef<number | null>(null);
-  const rendererRef = useRef<WebGLRenderer | null>(null);
-  const pointersRef = useRef<PointerHandler | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const dpr = Math.max(1, 0.5 * window.devicePixelRatio);
-    rendererRef.current = new WebGLRenderer(canvas, dpr);
-    pointersRef.current = new PointerHandler(canvas, dpr);
-    rendererRef.current.setup();
-    rendererRef.current.init();
-
-    const resize = () => {
-      if (!canvasRef.current) return;
-      canvasRef.current.width = window.innerWidth * dpr;
-      canvasRef.current.height = window.innerHeight * dpr;
-      rendererRef.current?.updateScale(dpr);
-    };
-    resize();
-
-    if (rendererRef.current.test(SHADER_SOURCE) === null) {
-      rendererRef.current.updateShader(SHADER_SOURCE);
+    // WebGL2 can be missing, e.g. on Windows machines with blocklisted GPU
+    // drivers, hardware acceleration off, or over Remote Desktop. The hero
+    // then keeps its static background rather than taking the page down.
+    const gl = canvas.getContext("webgl2");
+    if (!gl) return;
+    const renderer = new WebGLRenderer(canvas, gl);
+    if (!renderer.setup(SHADER_SOURCE)) {
+      renderer.dispose();
+      return;
     }
 
-    const loop = (now: number) => {
-      const r = rendererRef.current;
-      const p = pointersRef.current;
-      if (!r || !p) return;
-      r.updateMouse(p.first);
-      r.updatePointerCount(p.count);
-      r.updatePointerCoords(p.coords);
-      r.updateMove(p.move);
-      r.render(now);
-      animFrameRef.current = requestAnimationFrame(loop);
-    };
-    loop(0);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let quality = 0;
+    let frame: number | null = null;
+    let visible = true;
+    let lost = false;
+    let sampleStart = 0;
+    let sampleCount = 0;
 
-    window.addEventListener("resize", resize);
+    const resize = () => {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      const scale =
+        Math.min(1, Math.sqrt(MAX_PIXELS / Math.max(1, width * height))) * QUALITY_STEPS[quality];
+      renderer.resize(Math.max(1, Math.round(width * scale)), Math.max(1, Math.round(height * scale)));
+    };
+
+    const draw = (now: number) => {
+      renderer.render(now / 1000);
+
+      // Weak GPUs (common on Windows laptops) get a lower internal
+      // resolution instead of a choppy animation that also slows scrolling.
+      if (quality < QUALITY_STEPS.length - 1) {
+        if (sampleCount === 0) sampleStart = now;
+        sampleCount += 1;
+        if (sampleCount === SAMPLE_FRAMES) {
+          if ((now - sampleStart) / (SAMPLE_FRAMES - 1) > SLOW_FRAME_MS) {
+            quality += 1;
+            resize();
+          }
+          sampleCount = 0;
+        }
+      }
+
+      frame = requestAnimationFrame(draw);
+    };
+
+    const start = () => {
+      if (frame !== null || lost || !visible || reducedMotion) return;
+      sampleCount = -WARMUP_FRAMES;
+      frame = requestAnimationFrame(draw);
+    };
+    const stop = () => {
+      if (frame !== null) cancelAnimationFrame(frame);
+      frame = null;
+    };
+
+    const renderStill = () => {
+      if (reducedMotion && !lost) renderer.render(STATIC_FRAME_SECONDS);
+    };
+
+    resize();
+    renderStill();
+    start();
+
+    // Stop rendering while the hero is scrolled out of view.
+    const observer = new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      if (visible) start();
+      else stop();
+    });
+    observer.observe(canvas);
+
+    const onResize = () => {
+      resize();
+      renderStill();
+    };
+    const onContextLost = () => {
+      lost = true;
+      stop();
+    };
+    window.addEventListener("resize", onResize);
+    canvas.addEventListener("webglcontextlost", onContextLost);
+
     return () => {
-      window.removeEventListener("resize", resize);
-      if (animFrameRef.current) cancelAnimationFrame(animFrameRef.current);
-      rendererRef.current?.reset();
+      stop();
+      observer.disconnect();
+      window.removeEventListener("resize", onResize);
+      canvas.removeEventListener("webglcontextlost", onContextLost);
+      if (!lost) renderer.dispose();
     };
   }, []);
 
@@ -286,7 +270,7 @@ export default function AnimatedShaderHero({
       {/* WebGL canvas */}
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 w-full h-full object-contain touch-none"
+        className="absolute inset-0 w-full h-full"
         style={{ background: "var(--soluven-ink)" }}
       />
 
@@ -423,9 +407,9 @@ void main(void) {
     uv+=.1*cos(i*vec2(.1+.01*i,.8)+i*i+T*.5+.1*uv.x);
     vec2 p=uv;
     float d=length(p);
-    col+=.00125/d*(cos(sin(i)*vec3(0.5,2.0,1.5))+1.);
+    col+=.00125/max(d,1e-3)*(cos(sin(i)*vec3(0.5,2.0,1.5))+1.);
     float b=noise(i+p+bg*1.731);
-    col+=.002*b/length(max(p,vec2(b*p.x*.02,p.y)));
+    col+=.002*b/max(length(max(p,vec2(b*p.x*.02,p.y))),1e-3);
     col=mix(col,vec3(bg*.05,bg*.15,bg*.2),d);
   }
   O=vec4(col,1);

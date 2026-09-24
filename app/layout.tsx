@@ -1,24 +1,30 @@
 import type { Metadata } from "next";
-import { Sora, Manrope } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import { PageLoader } from "@/components/sections/PageLoader";
+import { WelcomePopup } from "@/components/layout/WelcomePopup";
+import { CookieConsent } from "@/components/layout/CookieConsent";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { JsonLd, organizationJsonLd, buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
 
-const sora = Sora({
+// Self-hosted (latin subset, variable weight) rather than next/font/google, so
+// builds don't depend on fetching from Google Fonts at build time.
+const sora = localFont({
+  src: "./fonts/Sora-Variable.woff2",
   variable: "--font-sora",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
+  weight: "100 800",
+  display: "swap",
 });
 
-const manrope = Manrope({
+const manrope = localFont({
+  src: "./fonts/Manrope-Variable.woff2",
   variable: "--font-manrope",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "200 800",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -40,6 +46,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col">
         <JsonLd data={organizationJsonLd()} />
         <PageLoader />
+        <WelcomePopup />
+        <CookieConsent />
         <ScrollProgress />
         <Header />
         <main id="content" className="flex-1">{children}</main>

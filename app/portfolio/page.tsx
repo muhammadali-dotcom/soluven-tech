@@ -30,8 +30,8 @@ export default function PortfolioPage() {
         ])}
       />
 
-      {/* 1. Intro + projects — cream */}
-      <section className="mx-auto max-w-[1280px] px-6 py-16 md:px-[85px] md:py-24">
+      {/* 1. Intro — cream */}
+      <section className="mx-auto max-w-[1280px] px-6 pt-16 md:px-[85px] md:pt-24">
         <div className="mb-14 md:mb-20">
           <FadeIn>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
@@ -46,11 +46,14 @@ export default function PortfolioPage() {
           <FadeIn delay={0.1}>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--color-muted)]">
               A look at the products and tools we&apos;ve designed and
-              engineered — each one built to solve a specific problem.
+              engineered, each one built to solve a specific problem.
             </p>
           </FadeIn>
         </div>
+      </section>
 
+      {/* Projects sit in the narrower content column; the intro above is the page hero. */}
+      <section className="page-container pb-16 md:pb-24">
         <Projects projects={portfolioProjects} />
 
         <p className="mt-16 text-sm text-[var(--color-muted)]">
@@ -61,7 +64,7 @@ export default function PortfolioPage() {
 
       {/* 2. How We Approach — dark */}
       <section className="border-t border-[var(--color-border)] bg-[var(--color-ink)]">
-        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
+        <div className="page-container py-20 md:py-28">
           <FadeIn>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-cream)]/50">
               How We Approach Projects

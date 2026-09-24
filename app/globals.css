@@ -53,6 +53,26 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Content column for every non-hero section (see DESIGN.md §3). Change the
+   width here, not per section. */
+:root {
+  --content-max: 896px;
+  --page-gutter: 24px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --page-gutter: 64px;
+  }
+}
+
+@utility page-container {
+  width: 100%;
+  margin-inline: auto;
+  max-width: calc(var(--content-max) + 2 * var(--page-gutter));
+  padding-inline: var(--page-gutter);
+}
+
 @utility transform-3d {
   transform-style: preserve-3d;
 }

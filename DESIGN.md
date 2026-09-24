@@ -28,12 +28,12 @@ Dual typeface system:
 | Logo, headings, large statements | Sora | 600–800 |
 | Navigation, body, buttons, labels | Manrope | 400–700 |
 
-- Loaded via `next/font/google` in `app/layout.tsx` as `--font-sora` / `--font-manrope`, mapped to `--font-heading` / `--font-body`.
+- Self-hosted from `app/fonts/` (latin, variable weight) via `next/font/local` in `app/layout.tsx` as `--font-sora` / `--font-manrope`, mapped to `--font-heading` / `--font-body`.
 - Editorial headings: large size, tight tracking; body: comfortable line-height, 16px minimum.
 
 ## 3. Spacing & Layout
 
-- Max content width: ~1280px, generous side padding (24px mobile, 64–96px desktop).
+- Content sections use the `page-container` utility (`app/globals.css`): an 896px column set by `--content-max`, with 24px mobile / 64px tablet+ gutters. Change the width there, not per section. Heroes and page intros keep the wider `mx-auto max-w-[1280px] px-6 md:px-[85px]` frame, and the header uses its own `max-w-[1440px]`. Four-across card grids don't fit the 896px column; use 2 columns.
 - Section vertical rhythm: 80–120px desktop, 48–64px mobile.
 - Minimal corner rounding (`rounded-md`/`rounded-lg`), thin (1px) borders, no rounded-card-heavy SaaS look. `rounded-full` is reserved for small circular icon containers, avatars and dots, not for text chips or cards.
 - **No drop shadows anywhere.** Elevation is expressed with a 1px `border border-[var(--color-border)]`, never `shadow-*`, `drop-shadow-*` or a custom `shadow-[...]` value.
@@ -43,9 +43,11 @@ Dual typeface system:
 
 ## 4. Components & Conventions
 
-- **Buttons:** Primary (blue fill, ink text), Secondary (ink border outline), Inverted (for dark backgrounds), Manrope 600–700, `rounded-md`.
+- **Buttons:** Primary (blue fill, ink text), Secondary (ink border outline), Inverted (for dark backgrounds), Manrope 600–700, `rounded-md`. Primary text is always `--soluven-ink`, including inside `.section-dark`.
 - **Cards** (Services, Projects): thin 1px border, `--color-surface` tint, no shadow of any kind.
 - **Icons:** `@phosphor-icons/react` (import from the `@phosphor-icons/react/dist/ssr` subpath so icons stay server-rendered), used sparingly: one minimal abstract icon per service card, not colorful icon collections. Lucide is no longer used. **No emoji glyphs in UI or data** and **no checkmark-bullet lists** (`CheckCircle` rows): use plain text, numbered markers or dots instead. **No sparkle icons or ✦-style glyphs.**
+- **Popups:** only the welcome popup (`components/layout/WelcomePopup.tsx`): a native `<dialog>` shown 1s after the page loader, bottom sheet on mobile, capped to once per 7 days via `localStorage`, never on `/contact`. It rotates 3 sourced industry insights from `data/popup-hooks.ts` every 6s (pause button; holds still while keyboard focus is on a slide; no hover pause, since the centred popup sits under the resting pointer; no auto-advance under reduced motion), each with one link, and never asks for details. Every hook must be a real statistic that cites its source. Uses the `section-dark` ink surface with stat numbers in brand blue. No other on-load popups.
+- **Cookie consent:** `components/layout/CookieConsent.tsx`, a compact non-blocking bottom-right card (360px on desktop, full width on phones, `section-dark` ink surface) that appears once the welcome popup is closed or skipped. Accept all / Reject all are equally prominent, Customize expands switches for Analytics and Marketing (Necessary always on). The choice is stored in the `soluven_consent` cookie for 180 days and reopened from the footer's "Cookie settings". Any analytics or marketing script must check `getConsent()` from `lib/consent.ts` (or listen for `soluven:consent-changed`) before loading, and must be added to the table on `/cookie-policy`.
 - **Imagery:** no stock photography; abstract/CSS-driven interface mockups only. Portfolio section shows labeled concept work, not fabricated client case studies.
 - **No fake stats or testimonials** — sections for these were intentionally removed; do not reintroduce them without real data.
 

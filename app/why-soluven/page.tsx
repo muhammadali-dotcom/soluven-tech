@@ -6,7 +6,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 export const metadata: Metadata = buildMetadata({
   title: "Why Soluven",
   description:
-    "We focus on building the right thing — with clear communication, thoughtful decisions, and technology that serves a purpose.",
+    "We focus on building the right thing, with clear communication, thoughtful decisions, and technology that serves a purpose.",
   path: "/why-soluven",
 });
 
@@ -33,7 +33,7 @@ const differentiators = [
     number: "04",
     title: "We Build For The Long Term",
     description:
-      "We care about maintainability, reliability, and what happens after launch — not just getting something out the door.",
+      "We care about maintainability, reliability, and what happens after launch, not just getting something out the door.",
   },
 ];
 
@@ -62,7 +62,7 @@ export default function WhySoluvenPage() {
         <FadeIn delay={0.1}>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--color-muted)]">
             Because building something isn&apos;t enough. We focus on building
-            the right thing — with clear communication, thoughtful decisions,
+            the right thing, with clear communication, thoughtful decisions,
             and technology that serves a purpose.
           </p>
         </FadeIn>
@@ -70,7 +70,7 @@ export default function WhySoluvenPage() {
 
       {/* 2. What Makes Us Different */}
       <section className="border-t border-[var(--color-border)] bg-[var(--color-ink)]">
-        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
+        <div className="page-container py-20 md:py-28">
           <FadeIn>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-cream)]/50">
               What Makes Us Different
@@ -100,7 +100,7 @@ export default function WhySoluvenPage() {
 
       {/* 3. Our Commitment */}
       <section className="border-t border-[var(--color-border)]">
-        <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
+        <div className="page-container py-20 md:py-28">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
             <FadeIn>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">

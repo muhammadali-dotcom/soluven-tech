@@ -16,7 +16,8 @@ export function Typewriter({
     pauseDuration = 1500,
 }: TypewriterProps) {
     const [wordIndex, setWordIndex] = useState(0);
-    const [text, setText] = useState("");
+    // Start fully typed so the server-rendered heading contains a real word.
+    const [text, setText] = useState(words[0] ?? "");
     const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {

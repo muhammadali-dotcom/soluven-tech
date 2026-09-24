@@ -25,7 +25,7 @@ function ProjectLinks({
           href={`/services/${relatedService.slug}`}
           className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--color-muted)] underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--soluven-blue)] hover:decoration-current"
         >
-          Related service: {relatedService.name} →
+          Related service: {relatedService.name}&nbsp;→
         </Link>
       )}
       {project.link && (

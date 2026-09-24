@@ -6,7 +6,7 @@ import { ProjectVisual } from "@/components/sections/ProjectVisual";
 
 export function WorkTeaser() {
   return (
-    <section className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
+    <section className="page-container py-20 md:py-28">
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
           Selected work
@@ -18,7 +18,7 @@ export function WorkTeaser() {
         </h2>
       </FadeIn>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-12 grid gap-6 sm:grid-cols-2">
         {portfolioProjects.filter((project) => project.featured).map((project) => (
           <FadeIn key={project.slug} delay={0.05}>
             <div className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">

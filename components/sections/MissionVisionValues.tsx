@@ -10,7 +10,7 @@ const values = [
 export function MissionVisionValues() {
   return (
     <section className="border-t border-[var(--color-border)] bg-[var(--color-ink)]">
-      <div className="mx-auto max-w-[1280px] px-6 py-20 md:px-[85px] md:py-28">
+      <div className="page-container py-20 md:py-28">
         <div className="grid gap-8 sm:grid-cols-2">
           <FadeIn>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-cream)]/50">
@@ -36,7 +36,7 @@ export function MissionVisionValues() {
             Our Values
           </p>
         </FadeIn>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
           {values.map((value, index) => (
             <FadeIn key={value.title} delay={0.1 + index * 0.05}>
               <div className="h-full rounded-lg border border-[var(--soluven-cream)]/10 bg-[var(--soluven-cream)]/5 p-6">

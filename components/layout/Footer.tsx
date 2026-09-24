@@ -3,6 +3,7 @@ import { Envelope } from "@phosphor-icons/react/dist/ssr";
 import { contactEmail, whatsappLink, socialLinks } from "@/lib/constants";
 import { navLinks } from "./nav-links";
 import { Logo } from "@/components/ui/Logo";
+import { CookieSettingsButton } from "./CookieSettingsButton";
 import { services } from "@/data/services";
 import {
   WhatsAppIcon,
@@ -26,7 +27,7 @@ export function Footer() {
     <footer className="mt-auto border-t border-[var(--color-border)]">
       {/* ── Top section: keeps the site's cream/light colors ────────────── */}
       <div className="bg-[var(--color-background)] text-[var(--color-ink)]">
-        <div className="mx-auto grid max-w-[1280px] grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4 md:px-[85px]">
+        <div className="page-container grid grid-cols-1 gap-10 py-16 sm:grid-cols-2 lg:grid-cols-4">
 
           {/* Brand */}
           <FooterFadeIn index={0}>
@@ -108,7 +109,7 @@ export function Footer() {
         <FooterBackgroundGradient />
 
         {/* Bottom bar: social left | copyright right, sits ABOVE the text */}
-        <div className="relative z-10 mx-auto max-w-[1280px] px-6 pt-10 md:px-[85px]">
+        <div className="page-container relative z-10 pt-10">
           <hr className="border-t border-[var(--color-border)]" />
           <div className="flex flex-col items-center justify-between gap-4 py-6 text-xs text-[var(--color-muted)] sm:flex-row">
             {/* Social icons */}
@@ -129,9 +130,13 @@ export function Footer() {
                 );
               })}
             </div>
-            {/* Copyright + back to top */}
-            <div className="flex items-center gap-4">
+            {/* Copyright, cookie links + back to top */}
+            <div className="flex flex-wrap items-center justify-center gap-4">
               <p>© {new Date().getFullYear()} Soluven. All rights reserved.</p>
+              <Link href="/cookie-policy" className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-ink)] hover:decoration-current">
+                Cookie policy
+              </Link>
+              <CookieSettingsButton className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-ink)] hover:decoration-current" />
               <BackToTopButton />
             </div>
           </div>

@@ -4,6 +4,12 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Logo } from "@/components/ui/Logo";
 
+// Lets on-load UI (the welcome popup) wait until the loader is out of the way.
+function announceLoaderDone() {
+  document.documentElement.dataset.loaderDone = "1";
+  window.dispatchEvent(new Event("soluven:loader-done"));
+}
+
 export function PageLoader() {
   const [visible, setVisible] = useState(false);
 
@@ -14,12 +20,16 @@ export function PageLoader() {
     if (alreadyShown || reduced) {
       // eslint-disable-next-line react-hooks/set-state-in-effect -- corrects stale `visible` state left by a prior effect invocation (Strict Mode/fast refresh)
       setVisible(false);
+      announceLoaderDone();
       return;
     }
 
     sessionStorage.setItem("soluven-loaded", "1");
     setVisible(true);
-    const timer = setTimeout(() => setVisible(false), 3000);
+    const timer = setTimeout(() => {
+      setVisible(false);
+      announceLoaderDone();
+    }, 3000);
     return () => clearTimeout(timer);
   }, []);
 
