@@ -3,6 +3,7 @@ import { Projects } from "@/components/sections/Projects";
 import { portfolioProjects } from "@/data/portfolio";
 import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
+import { PageHero } from "@/components/sections/PageHero";
 import { FadeIn } from "@/components/motion/FadeIn";
 
 export const metadata: Metadata = buildMetadata({
@@ -11,6 +12,14 @@ export const metadata: Metadata = buildMetadata({
     "Real projects showing how Soluven approaches web, ecommerce, and custom software.",
   path: "/portfolio",
 });
+
+// Short descriptors for the hero's project row; each links to its card below.
+const heroLabels: Record<string, string> = {
+  ems: "Workforce platform",
+  querybridge: "AI SQL tool",
+  roomtalk: "Real-time chat",
+  expenzo: "Expense tracker",
+};
 
 const steps = [
   { label: "Problem" },
@@ -30,27 +39,21 @@ export default function PortfolioPage() {
         ])}
       />
 
-      {/* 1. Intro — cream */}
-      <section className="mx-auto max-w-[1280px] px-6 pt-16 md:px-[85px] md:pt-24">
-        <div className="mb-14 md:mb-20">
-          <FadeIn>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-              Our Work
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.05}>
-            <h1 className="mt-4 max-w-2xl font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-              Things we&apos;ve built.
-            </h1>
-          </FadeIn>
-          <FadeIn delay={0.1}>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-[var(--color-muted)]">
-              A look at the products and tools we&apos;ve designed and
-              engineered, each one built to solve a specific problem.
-            </p>
-          </FadeIn>
-        </div>
-      </section>
+      <PageHero
+        theme="dark"
+        motion="fan"
+        background="contours"
+        eyebrow="Our work"
+        headline={["Things we've", "actually", "built."]}
+        description="Real products we've designed and engineered, each one built to solve a specific problem. Explore how they work and the code behind them."
+        primaryCta={{ label: "Start a project", href: "/contact" }}
+        secondaryCta={{ label: "See our services", href: "/services" }}
+        items={portfolioProjects.map((project) => ({
+          title: project.title.split(":")[0],
+          label: heroLabels[project.slug] ?? project.category,
+          href: `#${project.slug}`,
+        }))}
+      />
 
       {/* Projects sit in the narrower content column; the intro above is the page hero. */}
       <section className="page-container pb-16 md:pb-24">

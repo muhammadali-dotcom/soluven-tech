@@ -4,7 +4,7 @@ import { MissionVisionValues } from "@/components/sections/MissionVisionValues";
 import { WhatWeBelieve } from "@/components/sections/WhatWeBelieve";
 import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
-import { FadeIn } from "@/components/motion/FadeIn";
+import { PageHero } from "@/components/sections/PageHero";
 
 export const metadata: Metadata = buildMetadata({
   title: "About",
@@ -23,25 +23,22 @@ export default function AboutPage() {
         ])}
       />
 
-      {/* 1. Hero — cream */}
-      <section className="mx-auto max-w-[1280px] px-6 py-16 md:px-[85px] md:py-24">
-        <FadeIn>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-            About Soluven
-          </p>
-        </FadeIn>
-        <FadeIn delay={0.05}>
-          <h1 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-            We build technology with a purpose.
-          </h1>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <p className="mt-6 max-w-2xl text-base leading-relaxed text-[var(--color-muted)]">
-            Soluven is a digital solutions studio focused on helping businesses
-            turn ideas and challenges into practical digital products.
-          </p>
-        </FadeIn>
-      </section>
+      <PageHero
+        theme="dark"
+        motion="fan"
+        background="weave"
+        eyebrow="About Soluven"
+        headline={["A small team", "that cares how", "it turns out."]}
+        description="Soluven is a digital studio that turns ideas and everyday business problems into websites, apps and software people actually use."
+        primaryCta={{ label: "Start a project", href: "/contact" }}
+        secondaryCta={{ label: "Why Soluven", href: "/why-soluven" }}
+        items={[
+          { title: "Pakistan & worldwide", label: "Where we work" },
+          { title: "Web, apps, software", label: "What we build" },
+          { title: "Direct contact", label: "You talk to the builders" },
+          { title: "Plain English", label: "Clear scope, no jargon" },
+        ]}
+      />
 
       {/* 2. Mission / Vision / Values — dark */}
       <MissionVisionValues />

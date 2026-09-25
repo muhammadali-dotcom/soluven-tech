@@ -48,7 +48,7 @@ function FeaturedProject({ project }: { project: PortfolioProject }) {
 
   return (
     <FadeIn>
-      <article className="overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
+      <article id={project.slug} className="scroll-mt-24 overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
         {/* Text */}
         <div className="p-8 md:p-12 lg:p-14">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.13em] text-[var(--color-muted)]">
@@ -105,7 +105,7 @@ function ProjectCard({
 
   return (
     <FadeIn delay={index * 0.05}>
-      <article className="flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
+      <article id={project.slug} className="flex h-full scroll-mt-24 flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
         {/* Text */}
         <div className="flex flex-1 flex-col p-7">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.13em] text-[var(--color-muted)]">

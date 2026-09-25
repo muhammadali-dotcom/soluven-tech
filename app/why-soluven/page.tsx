@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
 import { siteConfig } from "@/lib/constants";
+import { PageHero } from "@/components/sections/PageHero";
 import { FadeIn } from "@/components/motion/FadeIn";
 
 export const metadata: Metadata = buildMetadata({
@@ -47,26 +48,22 @@ export default function WhySoluvenPage() {
         ])}
       />
 
-      {/* 1. Hero */}
-      <section className="mx-auto max-w-[1280px] px-6 py-16 md:px-[85px] md:py-24">
-        <FadeIn>
-          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-            The Soluven Difference
-          </p>
-        </FadeIn>
-        <FadeIn delay={0.05}>
-          <h1 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-            Why Soluven?
-          </h1>
-        </FadeIn>
-        <FadeIn delay={0.1}>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-[var(--color-muted)]">
-            Because building something isn&apos;t enough. We focus on building
-            the right thing, with clear communication, thoughtful decisions,
-            and technology that serves a purpose.
-          </p>
-        </FadeIn>
-      </section>
+      <PageHero
+        theme="dark"
+        motion="fan"
+        background="alignment"
+        eyebrow="The Soluven difference"
+        headline={["You'll always know", "what's happening", "and why."]}
+        description="Hiring a developer shouldn't feel like a gamble. We keep scope clear, talk to you directly and build things that keep working long after launch."
+        primaryCta={{ label: "Start a project", href: "/contact" }}
+        secondaryCta={{ label: "See our work", href: "/portfolio" }}
+        items={[
+          { title: "Think first", label: "Problem before code" },
+          { title: "Direct access", label: "No handoffs" },
+          { title: "Clear scope", label: "No surprises" },
+          { title: "Built to last", label: "Beyond launch day" },
+        ]}
+      />
 
       {/* 2. What Makes Us Different */}
       <section className="border-t border-[var(--color-border)] bg-[var(--color-ink)]">
