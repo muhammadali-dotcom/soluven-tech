@@ -26,9 +26,10 @@ export default function AboutPage() {
       <PageHero
         theme="dark"
         motion="fan"
-        background="weave"
+        background="beams"
+        height="compact"
         eyebrow="About Soluven"
-        headline={["A small team", "that cares how", "it turns out."]}
+        headline={["We build the", "software your", "business runs on."]}
         description="Soluven is a digital studio that turns ideas and everyday business problems into websites, apps and software people actually use."
         primaryCta={{ label: "Start a project", href: "/contact" }}
         secondaryCta={{ label: "Why Soluven", href: "/why-soluven" }}

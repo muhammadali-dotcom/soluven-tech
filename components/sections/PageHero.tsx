@@ -1,5 +1,6 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
+import { BeamsBackground } from "@/components/ui/beams-background";
 import { HeroAlignment } from "@/components/ui/hero-alignment";
 import { HeroContours } from "@/components/ui/hero-contours";
 import { HeroRibbons } from "@/components/ui/hero-ribbons";
@@ -18,8 +19,10 @@ type PageHeroProps = {
   theme: "dark" | "light";
   /** "sweep" + fade for service pages; "fan" + line-by-line headline rise for company pages. */
   motion?: "sweep" | "fan";
-  /** Animated backdrop: ribbons (services), contours (Work), alignment (Why Soluven), weave (About). */
-  background?: "ribbons" | "contours" | "alignment" | "weave";
+  /** Animated backdrop: ribbons (services), contours (Work), alignment (Why Soluven), weave, beams (About). */
+  background?: "ribbons" | "contours" | "alignment" | "weave" | "beams";
+  /** "full" fills the viewport; "compact" lets the next section peek in (About). */
+  height?: "full" | "compact";
   backLink?: HeroLink;
   eyebrow: string;
   /** Three display lines; the last one is set in the accent color. */
@@ -53,6 +56,7 @@ export function PageHero({
   theme,
   motion = "sweep",
   background = "ribbons",
+  height = "full",
   backLink,
   eyebrow,
   headline,
@@ -68,7 +72,9 @@ export function PageHero({
     <section
       className={`${t.section} ${
         motion === "fan" && theme === "dark" ? "border-b border-[var(--color-border)]" : ""
-      } relative isolate flex min-h-[calc(100svh-78px)] flex-col overflow-hidden bg-[var(--color-background)] text-[var(--color-text)]`}
+      } relative isolate flex ${
+        height === "compact" ? "min-h-[75svh]" : "min-h-[calc(100svh-78px)]"
+      } flex-col overflow-hidden bg-[var(--color-background)] text-[var(--color-text)]`}
     >
       {background === "contours" ? (
         <HeroContours className={t.ribbons} />
@@ -76,6 +82,8 @@ export function PageHero({
         <HeroAlignment className={t.ribbons} />
       ) : background === "weave" ? (
         <HeroWeave className={t.ribbons} />
+      ) : background === "beams" ? (
+        <BeamsBackground className={t.ribbons} />
       ) : (
         <HeroRibbons className={t.ribbons} shape={motion} tone={theme} />
       )}

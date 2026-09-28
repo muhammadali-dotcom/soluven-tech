@@ -1,4 +1,3 @@
-import { ProgressLine } from "@/components/motion/ProgressLine";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { HeroLogoMark } from "@/components/sections/HeroLogoMark";
 
@@ -24,12 +23,6 @@ export function Manifesto() {
             </span>
           </p>
         </FadeIn>
-        <div className="mt-16">
-          <ProgressLine />
-          <p className="mt-3 text-sm font-semibold uppercase tracking-widest text-[var(--soluven-ink)]/70">
-            Scroll to build the picture
-          </p>
-        </div>
       </div>
     </section>
   );

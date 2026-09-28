@@ -61,7 +61,7 @@ export function HeroWeave({ className = "" }: { className?: string }) {
 
     const layout = () => {
       const wide = desktop.matches;
-      x0 = width * (wide ? 0.45 : 0.04);
+      x0 = width * (wide ? 0.53 : 0.04);
       x1 = width * (wide ? 0.95 : 0.96);
       y0 = height * (wide ? 0.14 : 0.1);
       const y1 = height * (wide ? 0.86 : 0.9);
