@@ -12,7 +12,7 @@ import { CtaBanner } from "@/components/sections/CtaBanner";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Building solutions for the future you see",
+  title: "Websites, apps and software for the future you see",
   description:
     "Soluven builds high-performing websites, ecommerce experiences and custom software for ambitious businesses.",
 });

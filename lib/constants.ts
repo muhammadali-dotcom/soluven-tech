@@ -1,5 +1,6 @@
 export const siteConfig = {
-  name: "Soluven Tech",
+  name: "Soluven",
+  legalName: "Soluven Tech",
   tagline: "Building solutions for the future you see.",
   description:
     "Soluven builds high-performing websites, ecommerce experiences and custom software for ambitious businesses.",

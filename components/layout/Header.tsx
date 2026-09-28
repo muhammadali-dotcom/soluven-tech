@@ -162,7 +162,7 @@ export function Header() {
         <div className="hidden items-center gap-6 lg:flex">
           <span aria-hidden="true" className="h-6 w-px bg-[var(--color-border)]" />
           <MagneticButton>
-            <LinkButton href="/contact" variant="primary" className="rounded-lg px-8 py-4 text-lg">
+            <LinkButton href="/contact" variant="primary" className="px-6 py-2.5 text-base">
               Start a project
             </LinkButton>
           </MagneticButton>

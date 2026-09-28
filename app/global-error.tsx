@@ -19,7 +19,7 @@ export default function GlobalError({ retry }: { error: Error & { digest?: strin
           fontFamily: "system-ui, sans-serif",
         }}
       >
-        <title>Something went wrong | Soluven Tech</title>
+        <title>Something went wrong | Soluven</title>
         <main style={{ maxWidth: 640, margin: "0 auto" }}>
           <h1 style={{ fontSize: 32, lineHeight: 1.2 }}>Something went wrong on our side.</h1>
           <p style={{ fontSize: 18, color: "#637075" }}>

@@ -19,6 +19,7 @@ export function Hero() {
             </span>
           ),
           line2: "for the future you see.",
+          label: "Building websites, apps and software for the future you see.",
         }}
         subtitle="We turn ambitious ideas into websites, ecommerce experiences and custom software built to move your business forward."
         buttons={{

@@ -17,7 +17,7 @@ const reasons = [
     number: "03",
     title: "Transparent Process",
     description:
-      "Clear communication, milestones and pricing throughout the project.",
+      "Clear communication, milestones and a fixed price agreed up front. Projects start from $500.",
   },
   {
     number: "04",

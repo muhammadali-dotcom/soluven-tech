@@ -114,15 +114,15 @@ const CharBox = memo(
       >
         {char}
       </span>
+      {/* Back face draws the character via CSS so the DOM text isn't doubled. */}
       <span
+        data-char={char}
         className={cn(
-          "absolute top-0 left-0 h-[1lh] backface-hidden",
+          "absolute top-0 left-0 h-[1lh] backface-hidden before:content-[attr(data-char)]",
           flipTextClassName,
         )}
         style={{ transform: SECOND_FACE_TRANSFORMS[rotateDirection] }}
-      >
-        {char}
-      </span>
+      />
     </span>
   ),
 );
@@ -264,20 +264,22 @@ const Text3DFlip = ({
       {...props}
     >
       <span className="sr-only">{text}</span>
-      {characters.map((wordObj, wordIndex) => (
-        <span key={wordIndex} className="inline-flex">
-          {wordObj.characters.map((char, charIndex) => (
-            <CharBox
-              key={charOffsets[wordIndex] + charIndex}
-              char={char}
-              textClassName={textClassName}
-              flipTextClassName={flipTextClassName}
-              rotateDirection={rotateDirection}
-            />
-          ))}
-          {wordObj.needsSpace && <span className="whitespace-pre"> </span>}
-        </span>
-      ))}
+      <span aria-hidden="true" className="contents">
+        {characters.map((wordObj, wordIndex) => (
+          <span key={wordIndex} className="inline-flex">
+            {wordObj.characters.map((char, charIndex) => (
+              <CharBox
+                key={charOffsets[wordIndex] + charIndex}
+                char={char}
+                textClassName={textClassName}
+                flipTextClassName={flipTextClassName}
+                rotateDirection={rotateDirection}
+              />
+            ))}
+            {wordObj.needsSpace && <span className="whitespace-pre"> </span>}
+          </span>
+        ))}
+      </span>
     </ElementTag>
   );
 };

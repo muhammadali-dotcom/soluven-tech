@@ -5,11 +5,6 @@ import {
   ChartLineUp,
   Buildings,
   ArrowRight,
-  Heartbeat,
-  House,
-  ShoppingCart,
-  GraduationCap,
-  Package,
   ChartLine,
   Users,
 } from "@phosphor-icons/react/dist/ssr";
@@ -67,11 +62,6 @@ const stages: Stage[] = [
 ];
 
 const industries: { label: string; icon: Icon }[] = [
-  { label: "Healthcare", icon: Heartbeat },
-  { label: "Real estate", icon: House },
-  { label: "E-commerce", icon: ShoppingCart },
-  { label: "Education", icon: GraduationCap },
-  { label: "Logistics", icon: Package },
   { label: "Finance", icon: ChartLine },
   { label: "Professional services", icon: Users },
 ];
@@ -174,7 +164,7 @@ export function WhoWeWorkWith() {
         <div className="mt-16 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-              Industries we serve
+              Industries we&apos;ve built for
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               {industries.map(({ label, icon: Icon }) => (

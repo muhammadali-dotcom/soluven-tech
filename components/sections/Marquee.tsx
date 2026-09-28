@@ -24,7 +24,6 @@ function TickerContent({ hidden = false }: { hidden?: boolean }) {
 export function Marquee() {
   return (
     <div
-      aria-label="Our capabilities: strategy, design, development, ecommerce, digital products"
       className="overflow-hidden border-y border-[var(--color-border)] bg-[var(--color-background)] py-6"
     >
       <div className="flex w-max animate-marquee">

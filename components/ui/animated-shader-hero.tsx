@@ -12,6 +12,8 @@ interface HeroProps {
   headline: {
     line1: React.ReactNode;
     line2?: React.ReactNode;
+    /** Stable text for crawlers and screen readers when the visual lines animate. */
+    label?: string;
   };
   subtitle: string;
   buttons?: {
@@ -295,14 +297,23 @@ export default function AnimatedShaderHero({
         <div className="text-center space-y-6 max-w-5xl mx-auto">
           {/* Headlines */}
           <div className="space-y-1 font-[family-name:var(--font-heading)] leading-[1.05] tracking-tight">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--soluven-cream)] anim-up d200">
-              {headline.line1}
+            <h1 className="space-y-1">
+              {headline.label && <span className="sr-only">{headline.label}</span>}
+              <span
+                aria-hidden={headline.label ? true : undefined}
+                className="block text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--soluven-cream)] anim-up d200"
+              >
+                {headline.line1}
+              </span>
+              {headline.line2 && (
+                <span
+                  aria-hidden={headline.label ? true : undefined}
+                  className="block text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--soluven-blue)] anim-up d400"
+                >
+                  {headline.line2}
+                </span>
+              )}
             </h1>
-            {headline.line2 && (
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--soluven-blue)] anim-up d400">
-                {headline.line2}
-              </h1>
-            )}
           </div>
 
           {/* Subtitle */}

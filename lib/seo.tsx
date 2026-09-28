@@ -46,6 +46,8 @@ export function organizationJsonLd() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: siteConfig.name,
+    legalName: siteConfig.legalName,
+    alternateName: siteConfig.legalName,
     url: siteConfig.url,
     logo: `${siteConfig.url}/soluven_icon.png`,
     description: siteConfig.description,

@@ -14,8 +14,14 @@ export function WorkTeaser() {
       </FadeIn>
       <FadeIn delay={0.05}>
         <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
-          Projects we&apos;ve shipped.
+          Products we&apos;ve built.
         </h2>
+      </FadeIn>
+      <FadeIn delay={0.1}>
+        <p className="mt-4 max-w-2xl text-base text-[var(--color-muted)]">
+          Independent products we designed and engineered end to end. Client
+          work will join as engagements are delivered.
+        </p>
       </FadeIn>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-2">
