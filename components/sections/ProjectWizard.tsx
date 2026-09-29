@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -142,9 +143,9 @@ export function ProjectWizard() {
         </h2>
       </FadeIn>
 
-      <div className="mt-12 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-8 md:p-12">
+      <div className="mt-12 rounded-sm border border-[var(--color-border)] bg-[var(--color-surface)] p-8 md:p-12">
         {status === "success" ? (
-          <p role="status" className="text-lg font-semibold text-green-700">
+          <p role="status" className="text-lg font-semibold text-[var(--color-ink)]">
             Thanks, {answers.name || "there"}. We&apos;ll get back to you soon.
           </p>
         ) : (
@@ -155,7 +156,7 @@ export function ProjectWizard() {
                   <span
                     key={key}
                     aria-hidden="true"
-                    className={`h-1.5 flex-1 rounded-full ${
+                    className={`h-1.5 flex-1 ${
                       index <= step ? "bg-[var(--soluven-blue)]" : "bg-[var(--color-border)]"
                     }`}
                   />
@@ -247,7 +248,7 @@ export function ProjectWizard() {
                       }
                       rows={5}
                       maxLength={4800}
-                      className="mt-6 w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
+                      className="mt-6 w-full rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
                       placeholder="What are you trying to achieve?"
                     />
                     <Button
@@ -292,7 +293,7 @@ export function ProjectWizard() {
                             setAnswers((a) => ({ ...a, name: e.target.value }))
                           }
                           maxLength={100}
-                          className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-red-700"
+                          className="rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-red-700"
                         />
                         <FieldError id="wizard-name-error" message={errors.name} />
                       </div>
@@ -311,13 +312,20 @@ export function ProjectWizard() {
                             setAnswers((a) => ({ ...a, email: e.target.value }))
                           }
                           maxLength={254}
-                          className="rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-red-700"
+                          className="rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-red-700"
                         />
                         <FieldError id="wizard-email-error" message={errors.email} />
                       </div>
                       <Button type="submit" disabled={status === "submitting"}>
                         {status === "submitting" ? "Sending..." : "Send Project Request →"}
                       </Button>
+                      <p className="text-sm text-[var(--color-muted)]">
+                        We only use your details to reply. See our{" "}
+                        <Link href="/privacy" className="font-semibold text-[var(--color-ink)] underline underline-offset-4">
+                          privacy policy
+                        </Link>
+                        .
+                      </p>
                       {(status === "error" || status === "rate-limited") && (
                         <FormSubmitError
                           rateLimited={status === "rate-limited"}

@@ -4,17 +4,13 @@ import { contactEmail, whatsappLink, socialLinks } from "@/lib/constants";
 import { navLinks } from "./nav-links";
 import { Logo } from "@/components/ui/Logo";
 import { CookieSettingsButton } from "./CookieSettingsButton";
-import { services } from "@/data/services";
+import { coreServices, growthServices } from "@/data/services";
 import {
   WhatsAppIcon,
   FacebookIcon,
   InstagramIcon,
 } from "@/components/icons/BrandIcons";
-import {
-  TextHoverEffect,
-  FooterBackgroundGradient,
-  FooterFadeIn,
-} from "@/components/ui/hover-footer";
+import { FooterFadeIn } from "@/components/ui/hover-footer";
 import { BackToTopButton } from "@/components/ui/back-to-top-button";
 
 const socialIcons = {
@@ -61,11 +57,23 @@ export function Footer() {
               Services
             </p>
             <nav aria-label="Footer services" className="mt-4 flex flex-col gap-2">
-              {services.map((service) => (
+              {coreServices.map((service) => (
                 <Link
                   key={service.slug}
                   href={`/services/${service.slug}`}
                   className="w-fit text-sm font-semibold underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current hover:text-[var(--soluven-blue)]"
+                >
+                  {service.name}
+                </Link>
+              ))}
+              <p className="mt-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]">
+                Growth
+              </p>
+              {growthServices.map((service) => (
+                <Link
+                  key={service.slug}
+                  href={`/services/${service.slug}`}
+                  className="w-fit text-sm text-[var(--color-muted)] underline decoration-transparent underline-offset-4 transition-colors hover:decoration-current hover:text-[var(--soluven-blue)]"
                 >
                   {service.name}
                 </Link>
@@ -102,11 +110,8 @@ export function Footer() {
         </div>
       </div>
 
-      {/* ── Dark island: text effect lives here on a contrasting bg ─────── */}
-      {/* section-dark flips all CSS tokens to ink-on-cream automatically  */}
+      {/* Dark island: section-dark flips all CSS tokens to cream-on-ink */}
       <div className="section-dark relative overflow-hidden bg-[var(--color-background)]">
-        {/* Radial gradient backdrop, works properly on dark bg */}
-        <FooterBackgroundGradient />
 
         {/* Bottom bar: social left | copyright right, sits ABOVE the text */}
         <div className="page-container relative z-10 pt-10">
@@ -133,6 +138,12 @@ export function Footer() {
             {/* Copyright, cookie links + back to top */}
             <div className="flex flex-wrap items-center justify-center gap-4">
               <p>© {new Date().getFullYear()} Soluven. All rights reserved.</p>
+              <Link href="/privacy" className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-ink)] hover:decoration-current">
+                Privacy policy
+              </Link>
+              <Link href="/terms" className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-ink)] hover:decoration-current">
+                Terms of use
+              </Link>
               <Link href="/cookie-policy" className="underline decoration-transparent underline-offset-4 transition-colors hover:text-[var(--color-ink)] hover:decoration-current">
                 Cookie policy
               </Link>
@@ -142,20 +153,11 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Giant hover text, full width, contained inside the dark island */}
+        {/* Giant static wordmark, full width */}
         <Link
           href="/"
           aria-label="Soluven home"
-          className="relative z-10 hidden lg:flex h-[26rem] -mt-8 -mb-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--soluven-blue)]"
-        >
-          <TextHoverEffect text="Soluven" />
-        </Link>
-
-        {/* Mobile fallback: plain wordmark instead of the SVG effect */}
-        <Link
-          href="/"
-          aria-label="Soluven home"
-          className="lg:hidden relative z-10 block py-10 text-center text-4xl font-extrabold uppercase tracking-widest text-[var(--color-ink)] opacity-20 select-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--soluven-blue)]"
+          className="relative z-10 block select-none py-10 text-center font-[family-name:var(--font-heading)] text-[clamp(2.5rem,15vw,13rem)] font-extrabold uppercase leading-none tracking-[-0.02em] text-[var(--color-ink)] opacity-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--soluven-blue)] lg:pb-6 lg:pt-4"
         >
           Soluven
         </Link>

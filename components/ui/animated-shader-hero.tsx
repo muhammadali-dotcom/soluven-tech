@@ -301,14 +301,14 @@ export default function AnimatedShaderHero({
               {headline.label && <span className="sr-only">{headline.label}</span>}
               <span
                 aria-hidden={headline.label ? true : undefined}
-                className="block text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--soluven-cream)] anim-up d200"
+                className="block text-balance text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--soluven-cream)] anim-up d200"
               >
                 {headline.line1}
               </span>
               {headline.line2 && (
                 <span
                   aria-hidden={headline.label ? true : undefined}
-                  className="block text-5xl md:text-6xl lg:text-7xl font-bold text-[var(--soluven-blue)] anim-up d400"
+                  className="block text-balance text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--soluven-blue)] anim-up d400"
                 >
                   {headline.line2}
                 </span>

@@ -1,5 +1,4 @@
 import AnimatedShaderHero from "@/components/ui/animated-shader-hero";
-import { Typewriter } from "@/components/ui/Typewriter";
 import { whatsappLink } from "@/lib/constants";
 
 export function Hero() {
@@ -7,19 +6,8 @@ export function Hero() {
     <section className="section-dark relative h-[100svh] w-full overflow-hidden bg-[var(--color-background)]">
       <AnimatedShaderHero
         headline={{
-          line1: (
-            <span>
-              Building{" "}
-              {/* Own line on mobile so the headline height doesn't jump as words change. */}
-              <span className="block sm:inline">
-                <Typewriter
-                  words={["websites", "apps", "software", "solutions"]}
-                />
-              </span>
-            </span>
-          ),
+          line1: "Building websites, online stores and custom software",
           line2: "for the future you see.",
-          label: "Building websites, apps and software for the future you see.",
         }}
         subtitle="We turn ambitious ideas into websites, ecommerce experiences and custom software built to move your business forward."
         buttons={{

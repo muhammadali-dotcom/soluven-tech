@@ -35,7 +35,8 @@ Dual typeface system:
 
 - Content sections use the `page-container` utility (`app/globals.css`): an 896px column set by `--content-max`, with 24px mobile / 64px tablet+ gutters. Change the width there, not per section. Heroes and page intros keep the wider `mx-auto max-w-[1280px] px-6 md:px-[85px]` frame, and the header uses its own `max-w-[1440px]`. Four-across card grids don't fit the 896px column; use 2 columns.
 - Section vertical rhythm: 80–120px desktop, 48–64px mobile.
-- Minimal corner rounding (`rounded-md`/`rounded-lg`), thin (1px) borders, no rounded-card-heavy SaaS look. `rounded-full` is reserved for small circular icon containers, avatars and dots, not for text chips or cards.
+- **Corners:** cards, panels, inputs and dropdowns use `rounded-sm` (4px) at most. Buttons use `rounded-md`. Markers, badges, chips, step numbers and dots are square. Don't use `rounded-lg` or larger, or `rounded-full` (the floating WhatsApp button is the one exception). Thin (1px) borders, no rounded-card-heavy SaaS look.
+- **No hover animations.** Hover changes color or border only: no magnetic/cursor-follow buttons, hover-reveal text, scale or movement.
 - **No drop shadows anywhere.** Elevation is expressed with a 1px `border border-[var(--color-border)]`, never `shadow-*`, `drop-shadow-*` or a custom `shadow-[...]` value.
 - **No glassmorphism.** No `backdrop-blur` over translucent fills. Surfaces sitting above other content (sticky header, dropdowns, dialogs, floating mockup cards) use opaque `--color-background` or `--color-surface`.
 - **No colored left stripes.** Don't use `border-l-*` as an accent. Use a top border, a background tint, or drop the accent.

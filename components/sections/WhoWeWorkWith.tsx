@@ -68,15 +68,15 @@ const industries: { label: string; icon: Icon }[] = [
 
 const accentClasses: Record<Accent, { text: string; ring: string; iconBg: string; pillBg: string }> = {
   blue: {
-    text: "text-[var(--soluven-blue)]",
+    text: "text-[var(--color-blue-deep)]",
     ring: "border-[var(--soluven-blue)]",
-    iconBg: "bg-[var(--soluven-blue)]/15",
+    iconBg: "border border-[var(--soluven-blue)]",
     pillBg: "bg-[var(--soluven-blue)]/15",
   },
   green: {
-    text: "text-[var(--soluven-green)]",
+    text: "text-[var(--color-ink)]",
     ring: "border-[var(--soluven-green)]",
-    iconBg: "bg-[var(--soluven-green)]/15",
+    iconBg: "border border-[var(--soluven-green)]",
     pillBg: "bg-[var(--soluven-green)]/15",
   },
 };
@@ -102,8 +102,7 @@ export function WhoWeWorkWith() {
       </FadeIn>
       <FadeIn delay={0.1}>
         <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
-          From the first idea to the next stage of growth, we build the digital tools your
-          business needs to move forward with confidence.
+          Websites, stores and software designed around how your business actually works.
         </p>
       </FadeIn>
 
@@ -115,14 +114,14 @@ export function WhoWeWorkWith() {
             return (
               <FadeIn key={stage.title} delay={index * 0.05}>
                 <div className="flex h-full flex-col">
-                  <div className="relative z-10 mb-3 flex h-9 w-9 items-center justify-center rounded-full border-2 bg-[var(--color-background)] text-sm font-semibold text-[var(--color-ink)]"
+                  <div className="relative z-10 mb-3 flex h-9 w-9 items-center justify-center border-2 bg-[var(--color-background)] text-sm font-semibold text-[var(--color-ink)]"
                     style={{ borderColor: stage.accent === "blue" ? "var(--soluven-blue)" : "var(--soluven-green)" }}
                   >
                     {stage.number}
                   </div>
                   <Link
                     href="/portfolio"
-                    className={`group relative flex flex-1 flex-col rounded-lg border bg-[var(--color-background)] p-5 transition-colors duration-300 ${
+                    className={`group relative flex flex-1 flex-col rounded-sm border bg-[var(--color-background)] p-5 transition-colors duration-300 ${
                       stage.emphasized
                         ? "border-[var(--soluven-green)]"
                         : stage.accent === "blue"
@@ -131,11 +130,11 @@ export function WhoWeWorkWith() {
                     }`}
                   >
                     {stage.badge && (
-                      <span className="absolute right-4 top-4 max-w-[calc(100%-4.5rem)] truncate rounded-full bg-[var(--soluven-green)]/15 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[var(--soluven-green)]">
+                      <span className="absolute right-4 top-4 max-w-[calc(100%-4.5rem)] truncate bg-[var(--soluven-green)]/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink)]">
                         {stage.badge}
                       </span>
                     )}
-                    <div className={`flex h-10 w-10 items-center justify-center rounded-full ${accent.iconBg}`}>
+                    <div className={`flex h-10 w-10 items-center justify-center ${accent.iconBg}`}>
                       <Icon aria-hidden="true" size={18} className={accent.text} />
                     </div>
                     <h3 className="mt-3 font-[family-name:var(--font-heading)] text-base font-semibold text-[var(--color-ink)]">
@@ -145,11 +144,11 @@ export function WhoWeWorkWith() {
                       {stage.description}
                     </p>
                     <span
-                      className={`mt-3 inline-block w-fit rounded-full px-3 py-1 text-xs font-semibold text-[var(--color-ink)] ${accent.pillBg}`}
+                      className={`mt-3 inline-block w-fit px-3 py-1 text-xs font-semibold text-[var(--color-ink)] ${accent.pillBg}`}
                     >
                       {stage.outcome}
                     </span>
-                    <span className="mt-auto flex h-9 w-9 items-center justify-center self-end rounded-full border border-[var(--color-border)]">
+                    <span className="mt-auto flex h-9 w-9 items-center justify-center self-end border border-[var(--color-border)]">
                       <ArrowRight aria-hidden="true" size={16} className="text-[var(--color-ink)]" />
                     </span>
                   </Link>
@@ -170,7 +169,7 @@ export function WhoWeWorkWith() {
               {industries.map(({ label, icon: Icon }) => (
                 <span
                   key={label}
-                  className="inline-flex items-center gap-2 rounded-full border border-[var(--color-border)] px-4 py-2 text-sm font-semibold text-[var(--color-ink)]"
+                  className="inline-flex items-center gap-2 border border-[var(--color-border)] px-4 py-2 text-sm font-semibold text-[var(--color-ink)]"
                 >
                   <Icon aria-hidden="true" size={16} className="text-[var(--color-muted)]" />
                   {label}
@@ -180,7 +179,7 @@ export function WhoWeWorkWith() {
           </div>
           <Link
             href="/portfolio"
-            className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--soluven-blue)] underline decoration-current underline-offset-4"
+            className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--color-blue-deep)] underline decoration-current underline-offset-4"
           >
             Explore our work
             <ArrowRight aria-hidden="true" size={16} />

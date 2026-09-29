@@ -13,7 +13,7 @@ function TickerContent({ hidden = false }: { hidden?: boolean }) {
           </span>
           <span
             aria-hidden="true"
-            className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--soluven-green)]"
+            className="h-1.5 w-1.5 shrink-0 bg-[var(--soluven-green)]"
           />
         </span>
       ))}

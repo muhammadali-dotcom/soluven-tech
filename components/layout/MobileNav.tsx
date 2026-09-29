@@ -32,7 +32,7 @@ export function MobileNav() {
             className="absolute left-0 right-0 top-full flex flex-col gap-1 border-t border-[var(--color-border)] bg-[var(--color-background)] p-4"
           >
             {navLinks.map((link) =>
-              link.children ? (
+              link.groups ? (
                 <div key={link.href}>
                   <div className="flex items-center justify-between rounded-md px-3 py-2">
                     <Link
@@ -63,15 +63,25 @@ export function MobileNav() {
                   </div>
                   {expanded === link.href && (
                     <div className="ml-3 flex flex-col gap-1 border-l border-[var(--color-border)] pl-3">
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          onClick={() => setOpen(false)}
-                          className="rounded-md px-3 py-2 text-sm font-semibold hover:bg-[var(--color-surface)]"
-                        >
-                          {child.label}
-                        </Link>
+                      {link.groups.map((group) => (
+                        <div key={group.label} role="group" aria-label={group.label} className="flex flex-col gap-1">
+                          <p
+                            aria-hidden="true"
+                            className="px-3 pt-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]"
+                          >
+                            {group.label}
+                          </p>
+                          {group.items.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              onClick={() => setOpen(false)}
+                              className="rounded-md px-3 py-2 text-sm font-semibold hover:bg-[var(--color-surface)]"
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
                       ))}
                     </div>
                   )}

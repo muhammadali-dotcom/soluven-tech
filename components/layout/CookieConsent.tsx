@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { getConsent, saveConsent, type ConsentCategory } from "@/lib/consent";
 
-const DELAY_AFTER_WELCOME_MS = 600;
+const DELAY_AFTER_LOADER_MS = 600;
 // Smaller than the default Button padding so the card stays compact.
 const compactButton = "!px-4 !py-2 text-sm";
 
@@ -26,8 +26,8 @@ const categories: { id: ConsentCategory; name: string; description: string }[] =
 ];
 
 // Non-blocking consent card, bottom-right on desktop and full width on phones.
-// Appears once the welcome popup is closed or skipped, and can be reopened from
-// the footer's "Cookie settings".
+// Appears shortly after the page loader finishes, and can be reopened from the
+// footer's "Cookie settings". The welcome popup waits until this is handled.
 export function CookieConsent() {
   const cardRef = useRef<HTMLElement>(null);
   const [view, setView] = useState<View>("hidden");
@@ -36,12 +36,12 @@ export function CookieConsent() {
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | undefined;
     const show = () => {
-      timer = setTimeout(() => setView("summary"), DELAY_AFTER_WELCOME_MS);
+      timer = setTimeout(() => setView("summary"), DELAY_AFTER_LOADER_MS);
     };
 
     if (!getConsent()) {
-      if (document.documentElement.dataset.welcomeDone) show();
-      else window.addEventListener("soluven:welcome-done", show, { once: true });
+      if (document.documentElement.dataset.loaderDone) show();
+      else window.addEventListener("soluven:loader-done", show, { once: true });
     }
 
     const openSettings = () => {
@@ -54,7 +54,7 @@ export function CookieConsent() {
 
     return () => {
       clearTimeout(timer);
-      window.removeEventListener("soluven:welcome-done", show);
+      window.removeEventListener("soluven:loader-done", show);
       window.removeEventListener("soluven:open-cookie-settings", openSettings);
     };
   }, []);
@@ -86,7 +86,7 @@ export function CookieConsent() {
       ref={cardRef}
       role="region"
       aria-labelledby="cookie-consent-title"
-      className="section-dark fixed inset-x-0 bottom-0 z-50 rounded-t-lg border-t border-[var(--color-border)] bg-[var(--color-background)] p-5 text-[var(--color-ink)] opacity-100 transition-[opacity,translate] duration-300 starting:translate-y-2 starting:opacity-0 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[360px] sm:rounded-lg sm:border"
+      className="section-dark fixed inset-x-0 bottom-0 z-50 rounded-t-sm border-t border-[var(--color-border)] bg-[var(--color-background)] p-5 text-[var(--color-ink)] opacity-100 transition-[opacity,translate] duration-300 starting:translate-y-2 starting:opacity-0 sm:inset-x-auto sm:bottom-6 sm:right-6 sm:w-[360px] sm:rounded-sm sm:border"
     >
       {view === "summary" ? (
         <>

@@ -12,7 +12,7 @@ export const faqItems: FaqItem[] = [
   {
     question: "How is pricing structured?",
     answer:
-      "Most projects are a fixed fee agreed before work starts, based on what you need built. As a guide, websites start from $500, ecommerce stores from $1,200, custom software and web apps from $2,500, mobile apps from $3,000 and logo design from $150. SEO and marketing run monthly from $300. Ongoing support can be set up as a monthly retainer. You'll get an exact quote once we understand the scope.",
+      "Most projects are a fixed fee agreed before work starts, based on what you need built. As a guide, websites start from $500, ecommerce stores from $1,200 and custom software from $2,500. Supporting services: mobile apps from $3,000, branding and logo design from $150, and SEO and marketing monthly from $300. Ongoing support can be set up as a monthly retainer. You'll get an exact quote once we understand the scope.",
   },
   {
     question: "What technology do you build with?",

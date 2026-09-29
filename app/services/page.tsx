@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { services, type ServiceVariant } from "@/data/services";
+import { coreServices, growthServices, type ServiceVariant } from "@/data/services";
 import { serviceIcons } from "@/lib/service-icons";
 import { serviceIllustrations } from "@/components/icons/ServiceIllustrations";
 import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
@@ -22,8 +22,6 @@ const variantClasses: Record<ServiceVariant, string> = {
 };
 
 export default function ServicesPage() {
-  const buildServices = services.filter((service) => service.tier === "build");
-  const growServices = services.filter((service) => service.tier === "grow");
 
   return (
     <>
@@ -46,13 +44,13 @@ export default function ServicesPage() {
 
       <div className="page-container pb-16 md:pb-24">
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-blue)]">
-          Build
+          Core services
         </p>
         <p className="mt-2 max-w-2xl text-base text-[var(--color-text-muted)]">
-          Your main technical capabilities:
+          What we&apos;re best at: the technical work at the heart of every project.
         </p>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
-          {buildServices.map((service) => {
+          {coreServices.map((service) => {
             const Illustration = serviceIllustrations[service.slug];
             return (
               <Reveal key={service.slug} className="h-full">
@@ -95,13 +93,13 @@ export default function ServicesPage() {
         </div>
 
         <p className="mt-16 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-green)]">
-          Grow
+          Growth services
         </p>
         <p className="mt-2 max-w-2xl text-base text-[var(--color-text-muted)]">
-          Capabilities that help a business establish and grow its digital presence:
+          Supporting services that help your product get found and grow.
         </p>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
-          {growServices.map((service, index) => {
+          {growthServices.map((service, index) => {
             const Icon = serviceIcons[service.slug];
             return (
               <Reveal key={service.slug} className="h-full">

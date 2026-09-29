@@ -13,7 +13,7 @@ export function WhatWeBelieve() {
       <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:gap-16">
         <FadeIn>
           <h2 className="font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
-            Your vision deserves{" "}
+            {"Your vision deserves "}
             <span className="bg-[var(--soluven-blue)]/25 px-1">more than a template.</span>
           </h2>
         </FadeIn>

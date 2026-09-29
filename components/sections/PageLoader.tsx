@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Logo } from "@/components/ui/Logo";
 
-// Lets on-load UI (the welcome popup) wait until the loader is out of the way.
+// Lets on-load UI (the cookie banner) wait until the loader is out of the way.
 function announceLoaderDone() {
   document.documentElement.dataset.loaderDone = "1";
   window.dispatchEvent(new Event("soluven:loader-done"));

@@ -4,10 +4,13 @@ import { useEffect, useRef, useState, type FocusEvent } from "react";
 import { Pause, Play, X } from "@phosphor-icons/react";
 import { LinkButton } from "@/components/ui/Button";
 import { popupHooks } from "@/data/popup-hooks";
+import { getConsent } from "@/lib/consent";
 
 const STORAGE_KEY = "soluven-welcome-v3";
 const HIDE_FOR_MS = 7 * 24 * 60 * 60 * 1000;
-const DELAY_AFTER_LOADER_MS = 1000;
+// Share of the scrollable height a visitor must pass before the popup can open.
+const SCROLL_TRIGGER = 0.45;
+const OPEN_DELAY_MS = 800;
 const ROTATE_MS = 6000;
 
 function dismissedRecently(): boolean {
@@ -20,13 +23,6 @@ function dismissedRecently(): boolean {
   }
 }
 
-// Tells the cookie banner the welcome popup is finished (closed or skipped),
-// so the two never appear at the same time.
-function markWelcomeDone() {
-  document.documentElement.dataset.welcomeDone = "1";
-  window.dispatchEvent(new Event("soluven:welcome-done"));
-}
-
 function rememberDismissal() {
   try {
     localStorage.setItem(STORAGE_KEY, String(Date.now()));
@@ -36,32 +32,47 @@ function rememberDismissal() {
 }
 
 // Welcome popup: rotates a few real, sourced insights, each with one link, and
-// never asks for anything. Shown after the page loader, at most once a week,
-// never on /contact.
+// never asks for anything. Shown only once the visitor has scrolled 45% of the
+// page and the cookie banner has been handled, at most once a week, never on
+// /contact.
 export function WelcomePopup() {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
 
-  // Decided once per full page load, so it can't pop up over the cookie banner
-  // after a later client-side navigation.
+  // Decided once per full page load, so a later client-side navigation can't
+  // bring it back.
   useEffect(() => {
-    if (window.location.pathname === "/contact" || dismissedRecently()) {
-      markWelcomeDone();
-      return;
-    }
+    if (window.location.pathname === "/contact" || dismissedRecently()) return;
 
+    let scrolled = false;
+    let consented = getConsent() !== null;
     let timer: ReturnType<typeof setTimeout> | undefined;
-    const schedule = () => {
-      timer = setTimeout(() => setOpen(true), DELAY_AFTER_LOADER_MS);
+
+    const tryOpen = () => {
+      if (!scrolled || !consented || timer) return;
+      timer = setTimeout(() => setOpen(true), OPEN_DELAY_MS);
     };
 
-    if (document.documentElement.dataset.loaderDone) {
-      schedule();
-      return () => clearTimeout(timer);
-    }
-    window.addEventListener("soluven:loader-done", schedule, { once: true });
+    const onScroll = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollable <= 0 || window.scrollY / scrollable < SCROLL_TRIGGER) return;
+      scrolled = true;
+      window.removeEventListener("scroll", onScroll);
+      tryOpen();
+    };
+
+    const onConsent = () => {
+      consented = true;
+      tryOpen();
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    if (!consented) window.addEventListener("soluven:consent-changed", onConsent, { once: true });
+    onScroll();
+
     return () => {
-      window.removeEventListener("soluven:loader-done", schedule);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("soluven:consent-changed", onConsent);
       clearTimeout(timer);
     };
   }, []);
@@ -81,12 +92,11 @@ export function WelcomePopup() {
       onClose={() => {
         rememberDismissal();
         setOpen(false);
-        markWelcomeDone();
       }}
       onClick={(event) => {
         if (event.target === dialogRef.current) close();
       }}
-      className="section-dark m-auto w-[min(520px,calc(100vw-2rem))] rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] p-0 text-[var(--color-ink)] opacity-100 transition-opacity duration-200 backdrop:bg-[var(--soluven-ink)]/55 starting:opacity-0 max-sm:mb-0 max-sm:mt-auto max-sm:w-full max-sm:max-w-full max-sm:rounded-b-none"
+      className="section-dark m-auto w-[min(520px,calc(100vw-2rem))] rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] p-0 text-[var(--color-ink)] opacity-100 transition-opacity duration-200 backdrop:bg-[var(--soluven-ink)]/55 starting:opacity-0 max-sm:mb-0 max-sm:mt-auto max-sm:w-full max-sm:max-w-full max-sm:rounded-b-none"
     >
       <div className="relative p-6 md:p-8">
         <button

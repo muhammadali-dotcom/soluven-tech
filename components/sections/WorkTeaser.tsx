@@ -27,7 +27,7 @@ export function WorkTeaser() {
       <div className="mt-12 grid gap-6 sm:grid-cols-2">
         {portfolioProjects.filter((project) => project.featured).map((project) => (
           <FadeIn key={project.slug} delay={0.05}>
-            <div className="group flex h-full flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
+            <div className="group flex h-full flex-col overflow-hidden rounded-sm border border-[var(--color-border)] bg-[var(--color-surface)]">
               <div className="relative aspect-[16/10] w-full overflow-hidden">
                 {project.image ? (
                   <Image

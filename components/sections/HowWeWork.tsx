@@ -60,7 +60,7 @@ export function HowWeWork({
             <FadeIn key={step.title} delay={index * 0.05}>
               <div className="relative">
                 <span
-                  className="absolute -left-10 top-0 flex h-8 w-8 -translate-x-1/2 items-center justify-center rounded-full border-2 border-[var(--soluven-blue)] bg-[var(--color-background)] font-[family-name:var(--font-heading)] text-xs font-bold text-[var(--soluven-blue)] sm:-left-14"
+                  className="absolute -left-10 top-0 flex h-8 w-8 -translate-x-1/2 items-center justify-center border-2 border-[var(--soluven-blue)] bg-[var(--color-background)] font-[family-name:var(--font-heading)] text-xs font-bold text-[var(--color-blue-deep)] sm:-left-14"
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>

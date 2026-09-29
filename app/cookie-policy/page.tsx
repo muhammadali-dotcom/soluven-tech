@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
 import { contactEmail, siteConfig } from "@/lib/constants";
 import { CookieSettingsButton } from "@/components/layout/CookieSettingsButton";
@@ -71,7 +72,12 @@ export default function CookiePolicyPage() {
           <h2 className={headingClasses}>How we use them</h2>
           <p className={bodyClasses}>
             We keep this to a minimum. Everything we store today is necessary for the site to work
-            the way you&apos;d expect, and none of it is used to track you or show you ads.
+            the way you&apos;d expect, and none of it is used to track you or show you ads. For how we
+            handle the personal details you send us, see our{" "}
+            <Link href="/privacy" className="font-semibold text-[var(--color-ink)] underline underline-offset-4">
+              privacy policy
+            </Link>
+            .
           </p>
         </div>
 

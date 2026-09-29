@@ -209,79 +209,8 @@ export const services: Service[] = [
     },
   },
   {
-    slug: "mobile-app-development",
-    name: "Mobile app development",
-    heading: "Apps built for daily use.",
-    summary: "Apps your customers actually want to use.",
-    description:
-      "Native and cross-platform mobile apps designed for daily use, not just a launch-day demo.",
-    included: ["Android", "iOS", "Cross-platform", "Customer apps", "Business apps"],
-    builds: [
-      {
-        problem: "Our customers live on their phones. We don't.",
-        name: "iOS and Android apps",
-        how: "Native apps that feel at home on each platform, fast and familiar.",
-      },
-      {
-        problem: "We need both platforms but can't fund two builds.",
-        name: "Cross-platform apps",
-        how: "One codebase for iOS and Android, so you launch on both together.",
-      },
-      {
-        problem: "Customers use us once and forget us.",
-        name: "Customer apps",
-        how: "Apps for booking, ordering or loyalty that give people a reason to come back.",
-      },
-      {
-        problem: "My team runs everything through calls and messages.",
-        name: "Business apps",
-        how: "Mobile tools for your staff in the field, on the shop floor or on the move.",
-      },
-    ],
-    process: [
-      {
-        title: "Pin down the idea",
-        description:
-          "We turn your idea into the core screens and the one job the app must do really well.",
-      },
-      {
-        title: "Tap through it",
-        description:
-          "You get a clickable prototype to try on your own phone before development starts.",
-      },
-      {
-        title: "Build in rounds",
-        description:
-          "We build in stages and share test versions, so you see progress and give feedback early.",
-      },
-      {
-        title: "Launch to the stores",
-        description:
-          "We prepare the listings and take the App Store and Google Play submission off your plate.",
-      },
-    ],
-    ctaLabel: "Build your app",
-    variant: "green",
-    whoItsFor:
-      "Teams taking a product mobile-first or extending an existing platform to iOS and Android.",
-    featured: true,
-    tier: "build",
-    hero: {
-      eyebrow: "Mobile app development",
-      headline: ["Put your business", "in their pocket,", "every day"],
-      description:
-        "Apps your customers open without thinking twice, with fast screens and flows that feel obvious. Built for your customers, your team, or both.",
-      facts: [
-        { title: "iOS and Android", label: "Both major platforms" },
-        { title: "Native or cross-platform", label: "Chosen per project" },
-        { title: "Customer apps", label: "Built for repeat use" },
-        { title: "Business apps", label: "Tools your team relies on" },
-      ],
-    },
-  },
-  {
     slug: "software-development",
-    name: "Software development",
+    name: "Custom software",
     heading: "Software shaped around your work.",
     summary: "Software designed around your business.",
     description:
@@ -343,7 +272,7 @@ export const services: Service[] = [
     featured: true,
     tier: "build",
     hero: {
-      eyebrow: "Software development",
+      eyebrow: "Custom software",
       headline: ["Stop running", "your business on", "copy and paste"],
       description:
         "Custom products and internal tools that replace spreadsheets and manual workarounds with systems built around the way your team actually works.",
@@ -356,8 +285,78 @@ export const services: Service[] = [
     },
   },
   {
+    slug: "mobile-app-development",
+    name: "Mobile app development",
+    heading: "Apps built for daily use.",
+    summary: "Apps your customers actually want to use.",
+    description:
+      "Native and cross-platform mobile apps designed for daily use, not just a launch-day demo.",
+    included: ["Android", "iOS", "Cross-platform", "Customer apps", "Business apps"],
+    builds: [
+      {
+        problem: "Our customers live on their phones. We don't.",
+        name: "iOS and Android apps",
+        how: "Native apps that feel at home on each platform, fast and familiar.",
+      },
+      {
+        problem: "We need both platforms but can't fund two builds.",
+        name: "Cross-platform apps",
+        how: "One codebase for iOS and Android, so you launch on both together.",
+      },
+      {
+        problem: "Customers use us once and forget us.",
+        name: "Customer apps",
+        how: "Apps for booking, ordering or loyalty that give people a reason to come back.",
+      },
+      {
+        problem: "My team runs everything through calls and messages.",
+        name: "Business apps",
+        how: "Mobile tools for your staff in the field, on the shop floor or on the move.",
+      },
+    ],
+    process: [
+      {
+        title: "Pin down the idea",
+        description:
+          "We turn your idea into the core screens and the one job the app must do really well.",
+      },
+      {
+        title: "Tap through it",
+        description:
+          "You get a clickable prototype to try on your own phone before development starts.",
+      },
+      {
+        title: "Build in rounds",
+        description:
+          "We build in stages and share test versions, so you see progress and give feedback early.",
+      },
+      {
+        title: "Launch to the stores",
+        description:
+          "We prepare the listings and take the App Store and Google Play submission off your plate.",
+      },
+    ],
+    ctaLabel: "Build your app",
+    variant: "green",
+    whoItsFor:
+      "Teams taking a product mobile-first or extending an existing platform to iOS and Android.",
+    tier: "grow",
+    hero: {
+      eyebrow: "Mobile app development",
+      headline: ["Put your business", "in their pocket,", "every day"],
+      description:
+        "Apps your customers open without thinking twice, with fast screens and flows that feel obvious. Built for your customers, your team, or both.",
+      facts: [
+        { title: "iOS and Android", label: "Both major platforms" },
+        { title: "Native or cross-platform", label: "Chosen per project" },
+        { title: "Customer apps", label: "Built for repeat use" },
+        { title: "Business apps", label: "Tools your team relies on" },
+      ],
+    },
+  },
+  {
     slug: "logo-design",
-    name: "Logo designing",
+    name: "Branding & logo design",
     heading: "A mark that carries the brand.",
     summary: "Distinctive logos built to work everywhere your brand shows up.",
     description:
@@ -408,7 +407,7 @@ export const services: Service[] = [
       "New businesses and rebrands that need a mark they can build a visual identity around.",
     tier: "grow",
     hero: {
-      eyebrow: "Logo design",
+      eyebrow: "Branding & logo design",
       headline: ["Finally look like", "the business you've", "worked so hard to build"],
       description:
         "You've put years into your business. We design a distinctive mark that shows it, and holds up everywhere from a favicon to a storefront sign.",
@@ -417,71 +416,6 @@ export const services: Service[] = [
         { title: "Colour and type", label: "A pairing that fits" },
         { title: "Usage guidelines", label: "Consistent from day one" },
         { title: "Built to scale", label: "Web, product and print" },
-      ],
-    },
-  },
-  {
-    slug: "digital-marketing",
-    name: "Digital marketing",
-    heading: "Marketing tied to real outcomes.",
-    summary: "Campaigns and funnels built around measurable results.",
-    description:
-      "Digital marketing built around measurable outcomes: traffic, leads, and conversions tied to a clear funnel, not vanity metrics.",
-    included: ["Campaign strategy", "Landing page funnels", "Performance tracking"],
-    builds: [
-      {
-        problem: "We boost posts and hope for the best.",
-        name: "Campaign strategy",
-        how: "A plan built from your goals, audience and budget before anything goes live.",
-      },
-      {
-        problem: "Clicks come in, but enquiries don't.",
-        name: "Landing page funnels",
-        how: "Pages built for each campaign, so paid traffic lands somewhere designed to convert.",
-      },
-      {
-        problem: "I can't tell which ads are actually working.",
-        name: "Performance tracking",
-        how: "Tracking and plain-language reports that show what each channel brings in.",
-      },
-    ],
-    process: [
-      {
-        title: "Set the goal",
-        description:
-          "We agree what success looks like (leads, sales or bookings) and what you are comfortable spending.",
-      },
-      {
-        title: "Build the funnel",
-        description:
-          "Campaign plan, audiences and landing pages, prepared for you to approve.",
-      },
-      {
-        title: "Launch and watch",
-        description:
-          "Campaigns go live, and we watch early results closely and adjust what underperforms.",
-      },
-      {
-        title: "Report and improve",
-        description:
-          "Plain-language reports on what each channel brought in, and what we change next.",
-      },
-    ],
-    ctaLabel: "Plan your campaign",
-    variant: "ink",
-    whoItsFor:
-      "Businesses that need marketing efforts connected to their actual website and conversion goals.",
-    tier: "grow",
-    hero: {
-      eyebrow: "Digital marketing",
-      headline: ["Stop guessing", "where your", "ad money goes"],
-      description:
-        "Campaigns planned around a clear funnel, with landing pages built to convert and tracking that shows exactly what each channel brings in.",
-      facts: [
-        { title: "Campaign strategy", label: "Goals before spend" },
-        { title: "Landing page funnels", label: "Traffic with a destination" },
-        { title: "Performance tracking", label: "Results you can read" },
-        { title: "Tied to conversions", label: "Leads over vanity metrics" },
       ],
     },
   },
@@ -551,6 +485,71 @@ export const services: Service[] = [
     },
   },
   {
+    slug: "digital-marketing",
+    name: "Digital marketing",
+    heading: "Marketing tied to real outcomes.",
+    summary: "Campaigns and funnels built around measurable results.",
+    description:
+      "Digital marketing built around measurable outcomes: traffic, leads, and conversions tied to a clear funnel, not vanity metrics.",
+    included: ["Campaign strategy", "Landing page funnels", "Performance tracking"],
+    builds: [
+      {
+        problem: "We boost posts and hope for the best.",
+        name: "Campaign strategy",
+        how: "A plan built from your goals, audience and budget before anything goes live.",
+      },
+      {
+        problem: "Clicks come in, but enquiries don't.",
+        name: "Landing page funnels",
+        how: "Pages built for each campaign, so paid traffic lands somewhere designed to convert.",
+      },
+      {
+        problem: "I can't tell which ads are actually working.",
+        name: "Performance tracking",
+        how: "Tracking and plain-language reports that show what each channel brings in.",
+      },
+    ],
+    process: [
+      {
+        title: "Set the goal",
+        description:
+          "We agree what success looks like (leads, sales or bookings) and what you are comfortable spending.",
+      },
+      {
+        title: "Build the funnel",
+        description:
+          "Campaign plan, audiences and landing pages, prepared for you to approve.",
+      },
+      {
+        title: "Launch and watch",
+        description:
+          "Campaigns go live, and we watch early results closely and adjust what underperforms.",
+      },
+      {
+        title: "Report and improve",
+        description:
+          "Plain-language reports on what each channel brought in, and what we change next.",
+      },
+    ],
+    ctaLabel: "Plan your campaign",
+    variant: "ink",
+    whoItsFor:
+      "Businesses that need marketing efforts connected to their actual website and conversion goals.",
+    tier: "grow",
+    hero: {
+      eyebrow: "Digital marketing",
+      headline: ["Stop guessing", "where your", "ad money goes"],
+      description:
+        "Campaigns planned around a clear funnel, with landing pages built to convert and tracking that shows exactly what each channel brings in.",
+      facts: [
+        { title: "Campaign strategy", label: "Goals before spend" },
+        { title: "Landing page funnels", label: "Traffic with a destination" },
+        { title: "Performance tracking", label: "Results you can read" },
+        { title: "Tied to conversions", label: "Leads over vanity metrics" },
+      ],
+    },
+  },
+  {
     slug: "social-media-marketing",
     name: "Social media marketing",
     heading: "A presence that stays consistent.",
@@ -615,3 +614,8 @@ export const services: Service[] = [
     },
   },
 ];
+
+/** The three services we lead with everywhere. */
+export const coreServices = services.filter((service) => service.tier === "build");
+/** Supporting services that help a product get found and grow. */
+export const growthServices = services.filter((service) => service.tier === "grow");

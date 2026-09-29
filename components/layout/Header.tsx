@@ -9,7 +9,6 @@ import { navLinks } from "./nav-links";
 import { MobileNav } from "./MobileNav";
 import { Logo } from "@/components/ui/Logo";
 import { LinkButton } from "@/components/ui/Button";
-import { MagneticButton } from "@/components/motion/MagneticButton";
 
 const anchorLinks = navLinks.filter((link) => link.href.startsWith("/#"));
 
@@ -87,7 +86,7 @@ export function Header() {
 
         <nav aria-label="Primary" className="hidden gap-10 text-[1.05rem] lg:flex">
           {navLinks.map((link) =>
-            link.children ? (
+            link.groups ? (
               <div
                 key={link.href}
                 className="relative"
@@ -123,22 +122,37 @@ export function Header() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.15 }}
-                      className="absolute left-0 top-full z-50 mt-3 w-64 rounded-lg border border-[var(--color-border)] bg-[var(--color-background)] p-2"
+                      className="absolute left-0 top-full z-50 mt-3 w-64 rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] p-2"
                     >
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.href}
-                          href={child.href}
-                          role="menuitem"
-                          onClick={() => setOpenDropdown(null)}
-                          className={`block rounded-md px-3 py-2 text-sm font-semibold transition-colors hover:bg-[var(--color-surface)] ${
-                            pathname === child.href
-                              ? "text-[var(--soluven-blue)]"
-                              : "text-[var(--color-ink)]"
-                          }`}
+                      {link.groups.map((group, groupIndex) => (
+                        <div
+                          key={group.label}
+                          role="group"
+                          aria-label={group.label}
+                          className={groupIndex > 0 ? "mt-2 border-t border-[var(--color-border)] pt-2" : ""}
                         >
-                          {child.label}
-                        </Link>
+                          <p
+                            aria-hidden="true"
+                            className="px-3 pb-1 pt-2 text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--color-muted)]"
+                          >
+                            {group.label}
+                          </p>
+                          {group.items.map((child) => (
+                            <Link
+                              key={child.href}
+                              href={child.href}
+                              role="menuitem"
+                              onClick={() => setOpenDropdown(null)}
+                              className={`block rounded-md px-3 py-2 text-sm font-semibold transition-colors hover:bg-[var(--color-surface)] ${
+                                pathname === child.href
+                                  ? "text-[var(--soluven-blue)]"
+                                  : "text-[var(--color-ink)]"
+                              }`}
+                            >
+                              {child.label}
+                            </Link>
+                          ))}
+                        </div>
                       ))}
                     </motion.div>
                   )}
@@ -161,11 +175,9 @@ export function Header() {
 
         <div className="hidden items-center gap-6 lg:flex">
           <span aria-hidden="true" className="h-6 w-px bg-[var(--color-border)]" />
-          <MagneticButton>
-            <LinkButton href="/contact" variant="primary" className="px-6 py-2.5 text-base">
-              Start a project
-            </LinkButton>
-          </MagneticButton>
+          <LinkButton href="/contact" variant="primary" className="px-6 py-2.5 text-base">
+            Start a project
+          </LinkButton>
         </div>
 
         <MobileNav />

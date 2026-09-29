@@ -1,21 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
 import {
-  Buildings,
+  CaretDown,
   ChartBar,
   Check,
-  Clock,
   Code,
-  CurrencyDollar,
   DeviceMobile,
   DotsThree,
-  EnvelopeSimple,
   LockKey,
   Monitor,
-  PencilSimpleLine,
   ShoppingCartSimple,
-  User,
 } from "@phosphor-icons/react";
 import type { Icon } from "@phosphor-icons/react";
 import { Button } from "@/components/ui/Button";
@@ -52,8 +48,8 @@ const timelineOptions = [
 ];
 
 const fieldClasses =
-  "min-h-[52px] w-full rounded-xl border border-[var(--color-border)] bg-[#FFFFFF] px-12 py-3 text-sm text-[#14272B] transition-colors placeholder:text-[var(--color-muted)] hover:border-[var(--color-muted)] focus:border-[#63CBF8] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#14272B] aria-[invalid=true]:border-red-700";
-const labelClasses = "text-sm font-bold text-[#14272B]";
+  "min-h-[52px] w-full rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-sm text-[var(--color-ink)] transition-colors placeholder:text-[var(--color-muted)] hover:border-[var(--color-muted)] focus:border-[var(--soluven-blue)] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-ink)] aria-[invalid=true]:border-red-700";
+const labelClasses = "text-sm font-bold text-[var(--color-ink)]";
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
@@ -143,24 +139,17 @@ export function ContactForm() {
           <label htmlFor="name" className={labelClasses}>
             Name
           </label>
-          <div className="relative">
-            <User
-              aria-hidden="true"
-              size={20}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]"
-            />
-            <input
-              id="name"
-              name="name"
-              aria-invalid={Boolean(errors.name)}
-              aria-describedby={errors.name ? "name-error" : undefined}
-              type="text"
-              required
-              placeholder="Your name"
-              maxLength={100}
-              className={fieldClasses}
-            />
-          </div>
+          <input
+            id="name"
+            name="name"
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? "name-error" : undefined}
+            type="text"
+            required
+            placeholder="Your name"
+            maxLength={100}
+            className={fieldClasses}
+          />
           <FieldError id="name-error" message={errors.name} />
         </div>
 
@@ -168,24 +157,17 @@ export function ContactForm() {
           <label htmlFor="email" className={labelClasses}>
             Email
           </label>
-          <div className="relative">
-            <EnvelopeSimple
-              aria-hidden="true"
-              size={20}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]"
-            />
-            <input
-              id="email"
-              name="email"
-              aria-invalid={Boolean(errors.email)}
-              aria-describedby={errors.email ? "email-error" : undefined}
-              type="email"
-              required
-              placeholder="you@company.com"
-              maxLength={254}
-              className={fieldClasses}
-            />
-          </div>
+          <input
+            id="email"
+            name="email"
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? "email-error" : undefined}
+            type="email"
+            required
+            placeholder="you@company.com"
+            maxLength={254}
+            className={fieldClasses}
+          />
           <FieldError id="email-error" message={errors.email} />
         </div>
       </div>
@@ -194,37 +176,30 @@ export function ContactForm() {
         <label htmlFor="company" className={labelClasses}>
           Company <span className="font-normal text-[var(--color-muted)]">(optional)</span>
         </label>
-        <div className="relative">
-          <Buildings
-            aria-hidden="true"
-            size={20}
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]"
-          />
-          <input
-            id="company"
-            name="company"
-            type="text"
-            placeholder="Company or organization"
-            className={fieldClasses}
-          />
-        </div>
+        <input
+          id="company"
+          name="company"
+          type="text"
+          placeholder="Company or organization"
+          className={fieldClasses}
+        />
       </div>
 
       <div className="flex flex-col gap-3">
         <span className={labelClasses}>
           What do you need? <span className="font-normal text-[var(--color-muted)]">(optional)</span>
         </span>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3">
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {projectTypes.map(({ label, value, Icon }) => {
             const selected = projectType.includes(value);
 
             return (
             <label
               key={value}
-              className={`flex min-h-[52px] cursor-pointer items-center justify-between gap-3 rounded-xl border px-4 py-3 text-sm font-semibold transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-[#14272B] ${
+              className={`flex min-h-[52px] cursor-pointer items-center justify-between gap-3 rounded-sm border px-4 py-3 text-sm font-semibold text-[var(--color-ink)] transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-[var(--color-ink)] ${
                 selected
-                  ? "border-[#63CBF8] bg-[#DDF5FF]"
-                  : "border-[var(--color-border)] bg-[#FFFFFF] hover:border-[var(--color-muted)]"
+                  ? "border-[var(--soluven-blue)] bg-[var(--soluven-blue)]/15"
+                  : "border-[var(--color-border)] bg-[var(--color-background)] hover:border-[var(--color-muted)]"
               }`}
             >
               <span className="flex items-center gap-3">
@@ -234,11 +209,11 @@ export function ContactForm() {
                   onChange={() => toggleProjectType(value)}
                   className="sr-only"
                 />
-                <Icon aria-hidden="true" size={22} className="text-[#14272B]" />
+                <Icon aria-hidden="true" size={22} className="text-[var(--color-ink)]" />
                 <span>{label}</span>
               </span>
               {selected && (
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#63CBF8] text-[#14272B]">
+                <span className="flex h-5 w-5 items-center justify-center bg-[var(--soluven-blue)] text-[var(--soluven-ink)]">
                   <Check aria-hidden="true" size={13} weight="bold" />
                   <span className="sr-only">Selected</span>
                 </span>
@@ -253,24 +228,17 @@ export function ContactForm() {
         <label htmlFor="message" className={labelClasses}>
           Tell us about your project
         </label>
-        <div className="relative">
-          <PencilSimpleLine
-            aria-hidden="true"
-            size={20}
-            className="absolute left-4 top-4 text-[var(--color-muted)]"
-          />
-          <textarea
-            id="message"
-            name="message"
-            aria-invalid={Boolean(errors.message)}
-            aria-describedby={errors.message ? "message-error" : undefined}
-            rows={5}
-            required
-            placeholder="What are you building, improving or trying to fix?"
-            maxLength={5000}
-            className={`${fieldClasses} resize-y pl-12`}
-          />
-        </div>
+        <textarea
+          id="message"
+          name="message"
+          aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? "message-error" : undefined}
+          rows={5}
+          required
+          placeholder="What are you building, improving or trying to fix?"
+          maxLength={5000}
+          className={`${fieldClasses} resize-y`}
+        />
         <FieldError id="message-error" message={errors.message} />
       </div>
 
@@ -280,16 +248,11 @@ export function ContactForm() {
             Budget range <span className="font-normal text-[var(--color-muted)]">(optional)</span>
           </label>
           <div className="relative">
-            <CurrencyDollar
-              aria-hidden="true"
-              size={20}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]"
-            />
             <select
               id="budget"
               name="budget"
               defaultValue=""
-              className={`${fieldClasses} appearance-none`}
+              className={`${fieldClasses} appearance-none pr-10`}
             >
               <option value="" disabled>
                 {budgetOptions[0]}
@@ -300,6 +263,11 @@ export function ContactForm() {
                 </option>
               ))}
             </select>
+            <CaretDown
+              aria-hidden="true"
+              size={16}
+              className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]"
+            />
           </div>
         </div>
 
@@ -308,16 +276,11 @@ export function ContactForm() {
             Ideal timeline <span className="font-normal text-[var(--color-muted)]">(optional)</span>
           </label>
           <div className="relative">
-            <Clock
-              aria-hidden="true"
-              size={20}
-              className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]"
-            />
             <select
               id="timeline"
               name="timeline"
               defaultValue=""
-              className={`${fieldClasses} appearance-none`}
+              className={`${fieldClasses} appearance-none pr-10`}
             >
               <option value="" disabled>
                 {timelineOptions[0]}
@@ -328,6 +291,11 @@ export function ContactForm() {
                 </option>
               ))}
             </select>
+            <CaretDown
+              aria-hidden="true"
+              size={16}
+              className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[var(--color-muted)]"
+            />
           </div>
         </div>
       </div>
@@ -336,20 +304,26 @@ export function ContactForm() {
         <Button
           type="submit"
           disabled={status === "submitting"}
-          className="w-full min-h-[56px] bg-[#63CBF8] px-5 py-3 text-base font-bold text-[#14272B] shadow-[0_10px_22px_rgba(20,39,43,0.12)] transition-all hover:-translate-y-0.5 hover:bg-[#4ABFEF] hover:shadow-[0_14px_28px_rgba(20,39,43,0.16)] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+          className="w-full min-h-[56px] px-5 py-3 text-base font-bold disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "submitting" ? "Sending..." : "Send my project brief →"}
         </Button>
         <p className="mt-4 flex items-center justify-center gap-2 text-sm font-semibold text-[var(--color-text-muted)]">
           <LockKey aria-hidden="true" size={16} />
-          Your details stay private. No spam.
+          <span>
+            Your details stay private. No spam. See our{" "}
+            <Link href="/privacy" className="underline underline-offset-4">
+              privacy policy
+            </Link>
+            .
+          </span>
         </p>
       </div>
 
       {status === "success" && (
         <p
           role="status"
-          className="rounded-md border border-[var(--color-green)] bg-[var(--color-green)]/20 px-3 py-2.5 text-sm font-semibold"
+          className="rounded-sm border border-[var(--color-green)] bg-[var(--color-green)]/20 px-3 py-2.5 text-sm font-semibold"
         >
           Thanks. We&apos;ll get back to you soon.
         </p>
@@ -357,7 +331,7 @@ export function ContactForm() {
       {(status === "error" || status === "rate-limited") && (
         <FormSubmitError
           rateLimited={status === "rate-limited"}
-          className="rounded-md border border-red-700/30 bg-red-700/10 px-3 py-2.5 text-sm font-semibold text-red-700"
+          className="rounded-sm border border-red-700/30 bg-red-700/10 px-3 py-2.5 text-sm font-semibold text-red-700"
         />
       )}
     </form>
