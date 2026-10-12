@@ -30,7 +30,7 @@ const manrope = localFont({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   ...buildMetadata({
-    title: "Building solutions for the future you see",
+    title: "Websites, online stores and custom software",
     description:
       "Soluven builds high-performing websites, ecommerce experiences and custom software for ambitious businesses.",
   }),

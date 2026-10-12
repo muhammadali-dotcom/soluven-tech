@@ -8,12 +8,12 @@ function TickerContent({ hidden = false }: { hidden?: boolean }) {
     >
       {items.map((item, index) => (
         <span key={index} className="flex items-center gap-8">
-          <span className="font-[family-name:var(--font-heading)] text-base font-semibold uppercase tracking-wide text-[var(--color-ink)] sm:text-xl">
+          <span className="font-[family-name:var(--font-heading)] text-base font-semibold uppercase tracking-wide text-[var(--soluven-ink)] sm:text-xl">
             {item}
           </span>
           <span
             aria-hidden="true"
-            className="h-1.5 w-1.5 shrink-0 bg-[var(--soluven-green)]"
+            className="h-1.5 w-1.5 shrink-0 bg-[var(--soluven-ink)]"
           />
         </span>
       ))}
@@ -24,7 +24,7 @@ function TickerContent({ hidden = false }: { hidden?: boolean }) {
 export function Marquee() {
   return (
     <div
-      className="overflow-hidden border-y border-[var(--color-border)] bg-[var(--color-background)] py-6"
+      className="overflow-hidden bg-[var(--soluven-blue)] py-6"
     >
       <div className="flex w-max animate-marquee">
         <TickerContent />

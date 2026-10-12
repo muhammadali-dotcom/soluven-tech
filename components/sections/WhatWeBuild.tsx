@@ -3,7 +3,7 @@ import type { ServiceBuild } from "@/data/services";
 
 export function WhatWeBuild({ items }: { items: ServiceBuild[] }) {
   return (
-    <section className="page-container py-20 md:py-28">
+    <section className="page-container py-14 md:py-20 lg:py-28">
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
           What we build

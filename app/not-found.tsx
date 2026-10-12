@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   robots: { index: false },
 };
 
-const headline = ["We build a lot", "of things. This page", "isn't one of them. Yet."];
+const headline = ["This page", "isn't built.", "Yet."];
 
 export default function NotFound() {
   return (
@@ -37,8 +37,9 @@ export default function NotFound() {
           </h1>
 
           <p className="mt-6 max-w-[480px] text-base leading-[1.6] text-[var(--color-text-muted)] md:text-lg">
-            The link may be broken or the page may have moved. If there&apos;s
-            something you wish was here, tell us and we&apos;ll build it.
+            We build a lot of things. This link isn&apos;t one of them. It may be
+            broken or the page may have moved. If there&apos;s something you wish
+            was here, tell us and we&apos;ll build it.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">

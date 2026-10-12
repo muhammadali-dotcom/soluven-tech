@@ -67,7 +67,7 @@ export default function WhySoluvenPage() {
 
       {/* 2. What Makes Us Different */}
       <section className="border-t border-[var(--color-border)] bg-[var(--color-ink)]">
-        <div className="page-container py-20 md:py-28">
+        <div className="page-container py-14 md:py-20 lg:py-28">
           <FadeIn>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-cream)]/50">
               What Makes Us Different
@@ -97,7 +97,7 @@ export default function WhySoluvenPage() {
 
       {/* 3. Our Commitment */}
       <section className="border-t border-[var(--color-border)]">
-        <div className="page-container py-20 md:py-28">
+        <div className="page-container py-14 md:py-20 lg:py-28">
           <div className="grid gap-10 lg:grid-cols-[1fr_1.4fr] lg:gap-20">
             <FadeIn>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">

@@ -85,7 +85,7 @@ export function WhoWeWorkWith() {
   return (
     <section
       aria-labelledby="who-we-work-with-heading"
-      className="page-container py-20 md:py-28"
+      className="page-container py-14 md:py-20 lg:py-28"
     >
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
@@ -114,7 +114,7 @@ export function WhoWeWorkWith() {
             return (
               <FadeIn key={stage.title} delay={index * 0.05}>
                 <div className="flex h-full flex-col">
-                  <div className="relative z-10 mb-3 flex h-9 w-9 items-center justify-center border-2 bg-[var(--color-background)] text-sm font-semibold text-[var(--color-ink)]"
+                  <div className="relative z-10 mb-3 hidden h-9 w-9 sm:flex items-center justify-center border-2 bg-[var(--color-background)] text-sm font-semibold text-[var(--color-ink)]"
                     style={{ borderColor: stage.accent === "blue" ? "var(--soluven-blue)" : "var(--soluven-green)" }}
                   >
                     {stage.number}

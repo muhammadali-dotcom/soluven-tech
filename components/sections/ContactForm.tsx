@@ -48,7 +48,7 @@ const timelineOptions = [
 ];
 
 const fieldClasses =
-  "min-h-[52px] w-full rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-sm text-[var(--color-ink)] transition-colors placeholder:text-[var(--color-muted)] hover:border-[var(--color-muted)] focus:border-[var(--soluven-blue)] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-ink)] aria-[invalid=true]:border-red-700";
+  "min-h-[52px] w-full rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 text-sm text-[var(--color-ink)] transition-colors placeholder:text-[var(--color-muted)] hover:border-[var(--color-muted)] focus:border-[var(--soluven-blue)] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-ink)] aria-[invalid=true]:border-[var(--color-error)]";
 const labelClasses = "text-sm font-bold text-[var(--color-ink)]";
 
 export function ContactForm() {
@@ -189,7 +189,7 @@ export function ContactForm() {
         <span className={labelClasses}>
           What do you need? <span className="font-normal text-[var(--color-muted)]">(optional)</span>
         </span>
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+        <div className="grid grid-cols-2 gap-2">
           {projectTypes.map(({ label, value, Icon }) => {
             const selected = projectType.includes(value);
 
@@ -331,7 +331,7 @@ export function ContactForm() {
       {(status === "error" || status === "rate-limited") && (
         <FormSubmitError
           rateLimited={status === "rate-limited"}
-          className="rounded-sm border border-red-700/30 bg-red-700/10 px-3 py-2.5 text-sm font-semibold text-red-700"
+          className="rounded-sm border border-[var(--color-error)]/30 bg-[var(--color-error)]/10 px-3 py-2.5 text-sm font-semibold text-[var(--color-error)]"
         />
       )}
     </form>

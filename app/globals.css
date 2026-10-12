@@ -24,6 +24,8 @@
   --color-blue-hover: color-mix(in srgb, var(--soluven-blue) 80%, var(--soluven-ink));
   /* Blue deep enough for large text on cream (4.2:1); brand blue alone is 1.9:1. */
   --color-blue-deep: color-mix(in srgb, var(--soluven-blue) 55%, var(--soluven-ink));
+  /* Form errors only. About 6:1 on cream; .section-dark swaps in a lighter red. */
+  --color-error: #b42318;
 }
 
 .section-dark {
@@ -34,6 +36,7 @@
   --color-text-muted: color-mix(in srgb, var(--soluven-cream) 65%, transparent);
   --color-border: color-mix(in srgb, var(--soluven-cream) 15%, transparent);
   --color-surface: color-mix(in srgb, var(--soluven-cream) 6%, var(--soluven-ink));
+  --color-error: #f97066;
 }
 
 @theme inline {
@@ -52,6 +55,8 @@
 }
 
 html {
+  /* Global scale: every rem-based size (text, spacing, cards) follows this. */
+  font-size: 87.5%;
   scroll-behavior: smooth;
 }
 
@@ -87,7 +92,7 @@ body {
   background: var(--color-background);
   color: var(--color-ink);
   font-family: var(--font-body), Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 1rem;
   overflow-x: hidden;
 }
 

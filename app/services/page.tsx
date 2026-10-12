@@ -49,7 +49,7 @@ export default function ServicesPage() {
         <p className="mt-2 max-w-2xl text-base text-[var(--color-text-muted)]">
           What we&apos;re best at: the technical work at the heart of every project.
         </p>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 sm:[&>*:last-child:nth-child(odd)]:col-span-2">
           {coreServices.map((service) => {
             const Illustration = serviceIllustrations[service.slug];
             return (
@@ -98,7 +98,7 @@ export default function ServicesPage() {
         <p className="mt-2 max-w-2xl text-base text-[var(--color-text-muted)]">
           Supporting services that help your product get found and grow.
         </p>
-        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+        <div className="mt-6 grid gap-6 sm:grid-cols-2 sm:[&>*:last-child:nth-child(odd)]:col-span-2">
           {growthServices.map((service, index) => {
             const Icon = serviceIcons[service.slug];
             return (

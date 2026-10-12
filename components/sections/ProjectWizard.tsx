@@ -131,7 +131,7 @@ export function ProjectWizard() {
   }
 
   return (
-    <section className="page-container py-20 md:py-28">
+    <section className="page-container py-14 md:py-20 lg:py-28">
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
           Start your project
@@ -177,7 +177,7 @@ export function ProjectWizard() {
                     <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
                       What are you looking to build?
                     </h3>
-                    <div className="mt-6 flex flex-wrap gap-3">
+                    <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                       {categories.map((option) => (
                         <Pill
                           key={option.value}
@@ -199,7 +199,7 @@ export function ProjectWizard() {
                     <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
                       What type of {answers.category.toLowerCase()}?
                     </h3>
-                    <div className="mt-6 flex flex-wrap gap-3">
+                    <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                       {subtypesByCategory[answers.category]?.map((option) => (
                         <Pill
                           key={option}
@@ -220,7 +220,7 @@ export function ProjectWizard() {
                     <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
                       What&apos;s your approximate budget?
                     </h3>
-                    <div className="mt-6 flex flex-wrap gap-3">
+                    <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
                       {budgets.map((option) => (
                         <Pill
                           key={option}
@@ -293,7 +293,7 @@ export function ProjectWizard() {
                             setAnswers((a) => ({ ...a, name: e.target.value }))
                           }
                           maxLength={100}
-                          className="rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-red-700"
+                          className="rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-[var(--color-error)]"
                         />
                         <FieldError id="wizard-name-error" message={errors.name} />
                       </div>
@@ -312,7 +312,7 @@ export function ProjectWizard() {
                             setAnswers((a) => ({ ...a, email: e.target.value }))
                           }
                           maxLength={254}
-                          className="rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-red-700"
+                          className="rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-[var(--color-error)]"
                         />
                         <FieldError id="wizard-email-error" message={errors.email} />
                       </div>
@@ -329,7 +329,7 @@ export function ProjectWizard() {
                       {(status === "error" || status === "rate-limited") && (
                         <FormSubmitError
                           rateLimited={status === "rate-limited"}
-                          className="text-sm font-semibold text-red-700"
+                          className="text-sm font-semibold text-[var(--color-error)]"
                         />
                       )}
                     </div>

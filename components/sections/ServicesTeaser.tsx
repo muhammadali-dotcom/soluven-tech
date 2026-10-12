@@ -16,7 +16,7 @@ const growthLabels: Record<string, string> = {
 
 export function ServicesTeaser() {
   return (
-    <section className="page-container py-20 md:py-28">
+    <section className="page-container py-14 md:py-20 lg:py-28">
       <FadeIn>
         <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
           What we do
@@ -28,7 +28,7 @@ export function ServicesTeaser() {
         </h2>
       </FadeIn>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2">
+      <div className="mt-12 grid gap-6 sm:grid-cols-2 sm:[&>*:last-child:nth-child(odd)]:col-span-2">
         {coreServices.map((service) => {
           const Illustration = serviceIllustrations[service.slug];
           return (
@@ -37,7 +37,7 @@ export function ServicesTeaser() {
                 href={`/services/${service.slug}`}
                 className="group flex h-full flex-col overflow-hidden rounded-sm border border-[var(--color-border)] bg-[var(--color-surface)] transition-colors duration-300 hover:border-[var(--soluven-blue)]"
               >
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--soluven-cream)]">
+                <div className="relative aspect-[16/9] w-full overflow-hidden bg-[var(--soluven-cream)] sm:aspect-[4/3]">
                   {service.image ? (
                     <Image
                       src={service.image}

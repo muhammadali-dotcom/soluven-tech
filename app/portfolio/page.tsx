@@ -67,7 +67,7 @@ export default function PortfolioPage() {
 
       {/* 2. How We Approach — dark */}
       <section className="border-t border-[var(--color-border)] bg-[var(--color-ink)]">
-        <div className="page-container py-20 md:py-28">
+        <div className="page-container py-14 md:py-20 lg:py-28">
           <FadeIn>
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-cream)]/50">
               How We Approach Projects

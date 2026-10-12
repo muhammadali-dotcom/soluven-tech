@@ -4,7 +4,6 @@ import { BeamsBackground } from "@/components/ui/beams-background";
 import { HeroAlignment } from "@/components/ui/hero-alignment";
 import { HeroContours } from "@/components/ui/hero-contours";
 import { HeroRibbons } from "@/components/ui/hero-ribbons";
-import { HeroWeave } from "@/components/ui/hero-weave";
 
 type HeroLink = { label: string; href: string };
 
@@ -19,8 +18,8 @@ type PageHeroProps = {
   theme: "dark" | "light";
   /** "sweep" + fade for service pages; "fan" + line-by-line headline rise for company pages. */
   motion?: "sweep" | "fan";
-  /** Animated backdrop: ribbons (services), contours (Work), alignment (Why Soluven), weave, beams (About). */
-  background?: "ribbons" | "contours" | "alignment" | "weave" | "beams";
+  /** Animated backdrop: ribbons (services), contours (Work), alignment (Why Soluven), beams (About). */
+  background?: "ribbons" | "contours" | "alignment" | "beams";
   /** "full" fills the viewport; "compact" lets the next section peek in (About). */
   height?: "full" | "compact";
   backLink?: HeroLink;
@@ -80,8 +79,6 @@ export function PageHero({
         <HeroContours className={t.ribbons} />
       ) : background === "alignment" ? (
         <HeroAlignment className={t.ribbons} />
-      ) : background === "weave" ? (
-        <HeroWeave className={t.ribbons} />
       ) : background === "beams" ? (
         <BeamsBackground className={t.ribbons} />
       ) : (
