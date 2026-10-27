@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { coreServices, growthServices, type ServiceVariant } from "@/data/services";
+import { coreServices, growthServices } from "@/data/services";
 import { serviceIcons } from "@/lib/service-icons";
 import { serviceIllustrations } from "@/components/icons/ServiceIllustrations";
 import { buildMetadata, breadcrumbJsonLd, JsonLd } from "@/lib/seo";
@@ -11,15 +11,10 @@ import { ServicesShowcase } from "@/components/sections/ServicesShowcase";
 export const metadata: Metadata = buildMetadata({
   title: "Services",
   description:
-    "Website development, e-commerce, software, mobile apps, logo design, digital marketing, social media marketing, and SEO from Soluven.",
+    "Website development, online stores and custom software from Soluven, plus mobile apps, branding, SEO, digital marketing and social media to help them grow.",
   path: "/services",
 });
 
-const variantClasses: Record<ServiceVariant, string> = {
-  blue: "bg-[var(--soluven-blue)]/15 border-[var(--soluven-blue)]/30",
-  green: "bg-[var(--soluven-green)]/15 border-[var(--soluven-green)]/30",
-  ink: "bg-[var(--color-background)] border-[var(--soluven-blue)] border-b-4 border-b-[var(--soluven-green)]",
-};
 
 export default function ServicesPage() {
 
@@ -43,7 +38,7 @@ export default function ServicesPage() {
       <ServicesShowcase />
 
       <div className="page-container pb-16 md:pb-24">
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-blue)]">
+        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-blue-deep)]">
           Core services
         </p>
         <p className="mt-2 max-w-2xl text-base text-[var(--color-text-muted)]">
@@ -55,10 +50,10 @@ export default function ServicesPage() {
             return (
               <Reveal key={service.slug} className="h-full">
                 <div
-                  className={`flex h-full flex-col rounded-lg border p-8 text-[var(--color-ink)] transition-colors duration-300 hover:border-[var(--soluven-blue)] ${variantClasses[service.variant]}`}
+                  className="flex h-full flex-col rounded-sm border border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-[var(--color-ink)] transition-colors duration-300 hover:border-[var(--soluven-blue)]"
                 >
                   {Illustration && (
-                    <div className="flex items-center justify-center rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+                    <div className="flex items-center justify-center rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] p-4">
                       <Illustration aria-hidden="true" className="h-32 w-32" />
                     </div>
                   )}
@@ -74,7 +69,7 @@ export default function ServicesPage() {
                       >
                         <span
                           aria-hidden="true"
-                          className="h-1.5 w-1.5 shrink-0 rounded-full bg-[var(--color-ink)]"
+                          className="h-1.5 w-1.5 shrink-0 bg-[var(--color-ink)]"
                         />
                         {item}
                       </li>
@@ -92,7 +87,7 @@ export default function ServicesPage() {
           })}
         </div>
 
-        <p className="mt-16 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--soluven-green)]">
+        <p className="mt-16 text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
           Growth services
         </p>
         <p className="mt-2 max-w-2xl text-base text-[var(--color-text-muted)]">
@@ -105,7 +100,7 @@ export default function ServicesPage() {
               <Reveal key={service.slug} className="h-full">
                 <Link
                   href={`/services/${service.slug}`}
-                  className={`group flex h-full flex-col justify-between rounded-lg border p-8 text-[var(--color-ink)] transition-colors duration-300 hover:border-[var(--soluven-blue)] ${variantClasses[service.variant]}`}
+                  className="group flex h-full flex-col justify-between rounded-sm border border-[var(--color-border)] bg-[var(--color-surface)] p-8 text-[var(--color-ink)] transition-colors duration-300 hover:border-[var(--soluven-blue)]"
                 >
                   <div>
                     <div className="flex items-center justify-between">

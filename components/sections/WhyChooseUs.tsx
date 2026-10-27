@@ -1,4 +1,5 @@
 import { FadeIn } from "@/components/motion/FadeIn";
+import { sectionToneClasses, type SectionTone } from "@/lib/section-tone";
 
 const reasons = [
   {
@@ -33,38 +34,40 @@ const reasons = [
   },
 ];
 
-export function WhyChooseUs() {
+export function WhyChooseUs({ tone = "cream" }: { tone?: SectionTone }) {
   return (
-    <section className="page-container py-14 md:py-20 lg:py-28">
-      <FadeIn>
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-          Why Soluven
-        </p>
-      </FadeIn>
-      <FadeIn delay={0.05}>
-        <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
-          Why businesses choose Soluven.
-        </h2>
-      </FadeIn>
+    <section className={sectionToneClasses[tone]}>
+      <div className="page-container py-14 md:py-20 lg:py-28">
+        <FadeIn>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+            Why Soluven
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.05}>
+          <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
+            Why businesses choose Soluven.
+          </h2>
+        </FadeIn>
 
-      <div className="mt-12 divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
-        {reasons.map((reason, index) => (
-          <FadeIn key={reason.number} delay={index * 0.05}>
-            <div className="flex flex-col gap-2 py-8 sm:flex-row sm:items-start sm:gap-10">
-              <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-[var(--soluven-blue)] sm:w-16 sm:shrink-0">
-                {reason.number}
-              </span>
-              <div>
-                <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
-                  {reason.title}
-                </h3>
-                <p className="mt-2 max-w-xl text-[var(--color-muted)]">
-                  {reason.description}
-                </p>
+        <div className="mt-12 divide-y divide-[var(--color-border)] border-t border-[var(--color-border)]">
+          {reasons.map((reason, index) => (
+            <FadeIn key={reason.number} delay={index * 0.05}>
+              <div className="flex flex-col gap-2 py-8 sm:flex-row sm:items-start sm:gap-10">
+                <span className="font-[family-name:var(--font-heading)] text-2xl font-bold text-[var(--color-blue-deep)] sm:w-16 sm:shrink-0">
+                  {reason.number}
+                </span>
+                <div>
+                  <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
+                    {reason.title}
+                  </h3>
+                  <p className="mt-2 max-w-xl text-[var(--color-muted)]">
+                    {reason.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          </FadeIn>
-        ))}
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -46,7 +46,7 @@ export function PageLoader() {
           <p className="font-[family-name:var(--font-heading)] text-sm font-semibold uppercase tracking-[0.3em] text-[var(--color-ink)]">
             Building What&apos;s Next
           </p>
-          <div className="h-[2px] w-40 overflow-hidden rounded-full bg-[var(--color-border)]">
+          <div className="h-[2px] w-40 overflow-hidden bg-[var(--color-border)]">
             <motion.div
               className="h-full w-full"
               style={{ background: "var(--soluven-blue)" }}

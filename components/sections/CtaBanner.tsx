@@ -1,10 +1,11 @@
 import { LinkButton } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
 import Text3DFlip from "@/components/ui/text-3d-flip";
+import { sectionToneClasses, type SectionTone } from "@/lib/section-tone";
 
-export function CtaBanner() {
+export function CtaBanner({ tone = "dark" }: { tone?: SectionTone }) {
   return (
-    <section className="section-dark border-y border-[var(--color-border)]">
+    <section className={`${sectionToneClasses[tone]} border-y border-[var(--color-border)]`}>
       <div className="bg-[var(--color-background)] py-24 md:py-32">
         <div className="relative mx-auto max-w-2xl px-6 text-center md:px-[85px]">
           <FadeIn>
@@ -18,8 +19,8 @@ export function CtaBanner() {
               <Text3DFlip
                 as="span"
                 className="inline-flex"
-                textClassName="text-[var(--soluven-blue)]"
-                flipTextClassName="text-[var(--soluven-blue)]"
+                textClassName="text-[var(--color-blue-deep)]"
+                flipTextClassName="text-[var(--color-blue-deep)]"
               >
                 an idea?
               </Text3DFlip>

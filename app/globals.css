@@ -26,6 +26,10 @@
   --color-blue-deep: color-mix(in srgb, var(--soluven-blue) 55%, var(--soluven-ink));
   /* Form errors only. About 6:1 on cream; .section-dark swaps in a lighter red. */
   --color-error: #b42318;
+  /* Primary button fill; flips to ink inside .section-blue. */
+  --color-primary: var(--soluven-blue);
+  --color-on-primary: var(--soluven-ink);
+  --color-primary-hover: var(--color-blue-hover);
 }
 
 .section-dark {
@@ -36,7 +40,24 @@
   --color-text-muted: color-mix(in srgb, var(--soluven-cream) 65%, transparent);
   --color-border: color-mix(in srgb, var(--soluven-cream) 15%, transparent);
   --color-surface: color-mix(in srgb, var(--soluven-cream) 6%, var(--soluven-ink));
+  --color-blue-deep: var(--soluven-blue);
   --color-error: #f97066;
+}
+
+/* Brand-blue band: ink text, ink accents (blue accents would vanish on blue). */
+.section-blue {
+  --color-background: var(--soluven-blue);
+  --color-ink: var(--soluven-ink);
+  --color-text: var(--soluven-ink);
+  --color-muted: color-mix(in srgb, var(--soluven-ink) 80%, transparent);
+  --color-text-muted: color-mix(in srgb, var(--soluven-ink) 80%, transparent);
+  --color-border: color-mix(in srgb, var(--soluven-ink) 20%, transparent);
+  --color-surface: color-mix(in srgb, var(--soluven-cream) 25%, var(--soluven-blue));
+  --color-blue-deep: var(--soluven-ink);
+  --color-error: #7a1a12;
+  --color-primary: var(--soluven-ink);
+  --color-on-primary: var(--soluven-cream);
+  --color-primary-hover: color-mix(in srgb, var(--soluven-ink) 85%, var(--soluven-cream));
 }
 
 @theme inline {

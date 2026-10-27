@@ -22,7 +22,7 @@ export function ProjectDetailDialog({ project }: { project: PortfolioProject }) 
       <dialog
         ref={dialogRef}
         aria-labelledby={titleId}
-        className="m-auto w-[min(680px,calc(100vw-2rem))] rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-0 text-[var(--color-ink)] backdrop:bg-[var(--soluven-ink)]/55"
+        className="m-auto w-[min(680px,calc(100vw-2rem))] rounded-sm border border-[var(--color-border)] bg-[var(--color-surface)] p-0 text-[var(--color-ink)] backdrop:bg-[var(--soluven-ink)]/55"
         onClick={(event) => {
           if (event.target === dialogRef.current) dialogRef.current?.close();
         }}
@@ -35,7 +35,7 @@ export function ProjectDetailDialog({ project }: { project: PortfolioProject }) 
             type="button"
             aria-label="Close project details"
             onClick={() => dialogRef.current?.close()}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-border)] transition-colors hover:bg-[var(--color-background)]"
+            className="flex h-9 w-9 items-center justify-center rounded-md border border-[var(--color-border)] transition-colors hover:bg-[var(--color-background)]"
           >
             <X aria-hidden="true" size={16} />
           </button>

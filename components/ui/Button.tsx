@@ -7,7 +7,7 @@ const variantClasses: Record<ButtonVariant, string> = {
   // Always ink text on blue (not the themeable --color-ink), so it stays
   // readable inside .section-dark too.
   primary:
-    "bg-[var(--color-blue)] text-[var(--soluven-ink)] hover:bg-[var(--color-blue-hover)]",
+    "bg-[var(--color-primary)] text-[var(--color-on-primary)] hover:bg-[var(--color-primary-hover)]",
   secondary:
     "border border-[var(--color-border)] text-[var(--color-text)] hover:bg-[var(--color-surface)]",
   inverted:

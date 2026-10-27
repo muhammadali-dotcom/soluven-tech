@@ -8,16 +8,16 @@ const accentByCategory: Record<PortfolioProject["category"], string> = {
 function ChromeBar({ accent }: { accent: string }) {
   return (
     <div className="flex items-center gap-1.5 px-4 pt-4">
-      <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[var(--soluven-blue)]/60" />
-      <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[var(--soluven-green)]/60" />
-      <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[var(--soluven-ink)]/20" />
+      <span aria-hidden="true" className="h-2 w-2 bg-[var(--soluven-blue)]/60" />
+      <span aria-hidden="true" className="h-2 w-2 bg-[var(--soluven-green)]/60" />
+      <span aria-hidden="true" className="h-2 w-2 bg-[var(--soluven-ink)]/20" />
       <div className="ml-4 flex flex-1 items-center gap-2">
         <span aria-hidden="true" className="h-px w-8 bg-[var(--soluven-ink)]/20" />
         <span aria-hidden="true" className="h-px w-8 bg-[var(--soluven-ink)]/20" />
       </div>
       <span
         aria-hidden="true"
-        className="h-3 w-10 rounded-full"
+        className="h-3 w-10"
         style={{ background: `var(${accent})` }}
       />
     </div>
@@ -26,15 +26,15 @@ function ChromeBar({ accent }: { accent: string }) {
 
 function BrowserFrame({ accent }: { accent: string }) {
   return (
-    <div className="w-[82%] max-w-[280px] rounded-lg border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-4">
+    <div className="w-[82%] max-w-[280px] rounded-sm border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-4">
       <ChromeBar accent={accent} />
       <div className="mt-3 grid grid-cols-2 gap-2 px-4">
         <div
-          className="col-span-2 h-16 rounded-lg"
-          style={{ background: `linear-gradient(135deg, var(${accent}) 0%, transparent 100%)`, opacity: 0.35 }}
+          className="col-span-2 h-16 rounded-sm"
+          style={{ background: `var(${accent})`, opacity: 0.35 }}
         />
-        <div className="h-10 rounded-lg bg-[var(--soluven-ink)]/[0.06]" />
-        <div className="h-10 rounded-lg bg-[var(--soluven-ink)]/[0.06]" />
+        <div className="h-10 rounded-sm bg-[var(--soluven-ink)]/[0.06]" />
+        <div className="h-10 rounded-sm bg-[var(--soluven-ink)]/[0.06]" />
       </div>
     </div>
   );
@@ -42,10 +42,10 @@ function BrowserFrame({ accent }: { accent: string }) {
 
 function OpsFrame({ accent }: { accent: string }) {
   return (
-    <div className="w-[82%] max-w-[280px] rounded-lg border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-4">
+    <div className="w-[82%] max-w-[280px] rounded-sm border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-4">
       <ChromeBar accent={accent} />
       <div className="mt-3 grid grid-cols-[44px_1fr] gap-2 px-4">
-        <div className="row-span-3 h-full min-h-[92px] rounded-lg bg-[var(--soluven-ink)]" />
+        <div className="row-span-3 h-full min-h-[92px] rounded-sm bg-[var(--soluven-ink)]" />
         <div
           className="h-6 rounded-md"
           style={{ background: `var(${accent})`, opacity: 0.4 }}
@@ -59,11 +59,11 @@ function OpsFrame({ accent }: { accent: string }) {
 
 function MobileFrame({ accent }: { accent: string }) {
   return (
-    <div className="w-[54%] max-w-[190px] rounded-lg border-[6px] border-[var(--soluven-ink)] bg-[var(--soluven-cream)] p-3">
-      <div className="mx-auto mb-3 h-2.5 w-12 rounded-full bg-[var(--soluven-ink)]" />
+    <div className="w-[54%] max-w-[190px] rounded-sm border-[6px] border-[var(--soluven-ink)] bg-[var(--soluven-cream)] p-3">
+      <div className="mx-auto mb-3 h-2.5 w-12 bg-[var(--soluven-ink)]" />
       <div
         className="h-20 rounded-md"
-        style={{ background: `linear-gradient(135deg, var(${accent}) 0%, transparent 100%)`, opacity: 0.4 }}
+        style={{ background: `var(${accent})`, opacity: 0.4 }}
       />
       <div className="mt-2.5 h-9 rounded-md bg-[var(--soluven-ink)]/[0.06]" />
       <div className="mt-2.5 h-9 rounded-md bg-[var(--soluven-ink)]/[0.06]" />

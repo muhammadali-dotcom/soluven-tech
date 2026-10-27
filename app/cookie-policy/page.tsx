@@ -83,7 +83,7 @@ export default function CookiePolicyPage() {
 
         <div>
           <h2 className={headingClasses}>What we store</h2>
-          <div className="mt-5 overflow-x-auto rounded-lg border border-[var(--color-border)]">
+          <div className="mt-5 overflow-x-auto rounded-sm border border-[var(--color-border)]">
             <table className="w-full min-w-[560px] text-left text-sm">
               <thead className="bg-[var(--color-surface)]">
                 <tr>

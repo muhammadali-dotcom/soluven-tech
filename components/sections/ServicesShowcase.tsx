@@ -65,7 +65,7 @@ export function ServicesShowcase() {
         </div>
 
         {/* Right: preview panel */}
-        <div className="section-dark rounded-lg bg-[var(--color-background)] p-6 text-[var(--color-ink)] md:p-8">
+        <div className="section-dark rounded-sm bg-[var(--color-background)] p-6 text-[var(--color-ink)] md:p-8">
           <div className="flex items-center justify-between">
             <span className="font-[family-name:var(--font-heading)] text-sm font-semibold uppercase tracking-widest">
               <span style={{ color: `var(${accent})` }}>0{active + 1}</span> / {service.name}
@@ -73,18 +73,18 @@ export function ServicesShowcase() {
             <div className="flex items-center gap-1.5">
               <span
                 aria-hidden="true"
-                className="h-2 w-2 rounded-full"
+                className="h-2 w-2"
                 style={{ background: `var(${accent})` }}
               />
-              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[var(--color-border)]" />
+              <span aria-hidden="true" className="h-2 w-2 bg-[var(--color-border)]" />
             </div>
           </div>
 
-          <div className="relative mt-6 overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-16 pt-4">
+          <div className="relative mt-6 overflow-hidden rounded-sm border border-[var(--color-border)] bg-[var(--soluven-cream)] pb-16 pt-4">
             <div className="flex items-center gap-1.5 px-4">
-              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[var(--soluven-blue)]/60" />
-              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[var(--soluven-green)]/60" />
-              <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[var(--soluven-ink)]/20" />
+              <span aria-hidden="true" className="h-2 w-2 bg-[var(--soluven-blue)]/60" />
+              <span aria-hidden="true" className="h-2 w-2 bg-[var(--soluven-green)]/60" />
+              <span aria-hidden="true" className="h-2 w-2 bg-[var(--soluven-ink)]/20" />
               <div className="ml-4 flex flex-1 items-center gap-2">
                 <span aria-hidden="true" className="h-px w-8 bg-[var(--soluven-ink)]/20" />
                 <span aria-hidden="true" className="h-px w-8 bg-[var(--soluven-ink)]/20" />
@@ -92,7 +92,7 @@ export function ServicesShowcase() {
               </div>
               <span
                 aria-hidden="true"
-                className="h-3 w-10 rounded-full"
+                className="h-3 w-10"
                 style={{ background: `var(${accent})` }}
               />
             </div>
@@ -107,7 +107,7 @@ export function ServicesShowcase() {
               </p>
               <span
                 aria-hidden="true"
-                className="mt-4 inline-block h-6 w-20 rounded-full"
+                className="mt-4 inline-block h-6 w-20"
                 style={{ background: `var(${accent})` }}
               />
             </div>
@@ -125,7 +125,7 @@ export function ServicesShowcase() {
               </p>
               <span
                 aria-hidden="true"
-                className="mt-1.5 block h-1.5 w-8 rounded-full"
+                className="mt-1.5 block h-1.5 w-8"
                 style={{ background: `var(${accent})`, marginLeft: "6px" }}
               />
             </div>
@@ -151,7 +151,7 @@ export function ServicesShowcase() {
                 className="flex flex-col items-center gap-1 text-xs font-semibold"
               >
                 <span
-                  className={`flex h-6 w-6 items-center justify-center rounded-full border text-[10px] transition-colors ${
+                  className={`flex h-6 w-6 items-center justify-center border text-[10px] transition-colors ${
                     index === active
                       ? "border-[var(--soluven-blue)] bg-[var(--soluven-blue)] text-[var(--soluven-ink)]"
                       : "border-[var(--color-border)] text-[var(--color-muted)] hover:border-[var(--soluven-blue)]"
@@ -160,7 +160,7 @@ export function ServicesShowcase() {
                   0{index + 1}
                 </span>
                 <span
-                  className={`h-0.5 w-4 rounded-full ${
+                  className={`h-0.5 w-4 ${
                     index === active ? "bg-[var(--soluven-blue)]" : "bg-transparent"
                   }`}
                 />

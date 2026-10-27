@@ -10,6 +10,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import type { Icon } from "@phosphor-icons/react";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { sectionToneClasses, type SectionTone } from "@/lib/section-tone";
 
 type Accent = "blue" | "green";
 
@@ -81,111 +82,110 @@ const accentClasses: Record<Accent, { text: string; ring: string; iconBg: string
   },
 };
 
-export function WhoWeWorkWith() {
+export function WhoWeWorkWith({ tone = "cream" }: { tone?: SectionTone }) {
   return (
-    <section
-      aria-labelledby="who-we-work-with-heading"
-      className="page-container py-14 md:py-20 lg:py-28"
-    >
-      <FadeIn>
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-          Who we work with
-        </p>
-      </FadeIn>
-      <FadeIn delay={0.05}>
-        <h2
-          id="who-we-work-with-heading"
-          className="mt-6 max-w-3xl font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight tracking-tight text-[var(--color-ink)] md:text-4xl"
-        >
-          Built for where you are. Ready for where you&apos;re going.
-        </h2>
-      </FadeIn>
-      <FadeIn delay={0.1}>
-        <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
-          Websites, stores and software designed around how your business actually works.
-        </p>
-      </FadeIn>
-
-      <div className="relative mt-14">
-        <div className="grid gap-6 sm:grid-cols-2">
-          {stages.map((stage, index) => {
-            const accent = accentClasses[stage.accent];
-            const Icon = stage.icon;
-            return (
-              <FadeIn key={stage.title} delay={index * 0.05}>
-                <div className="flex h-full flex-col">
-                  <div className="relative z-10 mb-3 hidden h-9 w-9 sm:flex items-center justify-center border-2 bg-[var(--color-background)] text-sm font-semibold text-[var(--color-ink)]"
-                    style={{ borderColor: stage.accent === "blue" ? "var(--soluven-blue)" : "var(--soluven-green)" }}
-                  >
-                    {stage.number}
-                  </div>
-                  <Link
-                    href="/portfolio"
-                    className={`group relative flex flex-1 flex-col rounded-sm border bg-[var(--color-background)] p-5 transition-colors duration-300 ${
-                      stage.emphasized
-                        ? "border-[var(--soluven-green)]"
-                        : stage.accent === "blue"
-                          ? "border-[var(--color-border)] hover:border-[var(--soluven-blue)]"
-                          : "border-[var(--color-border)] hover:border-[var(--soluven-green)]"
-                    }`}
-                  >
-                    {stage.badge && (
-                      <span className="absolute right-4 top-4 max-w-[calc(100%-4.5rem)] truncate bg-[var(--soluven-green)]/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink)]">
-                        {stage.badge}
-                      </span>
-                    )}
-                    <div className={`flex h-10 w-10 items-center justify-center ${accent.iconBg}`}>
-                      <Icon aria-hidden="true" size={18} className={accent.text} />
-                    </div>
-                    <h3 className="mt-3 font-[family-name:var(--font-heading)] text-base font-semibold text-[var(--color-ink)]">
-                      {stage.title}
-                    </h3>
-                    <p className="mt-2 text-sm text-[var(--color-text-muted)]">
-                      {stage.description}
-                    </p>
-                    <span
-                      className={`mt-3 inline-block w-fit px-3 py-1 text-xs font-semibold text-[var(--color-ink)] ${accent.pillBg}`}
-                    >
-                      {stage.outcome}
-                    </span>
-                    <span className="mt-auto flex h-9 w-9 items-center justify-center self-end border border-[var(--color-border)]">
-                      <ArrowRight aria-hidden="true" size={16} className="text-[var(--color-ink)]" />
-                    </span>
-                  </Link>
-                </div>
-              </FadeIn>
-            );
-          })}
-        </div>
-      </div>
-
-      <FadeIn delay={0.2}>
-        <div className="mt-16 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-              Industries we&apos;ve built for
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              {industries.map(({ label, icon: Icon }) => (
-                <span
-                  key={label}
-                  className="inline-flex items-center gap-2 border border-[var(--color-border)] px-4 py-2 text-sm font-semibold text-[var(--color-ink)]"
-                >
-                  <Icon aria-hidden="true" size={16} className="text-[var(--color-muted)]" />
-                  {label}
-                </span>
-              ))}
-            </div>
-          </div>
-          <Link
-            href="/portfolio"
-            className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--color-blue-deep)] underline decoration-current underline-offset-4"
+    <section aria-labelledby="who-we-work-with-heading" className={sectionToneClasses[tone]}>
+      <div className="page-container py-14 md:py-20 lg:py-28">
+        <FadeIn>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+            Who we work with
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.05}>
+          <h2
+            id="who-we-work-with-heading"
+            className="mt-6 max-w-3xl font-[family-name:var(--font-heading)] text-3xl font-bold leading-tight tracking-tight text-[var(--color-ink)] md:text-4xl"
           >
-            Explore our work
-            <ArrowRight aria-hidden="true" size={16} />
-          </Link>
+            Built for where you are. Ready for where you&apos;re going.
+          </h2>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <p className="mt-4 max-w-2xl text-base text-[var(--color-text-muted)]">
+            Websites, stores and software designed around how your business actually works.
+          </p>
+        </FadeIn>
+
+        <div className="relative mt-14">
+          <div className="grid gap-6 sm:grid-cols-2">
+            {stages.map((stage, index) => {
+              const accent = accentClasses[stage.accent];
+              const Icon = stage.icon;
+              return (
+                <FadeIn key={stage.title} delay={index * 0.05}>
+                  <div className="flex h-full flex-col">
+                    <div className="relative z-10 mb-3 hidden h-9 w-9 sm:flex items-center justify-center border-2 bg-[var(--color-background)] text-sm font-semibold text-[var(--color-ink)]"
+                      style={{ borderColor: stage.accent === "blue" ? "var(--soluven-blue)" : "var(--soluven-green)" }}
+                    >
+                      {stage.number}
+                    </div>
+                    <Link
+                      href="/portfolio"
+                      className={`group relative flex flex-1 flex-col rounded-sm border bg-[var(--color-background)] p-5 transition-colors duration-300 ${
+                        stage.emphasized
+                          ? "border-[var(--soluven-green)]"
+                          : stage.accent === "blue"
+                            ? "border-[var(--color-border)] hover:border-[var(--soluven-blue)]"
+                            : "border-[var(--color-border)] hover:border-[var(--soluven-green)]"
+                      }`}
+                    >
+                      {stage.badge && (
+                        <span className="absolute right-4 top-4 max-w-[calc(100%-4.5rem)] truncate bg-[var(--soluven-green)]/25 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-[var(--color-ink)]">
+                          {stage.badge}
+                        </span>
+                      )}
+                      <div className={`flex h-10 w-10 items-center justify-center ${accent.iconBg}`}>
+                        <Icon aria-hidden="true" size={18} className={accent.text} />
+                      </div>
+                      <h3 className="mt-3 font-[family-name:var(--font-heading)] text-base font-semibold text-[var(--color-ink)]">
+                        {stage.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-[var(--color-text-muted)]">
+                        {stage.description}
+                      </p>
+                      <span
+                        className={`mt-3 inline-block w-fit px-3 py-1 text-xs font-semibold text-[var(--color-ink)] ${accent.pillBg}`}
+                      >
+                        {stage.outcome}
+                      </span>
+                      <span className="mt-auto flex h-9 w-9 items-center justify-center self-end border border-[var(--color-border)]">
+                        <ArrowRight aria-hidden="true" size={16} className="text-[var(--color-ink)]" />
+                      </span>
+                    </Link>
+                  </div>
+                </FadeIn>
+              );
+            })}
+          </div>
         </div>
-      </FadeIn>
+
+        <FadeIn delay={0.2}>
+          <div className="mt-16 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+                Industries we&apos;ve built for
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                {industries.map(({ label, icon: Icon }) => (
+                  <span
+                    key={label}
+                    className="inline-flex items-center gap-2 border border-[var(--color-border)] px-4 py-2 text-sm font-semibold text-[var(--color-ink)]"
+                  >
+                    <Icon aria-hidden="true" size={16} className="text-[var(--color-muted)]" />
+                    {label}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <Link
+              href="/portfolio"
+              className="inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[var(--color-blue-deep)] underline decoration-current underline-offset-4"
+            >
+              Explore our work
+              <ArrowRight aria-hidden="true" size={16} />
+            </Link>
+          </div>
+        </FadeIn>
+      </div>
     </section>
   );
 }

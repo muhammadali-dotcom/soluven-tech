@@ -205,7 +205,7 @@ function InsightCarousel({ onDone }: { onDone: () => void }) {
             >
               <span
                 aria-hidden="true"
-                className={`h-2 w-2 rounded-full ${
+                className={`h-2 w-2 ${
                   i === index ? "bg-[var(--color-ink)]" : "bg-[var(--color-border)]"
                 }`}
               />

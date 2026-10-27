@@ -48,13 +48,13 @@ function FeaturedProject({ project }: { project: PortfolioProject }) {
 
   return (
     <FadeIn>
-      <article id={project.slug} className="scroll-mt-24 overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
+      <article id={project.slug} className="scroll-mt-24 overflow-hidden rounded-sm border border-[var(--color-border)] bg-[var(--color-surface)]">
         {/* Text */}
         <div className="p-8 md:p-12 lg:p-14">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.13em] text-[var(--color-muted)]">
             <span
               aria-hidden="true"
-              className="h-2 w-2 rounded-full"
+              className="h-2 w-2"
               style={{ background: `var(${accent})` }}
             />
             {project.category} project · Featured
@@ -105,13 +105,13 @@ function ProjectCard({
 
   return (
     <FadeIn delay={index * 0.05}>
-      <article id={project.slug} className="flex h-full scroll-mt-24 flex-col overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]">
+      <article id={project.slug} className="flex h-full scroll-mt-24 flex-col overflow-hidden rounded-sm border border-[var(--color-border)] bg-[var(--color-surface)]">
         {/* Text */}
         <div className="flex flex-1 flex-col p-7">
           <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.13em] text-[var(--color-muted)]">
             <span
               aria-hidden="true"
-              className="h-2 w-2 rounded-full"
+              className="h-2 w-2"
               style={{ background: `var(${accent})` }}
             />
             {project.category} project

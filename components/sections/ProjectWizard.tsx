@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { Pill } from "@/components/ui/Pill";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { sectionToneClasses, type SectionTone } from "@/lib/section-tone";
 import { FieldError } from "@/components/ui/FieldError";
 import { FormSubmitError } from "@/components/ui/FormSubmitError";
 import { validateContact, type ContactField } from "@/lib/contact-validation";
@@ -67,7 +68,7 @@ const initialAnswers: Answers = {
   email: "",
 };
 
-export function ProjectWizard() {
+export function ProjectWizard({ tone = "cream" }: { tone?: SectionTone }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Answers>(initialAnswers);
   const [status, setStatus] = useState<Status>("idle");
@@ -131,224 +132,226 @@ export function ProjectWizard() {
   }
 
   return (
-    <section className="page-container py-14 md:py-20 lg:py-28">
-      <FadeIn>
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-          Start your project
-        </p>
-      </FadeIn>
-      <FadeIn delay={0.05}>
-        <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
-          What are you looking to build?
-        </h2>
-      </FadeIn>
-
-      <div className="mt-12 rounded-sm border border-[var(--color-border)] bg-[var(--color-surface)] p-8 md:p-12">
-        {status === "success" ? (
-          <p role="status" className="text-lg font-semibold text-[var(--color-ink)]">
-            Thanks, {answers.name || "there"}. We&apos;ll get back to you soon.
+    <section className={sectionToneClasses[tone]}>
+      <div className="page-container py-14 md:py-20 lg:py-28">
+        <FadeIn>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+            Start your project
           </p>
-        ) : (
-          <>
-            {steps.length > 1 && (
-              <div className="mb-8 flex items-center gap-2">
-                {steps.map((key, index) => (
-                  <span
-                    key={key}
-                    aria-hidden="true"
-                    className={`h-1.5 flex-1 ${
-                      index <= step ? "bg-[var(--soluven-blue)]" : "bg-[var(--color-border)]"
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
+        </FadeIn>
+        <FadeIn delay={0.05}>
+          <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
+            What are you looking to build?
+          </h2>
+        </FadeIn>
 
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentKey}
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -8 }}
-                transition={{ duration: 0.25, ease: "easeOut" }}
-              >
-                {currentKey === "category" && (
-                  <div>
-                    <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
-                      What are you looking to build?
-                    </h3>
-                    <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      {categories.map((option) => (
-                        <Pill
-                          key={option.value}
-                          label={option.label}
-                          icon={option.icon}
-                          active={answers.category === option.value}
-                          onClick={() => {
-                            setAnswers((a) => ({ ...a, category: option.value, subtype: "" }));
-                            goNext();
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {currentKey === "subtype" && (
-                  <div>
-                    <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
-                      What type of {answers.category.toLowerCase()}?
-                    </h3>
-                    <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      {subtypesByCategory[answers.category]?.map((option) => (
-                        <Pill
-                          key={option}
-                          label={option}
-                          active={answers.subtype === option}
-                          onClick={() => {
-                            setAnswers((a) => ({ ...a, subtype: option }));
-                            goNext();
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {currentKey === "budget" && (
-                  <div>
-                    <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
-                      What&apos;s your approximate budget?
-                    </h3>
-                    <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                      {budgets.map((option) => (
-                        <Pill
-                          key={option}
-                          label={option}
-                          active={answers.budget === option}
-                          onClick={() => {
-                            setAnswers((a) => ({ ...a, budget: option }));
-                            goNext();
-                          }}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {currentKey === "description" && (
-                  <div>
-                    <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
-                      Tell us about your project.
-                    </h3>
-                    <textarea
-                      value={answers.description}
-                      onChange={(e) =>
-                        setAnswers((a) => ({ ...a, description: e.target.value }))
-                      }
-                      rows={5}
-                      maxLength={4800}
-                      className="mt-6 w-full rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
-                      placeholder="What are you trying to achieve?"
+        <div className="mt-12 rounded-sm border border-[var(--color-border)] bg-[var(--color-surface)] p-8 md:p-12">
+          {status === "success" ? (
+            <p role="status" className="text-lg font-semibold text-[var(--color-ink)]">
+              Thanks, {answers.name || "there"}. We&apos;ll get back to you soon.
+            </p>
+          ) : (
+            <>
+              {steps.length > 1 && (
+                <div className="mb-8 flex items-center gap-2">
+                  {steps.map((key, index) => (
+                    <span
+                      key={key}
+                      aria-hidden="true"
+                      className={`h-1.5 flex-1 ${
+                        index <= step ? "bg-[var(--soluven-blue)]" : "bg-[var(--color-border)]"
+                      }`}
                     />
-                    <Button
-                      type="button"
-                      className="mt-6"
-                      disabled={!answers.description.trim()}
-                      onClick={goNext}
-                    >
-                      Continue
-                    </Button>
-                  </div>
-                )}
+                  ))}
+                </div>
+              )}
 
-                {currentKey === "details" && (
-                  <form onSubmit={handleSubmit} noValidate>
-                    <div aria-hidden="true" className="sr-only">
-                      <label htmlFor="wizard-website">Website</label>
-                      <input
-                        id="wizard-website"
-                        name="website"
-                        type="text"
-                        tabIndex={-1}
-                        autoComplete="off"
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentKey}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25, ease: "easeOut" }}
+                >
+                  {currentKey === "category" && (
+                    <div>
+                      <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
+                        What are you looking to build?
+                      </h3>
+                      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        {categories.map((option) => (
+                          <Pill
+                            key={option.value}
+                            label={option.label}
+                            icon={option.icon}
+                            active={answers.category === option.value}
+                            onClick={() => {
+                              setAnswers((a) => ({ ...a, category: option.value, subtype: "" }));
+                              goNext();
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {currentKey === "subtype" && (
+                    <div>
+                      <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
+                        What type of {answers.category.toLowerCase()}?
+                      </h3>
+                      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        {subtypesByCategory[answers.category]?.map((option) => (
+                          <Pill
+                            key={option}
+                            label={option}
+                            active={answers.subtype === option}
+                            onClick={() => {
+                              setAnswers((a) => ({ ...a, subtype: option }));
+                              goNext();
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {currentKey === "budget" && (
+                    <div>
+                      <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
+                        What&apos;s your approximate budget?
+                      </h3>
+                      <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                        {budgets.map((option) => (
+                          <Pill
+                            key={option}
+                            label={option}
+                            active={answers.budget === option}
+                            onClick={() => {
+                              setAnswers((a) => ({ ...a, budget: option }));
+                              goNext();
+                            }}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {currentKey === "description" && (
+                    <div>
+                      <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
+                        Tell us about your project.
+                      </h3>
+                      <textarea
+                        value={answers.description}
+                        onChange={(e) =>
+                          setAnswers((a) => ({ ...a, description: e.target.value }))
+                        }
+                        rows={5}
+                        maxLength={4800}
+                        className="mt-6 w-full rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3"
+                        placeholder="What are you trying to achieve?"
                       />
-                    </div>
-                    <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
-                      Your details
-                    </h3>
-                    <div className="mt-6 flex flex-col gap-4">
-                      <div className="flex flex-col gap-1">
-                        <label htmlFor="wizard-name" className="text-sm font-semibold">
-                          Name
-                        </label>
-                        <input
-                          id="wizard-name"
-                          aria-invalid={Boolean(errors.name)}
-                          aria-describedby={errors.name ? "wizard-name-error" : undefined}
-                          type="text"
-                          required
-                          value={answers.name}
-                          onChange={(e) =>
-                            setAnswers((a) => ({ ...a, name: e.target.value }))
-                          }
-                          maxLength={100}
-                          className="rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-[var(--color-error)]"
-                        />
-                        <FieldError id="wizard-name-error" message={errors.name} />
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        <label htmlFor="wizard-email" className="text-sm font-semibold">
-                          Email
-                        </label>
-                        <input
-                          id="wizard-email"
-                          aria-invalid={Boolean(errors.email)}
-                          aria-describedby={errors.email ? "wizard-email-error" : undefined}
-                          type="email"
-                          required
-                          value={answers.email}
-                          onChange={(e) =>
-                            setAnswers((a) => ({ ...a, email: e.target.value }))
-                          }
-                          maxLength={254}
-                          className="rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-[var(--color-error)]"
-                        />
-                        <FieldError id="wizard-email-error" message={errors.email} />
-                      </div>
-                      <Button type="submit" disabled={status === "submitting"}>
-                        {status === "submitting" ? "Sending..." : "Send Project Request →"}
+                      <Button
+                        type="button"
+                        className="mt-6"
+                        disabled={!answers.description.trim()}
+                        onClick={goNext}
+                      >
+                        Continue
                       </Button>
-                      <p className="text-sm text-[var(--color-muted)]">
-                        We only use your details to reply. See our{" "}
-                        <Link href="/privacy" className="font-semibold text-[var(--color-ink)] underline underline-offset-4">
-                          privacy policy
-                        </Link>
-                        .
-                      </p>
-                      {(status === "error" || status === "rate-limited") && (
-                        <FormSubmitError
-                          rateLimited={status === "rate-limited"}
-                          className="text-sm font-semibold text-[var(--color-error)]"
-                        />
-                      )}
                     </div>
-                  </form>
-                )}
-              </motion.div>
-            </AnimatePresence>
+                  )}
 
-            {step > 0 && (
-              <button
-                type="button"
-                onClick={goBack}
-                className="mt-8 text-sm font-semibold underline decoration-transparent underline-offset-4 hover:decoration-current"
-              >
-                ← Back
-              </button>
-            )}
-          </>
-        )}
+                  {currentKey === "details" && (
+                    <form onSubmit={handleSubmit} noValidate>
+                      <div aria-hidden="true" className="sr-only">
+                        <label htmlFor="wizard-website">Website</label>
+                        <input
+                          id="wizard-website"
+                          name="website"
+                          type="text"
+                          tabIndex={-1}
+                          autoComplete="off"
+                        />
+                      </div>
+                      <h3 className="font-[family-name:var(--font-heading)] text-lg font-semibold">
+                        Your details
+                      </h3>
+                      <div className="mt-6 flex flex-col gap-4">
+                        <div className="flex flex-col gap-1">
+                          <label htmlFor="wizard-name" className="text-sm font-semibold">
+                            Name
+                          </label>
+                          <input
+                            id="wizard-name"
+                            aria-invalid={Boolean(errors.name)}
+                            aria-describedby={errors.name ? "wizard-name-error" : undefined}
+                            type="text"
+                            required
+                            value={answers.name}
+                            onChange={(e) =>
+                              setAnswers((a) => ({ ...a, name: e.target.value }))
+                            }
+                            maxLength={100}
+                            className="rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-[var(--color-error)]"
+                          />
+                          <FieldError id="wizard-name-error" message={errors.name} />
+                        </div>
+                        <div className="flex flex-col gap-1">
+                          <label htmlFor="wizard-email" className="text-sm font-semibold">
+                            Email
+                          </label>
+                          <input
+                            id="wizard-email"
+                            aria-invalid={Boolean(errors.email)}
+                            aria-describedby={errors.email ? "wizard-email-error" : undefined}
+                            type="email"
+                            required
+                            value={answers.email}
+                            onChange={(e) =>
+                              setAnswers((a) => ({ ...a, email: e.target.value }))
+                            }
+                            maxLength={254}
+                            className="rounded-sm border border-[var(--color-border)] bg-[var(--color-background)] px-4 py-3 aria-[invalid=true]:border-[var(--color-error)]"
+                          />
+                          <FieldError id="wizard-email-error" message={errors.email} />
+                        </div>
+                        <Button type="submit" disabled={status === "submitting"}>
+                          {status === "submitting" ? "Sending..." : "Send Project Request →"}
+                        </Button>
+                        <p className="text-sm text-[var(--color-muted)]">
+                          We only use your details to reply. See our{" "}
+                          <Link href="/privacy" className="font-semibold text-[var(--color-ink)] underline underline-offset-4">
+                            privacy policy
+                          </Link>
+                          .
+                        </p>
+                        {(status === "error" || status === "rate-limited") && (
+                          <FormSubmitError
+                            rateLimited={status === "rate-limited"}
+                            className="text-sm font-semibold text-[var(--color-error)]"
+                          />
+                        )}
+                      </div>
+                    </form>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+
+              {step > 0 && (
+                <button
+                  type="button"
+                  onClick={goBack}
+                  className="mt-8 text-sm font-semibold underline decoration-transparent underline-offset-4 hover:decoration-current"
+                >
+                  ← Back
+                </button>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { portfolioProjects, type PortfolioProject } from "@/data/portfolio";
 import { services } from "@/data/services";
 import { FadeIn } from "@/components/motion/FadeIn";
+import { sectionToneClasses, type SectionTone } from "@/lib/section-tone";
 import { ProjectVisual } from "@/components/sections/ProjectVisual";
 
 const linkClasses =
@@ -59,7 +60,7 @@ function ShowcaseRow({ project, index }: { project: PortfolioProject; index: num
 
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2">
           <Link href={`/portfolio#${project.slug}`} className={linkClasses}>
-            Case study →
+            View project →
           </Link>
           {project.link && (
             <a href={project.link} target="_blank" rel="noopener noreferrer" className={linkClasses}>
@@ -72,42 +73,44 @@ function ShowcaseRow({ project, index }: { project: PortfolioProject; index: num
   );
 }
 
-export function WorkTeaser() {
+export function WorkTeaser({ tone = "cream" }: { tone?: SectionTone }) {
   return (
-    <section className="page-container py-14 md:py-20 lg:py-28">
-      <FadeIn>
-        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
-          Selected work
-        </p>
-      </FadeIn>
-      <FadeIn delay={0.05}>
-        <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
-          Products we&apos;ve built.
-        </h2>
-      </FadeIn>
-      <FadeIn delay={0.1}>
-        <p className="mt-4 max-w-2xl text-base text-[var(--color-muted)]">
-          Independent products we designed and engineered end to end. Client
-          work will join as engagements are delivered.
-        </p>
-      </FadeIn>
+    <section className={sectionToneClasses[tone]}>
+      <div className="page-container py-14 md:py-20 lg:py-28">
+        <FadeIn>
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--color-muted)]">
+            Selected work
+          </p>
+        </FadeIn>
+        <FadeIn delay={0.05}>
+          <h2 className="mt-6 max-w-2xl font-[family-name:var(--font-heading)] text-2xl font-semibold leading-tight tracking-tight md:text-3xl">
+            Products we&apos;ve built.
+          </h2>
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <p className="mt-4 max-w-2xl text-base text-[var(--color-muted)]">
+            Independent products we designed and engineered end to end. Client
+            work will join as engagements are delivered.
+          </p>
+        </FadeIn>
 
-      <div className="mt-12 border-b border-[var(--color-border)]">
-        {portfolioProjects
-          .filter((project) => project.featured)
-          .map((project, index) => (
-            <FadeIn key={project.slug}>
-              <ShowcaseRow project={project} index={index} />
-            </FadeIn>
-          ))}
+        <div className="mt-12 border-b border-[var(--color-border)]">
+          {portfolioProjects
+            .filter((project) => project.featured)
+            .map((project, index) => (
+              <FadeIn key={project.slug}>
+                <ShowcaseRow project={project} index={index} />
+              </FadeIn>
+            ))}
+        </div>
+
+        <Link
+          href="/portfolio"
+          className="mt-8 inline-flex w-fit items-center gap-1.5 text-sm font-semibold underline decoration-current underline-offset-4"
+        >
+          See all work →
+        </Link>
       </div>
-
-      <Link
-        href="/portfolio"
-        className="mt-8 inline-flex w-fit items-center gap-1.5 text-sm font-semibold underline decoration-current underline-offset-4"
-      >
-        See all work →
-      </Link>
     </section>
   );
 }

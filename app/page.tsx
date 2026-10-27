@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { Marquee } from "@/components/sections/Marquee";
 import { ServicesTeaser } from "@/components/sections/ServicesTeaser";
-import { WhyChooseUs } from "@/components/sections/WhyChooseUs";
+import { WhySoluvenTeaser } from "@/components/sections/WhySoluvenTeaser";
 import { WhoWeWorkWith } from "@/components/sections/WhoWeWorkWith";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { WorkTeaser } from "@/components/sections/WorkTeaser";
@@ -23,11 +23,11 @@ export default function HomePage() {
       <Hero />
       <Marquee />
       <ServicesTeaser />
-      <WhyChooseUs />
+      <WhySoluvenTeaser tone="dark" />
       <WhoWeWorkWith />
-      <HowWeWork />
+      <HowWeWork tone="dark" />
       <WorkTeaser />
-      <ProjectWizard />
+      <ProjectWizard tone="dark" />
       <Faq />
       <CtaBanner />
     </>

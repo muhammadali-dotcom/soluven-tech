@@ -17,7 +17,7 @@ export function VerticalProgressLine() {
       className="absolute left-0 top-0 h-full w-px bg-[var(--color-border)]"
     >
       <motion.div
-        className="w-px origin-top bg-[var(--soluven-blue)]"
+        className="w-px origin-top bg-[var(--color-blue-deep)]"
         style={{ scaleY: scrollYProgress, height: "100%" }}
       />
     </div>
